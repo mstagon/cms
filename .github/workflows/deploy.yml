@@ -38,7 +38,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux/amd64
+          platforms: linux/arm64
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
