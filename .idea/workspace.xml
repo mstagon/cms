@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d199b217-95ec-4228-a8a4-dd8189468ca7" name="변경" comment="feat: 프로젝트 재생성&#10;&#10;tailwindcss 설치 및 미사용 패키지 삭제&#10;&#10;&#10;Related to: #1" />
+    <list default="true" id="d199b217-95ec-4228-a8a4-dd8189468ca7" name="변경" comment="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +121,7 @@
       <workItem from="1745174939539" duration="2405000" />
       <workItem from="1745219105128" duration="1988000" />
       <workItem from="1745221188943" duration="1066000" />
-      <workItem from="1745222274107" duration="5611000" />
+      <workItem from="1745222274107" duration="6093000" />
     </task>
     <task id="LOCAL-00001" summary="feat: prettier 및 eslint 설정&#10;&#10;Related to: #1">
       <option name="closed" value="true" />
@@ -291,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745228153435</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1">
+      <option name="closed" value="true" />
+      <created>1745228587114</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745228587114</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +351,7 @@
     <MESSAGE value="feat: github actions 수정&#10;&#10;도커 빌드 속도 개선을 위한 캐시 수정&#10;&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: github actions 수정&#10;&#10;도커 빌드 속도 개선을 위한 러너 수정&#10;&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: 프로젝트 재생성&#10;&#10;tailwindcss 설치 및 미사용 패키지 삭제&#10;&#10;&#10;Related to: #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 프로젝트 재생성&#10;&#10;tailwindcss 설치 및 미사용 패키지 삭제&#10;&#10;&#10;Related to: #1" />
+    <MESSAGE value="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
   </component>
 </project>
