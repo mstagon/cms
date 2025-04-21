@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
-module.exports = {
-  output: "standalone",
+    output: "standalone", // standalone 모드 활성화
+    experimental: {
+        appDir: true, // App Router 활성화
+    },
 };
 
 export default nextConfig;
