@@ -1,9 +1,10 @@
 // ProjectsShowcase 컴포넌트는 주요/기타 프로젝트를 스크롤 애니메이션과 함께 보여줍니다.
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import type { ProjectItem, ProjectSummary } from "@/app/types/projects";
+import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
 interface ProjectsShowcaseProps {
   featured: ProjectItem[];
@@ -12,39 +13,7 @@ interface ProjectsShowcaseProps {
 
 export default function ProjectsShowcase({ featured, others }: ProjectsShowcaseProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || typeof window === "undefined") {
-      return;
-    }
-
-    const nodes = Array.from(section.querySelectorAll<HTMLElement>('[data-animate="scroll"]'));
-    if (!nodes.length) return;
-
-    if (!("IntersectionObserver" in window)) {
-      nodes.forEach((node) => node.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(sectionRef, { threshold: 0.2 });
 
   return (
     <section ref={sectionRef} id="projects" className="bg-black text-white">

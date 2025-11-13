@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d199b217-95ec-4228-a8a4-dd8189468ca7" name="변경" comment="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
+    <list default="true" id="d199b217-95ec-4228-a8a4-dd8189468ca7" name="변경" comment="test">
+      <change afterPath="$PROJECT_DIR$/public/SUIT-Variable.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Hero/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Hero/Hero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SmoothScroll.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/VideoComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/VideoComponents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +79,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/cms/ureka/cms/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/cms/ureka/cms/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -78,9 +89,9 @@
       <recent name="$PROJECT_DIR$/.github" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/src/app/components/Hero" />
-      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/infra" />
     </key>
   </component>
@@ -100,7 +111,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26574.96" />
       </set>
     </attachedChunks>
   </component>
@@ -121,7 +132,26 @@
       <workItem from="1745174939539" duration="2405000" />
       <workItem from="1745219105128" duration="1988000" />
       <workItem from="1745221188943" duration="1066000" />
-      <workItem from="1745222274107" duration="6093000" />
+      <workItem from="1745222274107" duration="6810000" />
+      <workItem from="1745254271615" duration="2257000" />
+      <workItem from="1745747624722" duration="792000" />
+      <workItem from="1748717715549" duration="92000" />
+      <workItem from="1750048872127" duration="1065000" />
+      <workItem from="1750050105350" duration="49000" />
+      <workItem from="1750051018837" duration="2073000" />
+      <workItem from="1754491918347" duration="72000" />
+      <workItem from="1754492157067" duration="994000" />
+      <workItem from="1754502806189" duration="1161000" />
+      <workItem from="1754570161302" duration="2807000" />
+      <workItem from="1754574260209" duration="2465000" />
+      <workItem from="1758471659504" duration="3470000" />
+      <workItem from="1758557982688" duration="185000" />
+      <workItem from="1758633229131" duration="1616000" />
+      <workItem from="1760412798965" duration="852000" />
+      <workItem from="1760415313096" duration="85000" />
+      <workItem from="1760491085719" duration="581000" />
+      <workItem from="1760491683889" duration="4830000" />
+      <workItem from="1761462523957" duration="2846000" />
     </task>
     <task id="LOCAL-00001" summary="feat: prettier 및 eslint 설정&#10;&#10;Related to: #1">
       <option name="closed" value="true" />
@@ -299,7 +329,31 @@
       <option name="project" value="LOCAL" />
       <updated>1745228587114</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: 인트로 페이지 추가 및 배경 영상 추가&#10;&#10;부드러운 스크롤 및 스크롤 애니메이션 추가&#10;&#10;&#10;&#10;Related to: #3">
+      <option name="closed" value="true" />
+      <created>1745228917601</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745228917601</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: 인트로 페이지 배경 영상 수정&#10;&#10;화면 크기에 맞게 꽉차게 변경&#10;&#10;&#10;&#10;Related to: #3">
+      <option name="closed" value="true" />
+      <created>1745254486500</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745254486500</updated>
+    </task>
+    <task id="LOCAL-00025" summary="test">
+      <option name="closed" value="true" />
+      <created>1754571158078</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1754571158078</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +383,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: prettier 및 eslint 설정&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: Docker 빌드 및 배포 설정&#10;&#10;Dockerfile 작성 완료&#10;docker-compose 작성완료&#10;next 빌드 최적화&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: Docker 관련 파일 수정 및 위치 분리&#10;&#10;무중단 배포 및 자동화를 위한 내용 수정&#10;가독성을 위해 빌드 및 배포 관련 파일 infra 폴더로 분리&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: Docker 관련 파일 수정 및 위치 분리&#10;무중단 배포 및 자동화를 위한 내용 수정&#10;가독성을 위해 빌드 및 배포 관련 파일 infra 폴더로 분리&#10;&#10;Related to: #1" />
@@ -352,6 +405,9 @@
     <MESSAGE value="feat: github actions 수정&#10;&#10;도커 빌드 속도 개선을 위한 러너 수정&#10;&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: 프로젝트 재생성&#10;&#10;tailwindcss 설치 및 미사용 패키지 삭제&#10;&#10;&#10;Related to: #1" />
     <MESSAGE value="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: next.config.ts 수정&#10;오류 수정 &#10;&#10;&#10;Related to: #1" />
+    <MESSAGE value="feat: 인트로 페이지 추가 및 배경 영상 추가&#10;&#10;부드러운 스크롤 및 스크롤 애니메이션 추가&#10;&#10;&#10;&#10;Related to: #3" />
+    <MESSAGE value="feat: 인트로 페이지 배경 영상 수정&#10;&#10;화면 크기에 맞게 꽉차게 변경&#10;&#10;&#10;&#10;Related to: #3" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
