@@ -1,98 +1,18 @@
-"use client";
-
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
+// HeroIntro 컴포넌트는 스티키 인트로 문구와 스크롤 유도 표시를 렌더링합니다.
 export default function HeroIntro() {
-  const wrapper = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const w1 = useRef<HTMLHeadingElement>(null);
-  const w2 = useRef<HTMLHeadingElement>(null);
-  const w3 = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (!wrapper.current) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: wrapper.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        pin: true,
-      },
-    });
-
-    tl.to(
-      titleRef.current,
-      {
-        scale: 0.3,
-        opacity: 0,
-        ease: "none",
-      },
-      0,
-    )
-      .fromTo(
-        w1.current,
-        { x: 200, opacity: 0 },
-        { x: 0, opacity: 1, ease: "none" },
-        0.2,
-      )
-      .fromTo(
-        w2.current,
-        { x: -200, opacity: 0 },
-        { x: 0, opacity: 1, ease: "none" },
-        0.4,
-      )
-      .fromTo(
-        w3.current,
-        { x: 200, opacity: 0 },
-        { x: 0, opacity: 1, ease: "none" },
-        0.6,
-      )
-      .to(
-        [w1.current, w2.current, w3.current],
-        {
-          x: (i) => (i % 2 === 0 ? -200 : 200),
-          opacity: 0,
-          ease: "none",
-        },
-        0.8,
-      );
-  }, []);
-
   return (
-    <section ref={wrapper} className="relative h-[150vh] overflow-hidden">
-      <h1
-        ref={titleRef}
-        className="absolute top-[10%] left-1/2 -translate-x-1/2 text-[15vw] text-white m-0 whitespace-nowrap"
-      >
-        CHOI MIN SEOK
+    <div className="relative flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center text-white">
+      <p className="text-sm uppercase tracking-[0.5em] text-white/75">Choi Min Seok</p>
+      <h1 className="text-[15vw] leading-none md:text-[8vw] text-white drop-shadow-[0_6px_18px_rgba(80,170,255,0.65)]">
+        THE FE DEVELOPER
       </h1>
-      <h2
-        ref={w1}
-        className="absolute left-1/2 -translate-x-1/2 text-[8vw] text-white m-0 whitespace-nowrap"
-        style={{ top: "30%" }}
-      >
-        THE
-      </h2>
-      <h2
-        ref={w2}
-        className="absolute left-1/2 -translate-x-1/2 text-[8vw] text-white m-0 whitespace-nowrap"
-        style={{ top: "40%" }}
-      >
-        FE
-      </h2>
-      <h2
-        ref={w3}
-        className="absolute left-1/2 -translate-x-1/2 text-[8vw] text-white m-0 whitespace-nowrap"
-        style={{ top: "50%" }}
-      >
-        DEVELOPER
-      </h2>
-    </section>
+      <p className="max-w-xl text-lg text-white/80">
+        인터랙션과 퍼포먼스를 겸비한 웹 프로덕트를 만드는 프론트엔드 개발자입니다.
+      </p>
+      <div className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.4em] text-white">
+        <span>Scroll</span>
+        <span className="animate-bounce text-xl">↓</span>
+      </div>
+    </div>
   );
 }
