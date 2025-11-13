@@ -1,0 +1,43 @@
+/* 앱 전반에서 공유하는 반경·간격·컬러 역할 토큰을 정의합니다. */
+:root {
+  /* 컴포넌트 라운드 값을 위한 반경 토큰 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* 여백 스케일 토큰 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* 다크 모드 기본 컬러 팔레트 */
+  --color-fg: 0 0% 100%;
+  --color-bg: 0 0% 0%;
+  --color-surface: 220 10% 12%;
+  --color-border: 218 17% 26%;
+  --color-muted: 214 18% 75%;
+  --color-accent: 204 90% 60%;
+  --color-accent-soft: 204 100% 85%;
+  --color-card: 0 0% 100% / 0.05;
+  --color-ring: 0 0% 100% / 0.1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* 라이트 모드에서 사용하는 컬러 팔레트 */
+    --color-fg: 220 14% 12%;
+    --color-bg: 0 0% 98%;
+    --color-surface: 0 0% 100%;
+    --color-border: 220 11% 86%;
+    --color-muted: 220 12% 45%;
+    --color-accent: 204 90% 52%;
+    --color-accent-soft: 204 100% 92%;
+    --color-card: 220 10% 15% / 0.04;
+    --color-ring: 220 14% 30% / 0.12;
+  }
+}
+
+
