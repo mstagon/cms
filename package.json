@@ -6,12 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42",
-    "gsap": "^3.12.7",
-    "lenis": "^1.2.3",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -25,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prettier": "^3"
   }
 }
