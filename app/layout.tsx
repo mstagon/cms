@@ -2,19 +2,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { suit } from "@/app/fonts";
-import Footer from "@/app/components/Footer";
-import VideoComponent from "@/app/components/Hero/VideoComponents";
+import FooterSection from "@/app/components/organisms/layout/FooterSection";
+import VideoBackground from "@/app/components/organisms/layout/VideoBackground";
+import { getServerBaseUrl } from "@/app/lib/server/baseUrl";
+import type { FooterInfo } from "@/app/types/layout";
 
 export const metadata: Metadata = {
   title: "CMS — Frontend Developer",
   description: "Choi Min Seok Portfolio",
   metadataBase: new URL("https://example.com"),
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   openGraph: {
     title: "CMS — Frontend Developer",
     description: "Choi Min Seok Portfolio",
@@ -23,20 +19,37 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const baseUrl = getServerBaseUrl();
+  const footerResponse = await fetch(`${baseUrl}/api/footer`, { cache: "no-store" });
+
+  if (!footerResponse.ok) {
+    throw new Error("푸터 데이터를 불러오지 못했습니다.");
+  }
+
+  const footerInfo = (await footerResponse.json()) as FooterInfo;
+  const currentYear = new Date().getFullYear();
+
   return (
     <html lang="ko">
       <body
         className={`${suit.className} relative m-0 p-0 min-h-screen overflow-x-hidden bg-black text-white`}
       >
-        <VideoComponent />
+        <VideoBackground />
         <main className="relative z-10">{children}</main>
         <div className="relative z-10">
-          <Footer />
+          <FooterSection info={footerInfo} year={currentYear} />
         </div>
       </body>
     </html>

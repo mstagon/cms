@@ -15,53 +15,6 @@ body {
   background-color: hsl(var(--bg));
 }
 
-/* 카드 배경과 유사 톤에 사용할 서페이스 배경 유틸리티 */
-.bg-surface {
-  background-color: hsl(var(--color-surface));
-}
-
-/* 희미한 보더에 사용할 색상 유틸리티 */
-.border-subtle {
-  border-color: hsl(var(--color-border));
-}
-
-/* 설명 텍스트 등 부가 정보에 사용할 컬러 유틸리티 */
-.text-muted {
-  color: hsl(var(--color-muted));
-}
-
-/* 프로젝트 태그 등에 사용하는 칩 스타일 공통 정의 */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  background-color: hsl(var(--color-surface));
-  border: 1px solid hsl(var(--color-border));
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: hsl(var(--fg));
-}
-
-/* 프로젝트 CTA 버튼에 사용하는 라운드 링크 스타일 */
-.cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.1rem;
-  border-radius: 9999px;
-  border: 1px solid hsl(var(--color-border));
-  color: hsl(var(--fg));
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* CTA 호버 시 강조 효과 */
-.cta-link:hover {
-  background-color: hsl(var(--color-surface));
-  border-color: hsl(var(--color-accent));
-  color: hsl(var(--color-accent-soft));
-}
-
 /* 스크롤 인터섹션 애니메이션을 위한 초기 상태 */
 [data-animate="scroll"] {
   opacity: 0;
