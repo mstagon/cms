@@ -1,0 +1,37 @@
+.wrapper {
+  position: relative;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  border-radius: inherit;
+  transform-origin: left center;
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--progress, 0%);
+  }
+}
+
+:global([data-progress-container].is-visible) :local(.fill) {
+  animation: progressFill var(--progress-duration, 1s)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--progress-delay, 0.15s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global([data-progress-container].is-visible) :local(.fill) {
+    animation: none !important;
+    width: var(--progress, 0%);
+  }
+}
