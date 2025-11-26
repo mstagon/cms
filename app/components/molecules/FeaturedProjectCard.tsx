@@ -4,6 +4,7 @@
 import Image from "next/image";
 import Tag from "@/app/components/atoms/Tag";
 import type { ProjectItem } from "@/app/types/projects";
+import { useUI } from "@/app/context/UIContext";
 
 interface FeaturedProjectCardProps {
   project: ProjectItem;
@@ -18,9 +19,17 @@ export default function FeaturedProjectCard({
   delay,
   onOpenDetail,
 }: FeaturedProjectCardProps) {
+  const { language } = useUI();
   const imageSrc = project.image?.split("=")[0] ?? project.image;
   const isReversed = project.layout === "reversed";
   const isInternalLink = Boolean(onOpenDetail);
+
+  const labels = {
+    ko: "자세히 보기",
+    en: "View detail",
+  } as const;
+
+  const ctaLabel = labels[language] ?? labels.ko;
 
   const handleOpenDetail = () => {
     if (onOpenDetail) {
@@ -97,7 +106,7 @@ export default function FeaturedProjectCard({
                 isReversed ? "md:justify-end" : ""
               }`}
             >
-              자세히 보기
+              {ctaLabel}
               <span aria-hidden className="text-base">→</span>
             </button>
           ) : (
@@ -107,7 +116,7 @@ export default function FeaturedProjectCard({
                 isReversed ? "md:justify-end" : ""
               }`}
             >
-              자세히 보기
+              {ctaLabel}
               <span aria-hidden className="text-base">→</span>
             </a>
           )}

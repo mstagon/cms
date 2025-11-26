@@ -8,11 +8,15 @@ import SectionHeading from "@/app/components/atoms/SectionHeading";
 interface ExperienceTimelineProps {
   experiences: Experience[];
   delay?: number;
+  headingTitle?: string;
+  headingSubtitle?: string;
 }
 
 export default function ExperienceTimeline({
   experiences,
   delay = 0.2,
+  headingTitle = "Experience",
+  headingSubtitle = "주요 경력과 기여도",
 }: ExperienceTimelineProps) {
   return (
     <section
@@ -22,8 +26,8 @@ export default function ExperienceTimeline({
       style={{ transitionDelay: `${delay}s` }}
     >
       <SectionHeading
-        title="Experience"
-        subtitle="주요 경력과 기여도"
+        title={headingTitle}
+        subtitle={headingSubtitle}
         align="left"
       />
       <div className="grid grid-cols-[auto_1fr] gap-x-6">

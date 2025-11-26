@@ -6,6 +6,7 @@ import type {
   ProfileIntro,
   SkillCategory,
 } from "@/app/types/about";
+import type { Language } from "@/app/types/ui";
 
 export interface AboutApiResponse {
   profile: ProfileIntro;
@@ -15,236 +16,448 @@ export interface AboutApiResponse {
   interests: Interest[];
 }
 
-const profile: ProfileIntro = {
-  headline: "성장하는 프론트엔드 개발자,\n김개발입니다.",
-  description:
-    "사용자 경험을 최우선으로 생각하며, 비즈니스 목표에 기여하는 웹 서비스를 만듭니다.",
-  imageAlt: "프론트엔드 개발자 김개발의 프로필 이미지",
-  imageUrl:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAL9FoyVmPJTFY36zeksOijLF8iWCEK-aQT4SDtvOeLUxs6OMEN2e2c0VPy3p3xK-ihrT__Ok66DrWec_Qa0RQrTYxxqeG1wX5zG9ijiXnlQEyadesZDwo8hQa1QrO5Gur0sSR23M4vIQF58lcE_lW8lyubcSdBlN1FDCY8BSqLz-orxMGpCJ_nv8pKuyzQ-FpSILld6d-lg5hODjnF1ID2FsMit5ncbM2n1t7HH8oka8TH2hmJq3Kx6IXy9ypnutO-o1tEnR2N6DPV",
+const sharedSkills = {
+  frontend: [
+    {
+      name: "React",
+      icon: "⚛️",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 78,
+    },
+    {
+      name: "Next.js",
+      icon: "⬛",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 77,
+    },
+    {
+      name: "JavaScript",
+      icon: "🟨",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 76,
+    },
+    {
+      name: "TypeScript",
+      icon: "🟦",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 75,
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "🌊",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 72,
+    },
+    {
+      name: "Styled-components",
+      icon: "💅",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 71,
+    },
+    {
+      name: "CSS",
+      icon: "🎨",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 70,
+    },
+    {
+      name: "Dart",
+      icon: "🟢",
+      level: "advanced",
+      levelLabel: "Advanced",
+      proficiency: 83,
+    },
+    {
+      name: "Flutter",
+      icon: "🦋",
+      level: "advanced",
+      levelLabel: "Advanced",
+      proficiency: 84,
+    },
+  ],
+  backend: [
+    {
+      name: "Node.js",
+      icon: "🟢",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 63,
+    },
+    {
+      name: "Python",
+      icon: "🐍",
+      level: "advanced",
+      levelLabel: "Advanced",
+      proficiency: 84,
+    },
+    {
+      name: "Django",
+      icon: "🌿",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 62,
+    },
+    {
+      name: "Flask",
+      icon: "🧪",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 74,
+    },
+    {
+      name: "FastAPI",
+      icon: "⚡",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 73,
+    },
+    {
+      name: "Spring",
+      icon: "🌱",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 60,
+    },
+    {
+      name: "Java",
+      icon: "☕",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 58,
+    },
+    {
+      name: "PHP",
+      icon: "🐘",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 57,
+    },
+  ],
+  infra: [
+    {
+      name: "Docker",
+      icon: "🐳",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 60,
+    },
+    {
+      name: "GitHub Actions",
+      icon: "⚙️",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 61,
+    },
+    {
+      name: "Nginx",
+      icon: "🧭",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 55,
+    },
+  ],
+  database: [
+    {
+      name: "MySQL",
+      icon: "🐬",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 60,
+    },
+    {
+      name: "PostgreSQL",
+      icon: "🐘",
+      level: "beginner",
+      levelLabel: "Beginner",
+      proficiency: 40,
+    },
+    {
+      name: "Supabase",
+      icon: "🧪",
+      level: "beginner",
+      levelLabel: "Beginner",
+      proficiency: 35,
+    },
+    {
+      name: "Firebase",
+      icon: "🔥",
+      level: "comfortable",
+      levelLabel: "Proficient",
+      proficiency: 74,
+    },
+  ],
+  ai: [
+    {
+      name: "LangChain",
+      icon: "🔗",
+      level: "beginner",
+      levelLabel: "Beginner",
+      proficiency: 34,
+    },
+    {
+      name: "OpenAI API",
+      icon: "🧠",
+      level: "intermediate",
+      levelLabel: "Intermediate",
+      proficiency: 52,
+    },
+    {
+      name: "TensorFlow / PyTorch",
+      icon: "🧬",
+      level: "beginner",
+      levelLabel: "Beginner",
+      proficiency: 33,
+    },
+  ],
+} satisfies Record<string, SkillCategory["skills"]>;
+
+const skillCopy: Record<
+  Language,
+  {
+    frontend: string;
+    backend: string;
+    infra: string;
+    database: string;
+    ai: string;
+  }
+> = {
+  ko: {
+    frontend: "웹 · 모바일 프런트엔드 전반을 다루며 UI/UX 품질을 끌어올립니다.",
+    backend: "다양한 백엔드 프레임워크로 비즈니스 로직과 API를 설계합니다.",
+    infra: "배포 자동화와 서비스 운영 환경을 안정적으로 구성합니다.",
+    database: "관계형/비관계형 DB와 클라우드 백엔드를 활용합니다.",
+    ai: "AI 기반 서비스와 데이터 파이프라인을 프로덕트에 접목합니다.",
+  },
+  en: {
+    frontend: "Elevating UI and UX quality across web and mobile frontends.",
+    backend:
+      "Designing business logic and APIs with a range of backend frameworks.",
+    infra:
+      "Building reliable deployment automation and operations environments.",
+    database:
+      "Leveraging relational, non-relational databases and cloud backends.",
+    ai: "Integrating AI services and data pipelines into products.",
+  },
 };
 
-const experiences: Experience[] = [
-  {
-    role: "Lead Frontend Developer",
-    company: "Innovatech",
-    period: "2021.01 - 현재",
-    description:
-      "주요 제품의 프론트엔드 아키텍처를 설계하고 팀을 이끌었습니다. 레거시 코드 리팩터링을 통해 페이지 로딩 속도를 30% 개선하고 신규 기능 출시 주기를 단축했습니다.",
-    tags: ["React", "TypeScript", "Next.js", "Redux"],
-  },
-  {
-    role: "Frontend Developer",
-    company: "Creative Solutions",
-    period: "2018.06 - 2020.12",
-    description:
-      "다양한 클라이언트 프로젝트에서 반응형 웹과 웹 애플리케이션을 구축했습니다. 공통 UI 컴포넌트 라이브러리를 마련하여 개발 효율을 높였습니다.",
-    tags: ["JavaScript (ES6+)", "Vue.js", "Sass"],
-  },
-  {
-    role: "Junior Web Developer",
-    company: "WebStart Inc.",
-    period: "2017.07 - 2018.05",
-    description:
-      "웹사이트 유지보수 및 기능 개발을 담당하며 HTML/CSS/JS 기본기를 단단히 다졌고, 웹 표준과 접근성을 실무에 적용했습니다.",
-    tags: ["HTML5", "CSS3", "jQuery"],
-  },
-];
+function buildSkillCategories(language: Language): SkillCategory[] {
+  return [
+    {
+      title: "Frontend",
+      description: skillCopy[language].frontend,
+      skills: sharedSkills.frontend,
+    },
+    {
+      title: "Backend & API",
+      description: skillCopy[language].backend,
+      skills: sharedSkills.backend,
+    },
+    {
+      title: "Infra & DevOps",
+      description: skillCopy[language].infra,
+      skills: sharedSkills.infra,
+    },
+    {
+      title: "Database & Cloud",
+      description: skillCopy[language].database,
+      skills: sharedSkills.database,
+    },
+    {
+      title: "AI & Data",
+      description: skillCopy[language].ai,
+      skills: sharedSkills.ai,
+    },
+  ];
+}
 
-const skillCategories: SkillCategory[] = [
-  {
-    title: "Frontend",
-    description: "고품질 UI/UX 구현과 상태 관리에 자신 있습니다.",
-    skills: [
+const aboutContent: Record<Language, AboutApiResponse> = {
+  ko: {
+    profile: {
+      headline: "성장하는 프론트엔드 개발자,\n최민석입니다.",
+      description:
+        "상명대학교 스마트정보통신공학과 전공, 앱&웹 연계전공을 복수 전공하며 이론과 실무를 함께 익혔습니다. 사용자 경험을 최우선으로 생각하며, 비즈니스 목표에 기여하는 웹 서비스를 만듭니다.",
+      imageAlt: "최민석 프로필 이미지",
+      imageUrl:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAL9FoyVmPJTFY36zeksOijLF8iWCEK-aQT4SDtvOeLUxs6OMEN2e2c0VPy3p3xK-ihrT__Ok66DrWec_Qa0RQrTYxxqeG1wX5zG9ijiXnlQEyadesZDwo8hQa1QrO5Gur0sSR23M4vIQF58lcE_lW8lyubcSdBlN1FDCY8BSqLz-orxMGpCJ_nv8pKuyzQ-FpSILld6d-lg5hODjnF1ID2FsMit5ncbM2n1t7HH8oka8TH2hmJq3Kx6IXy9ypnutO-o1tEnR2N6DPV",
+    },
+    experiences: [
       {
-        name: "React",
-        icon: "⚛️",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 92,
+        role: "운영진",
+        company: "멋쟁이 사자처럼 대학 11기 · 상명대학교",
+        period: "2023.01 - 2023.12",
+        description:
+          "상명대학교 11기 운영진으로 활동하며 커리큘럼 운영과 팀 해커톤을 총괄했습니다. 웹 프로젝트 멘토링을 진행했습니다.",
+        tags: ["Community", "Curriculum", "Mentoring"],
       },
       {
-        name: "JavaScript",
-        icon: "🟨",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 88,
+        role: "운영진",
+        company: "멋쟁이 사자처럼 대학 12기 · 상명대학교",
+        period: "2024.01 - 2024.12",
+        description:
+          "12기 운영진으로 연임하여 교육 프로그램 고도화와 앱 프로젝트 멘토링을 담당했습니다. 운영진 온보딩 체계를 개선했습니다.",
+        tags: ["Leadership", "Mentoring", "Improvement"],
       },
       {
-        name: "TypeScript",
-        icon: "🟦",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 85,
+        role: "학부연구생",
+        company: "상명대학교 스마트정보통신공학과",
+        period: "2023.03 - 2023.12",
+        description:
+          "학부연구생으로 활동하며 AI 기반 신호처리 연구 논문을 준비해 학술대회에 발표했습니다. 모델 성능 검증과 데이터 파이프라인 구축, 발표 자료 제작을 담당했습니다.",
+        tags: ["Research", "AI", "Signal Processing"],
+      },
+    ],
+    skillCategories: buildSkillCategories("ko"),
+    awards: [
+      {
+        title: "2023 상명대학교 전공소모임 대상",
+        description: "상명대학교",
+        icon: "🏅",
       },
       {
-        name: "Next.js",
-        icon: "⬛",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 82,
+        title: "2023 소프트웨어 융합클러스터 2.0 입상",
+        description: "과학기술정보통신부 · 정보통신산업진흥원",
+        icon: "🏆",
       },
       {
-        name: "Styled-components",
-        icon: "💅",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 78,
+        title: "2024 소프트웨어 융합클러스터 2.0 입상",
+        description: "과학기술정보통신부 · 정보통신산업진흥원",
+        icon: "🏆",
       },
       {
-        name: "SCSS",
-        icon: "🧵",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 70,
+        title: "2021 상명대학교 SM Learning Fair 장려상",
+        description: "상명대학교",
+        icon: "🎖️",
       },
       {
-        name: "Tailwind CSS",
-        icon: "🌊",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 75,
+        title: "ADsP (데이터 분석 준전문가)",
+        description: "한국데이터산업진흥원 · 합격",
+        icon: "📊",
+      },
+      {
+        title: "정보처리기사 필기",
+        description: "한국산업인력공단 · 필기 합격, 실기 준비중",
+        icon: "🧾",
+      },
+    ],
+    interests: [
+      {
+        title: "Jpop Music",
+        description: "Jpop 음악을 듣고 즐깁니다.",
+        icon: "🎧",
+      },
+      {
+        title: "Biking",
+        description: "자전거를 타고 여행하는 것을 즐깁니다.",
+        icon: "🚴",
+      },
+      {
+        title: "Reading",
+        description: "책을 읽고 새로운 지식을 습득하는 것을 즐깁니다.",
+        icon: "📚",
       },
     ],
   },
-  {
-    title: "Backend",
-    description: "경량 백엔드와 API 설계를 경험했습니다.",
-    skills: [
+  en: {
+    profile: {
+      headline: "Growing Frontend Developer,\nChoi Min Seok.",
+      description:
+        "Double-majoring in Smart Information & Communication Engineering and the App & Web convergence program at Sangmyung University. I build web services that prioritize user experience while supporting business goals.",
+      imageAlt: "Profile portrait of Choi Min Seok",
+      imageUrl:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuAL9FoyVmPJTFY36zeksOijLF8iWCEK-aQT4SDtvOeLUxs6OMEN2e2c0VPy3p3xK-ihrT__Ok66DrWec_Qa0RQrTYxxqeG1wX5zG9ijiXnlQEyadesZDwo8hQa1QrO5Gur0sSR23M4vIQF58lcE_lW8lyubcSdBlN1FDCY8BSqLz-orxMGpCJ_nv8pKuyzQ-FpSILld6d-lg5hODjnF1ID2FsMit5ncbM2n1t7HH8oka8TH2hmJq3Kx6IXy9ypnutO-o1tEnR2N6DPV",
+    },
+    experiences: [
       {
-        name: "Node.js",
-        icon: "🟢",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 68,
+        role: "Operations Team",
+        company: "Like Lion University 11th · Sangmyung University",
+        period: "Jan 2023 - Dec 2023",
+        description:
+          "Managed the 11th cohort curriculum and team hackathons, while mentoring web projects to help members ship real products.",
+        tags: ["Community", "Curriculum", "Mentoring"],
       },
       {
-        name: "Express",
-        icon: "🚂",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 60,
+        role: "Operations Team",
+        company: "Like Lion University 12th · Sangmyung University",
+        period: "Jan 2024 - Dec 2024",
+        description:
+          "Renewed the education program and led app project mentoring. Improved the operations onboarding playbook for the next cohort.",
+        tags: ["Leadership", "Mentoring", "Improvement"],
       },
       {
-        name: "GraphQL",
-        icon: "🕸️",
-        level: "beginner",
-        levelLabel: "Learning",
-        proficiency: 45,
+        role: "Undergraduate Researcher",
+        company:
+          "Sangmyung University · Smart Information & Communication Engineering",
+        period: "Mar 2023 - Dec 2023",
+        description:
+          "Prepared and presented an AI-driven signal processing research paper at an academic conference. Took charge of model validation, data pipelines, and presentation materials.",
+        tags: ["Research", "AI", "Signal Processing"],
+      },
+    ],
+    skillCategories: buildSkillCategories("en"),
+    awards: [
+      {
+        title: "2023 Sangmyung University Major Club Grand Prize",
+        description: "Sangmyung University",
+        icon: "🏅",
+      },
+      {
+        title: "2023 Software Convergence Cluster 2.0 Award",
+        description: "Ministry of Science and ICT · NIPA",
+        icon: "🏆",
+      },
+      {
+        title: "2024 Software Convergence Cluster 2.0 Award",
+        description: "Ministry of Science and ICT · NIPA",
+        icon: "🏆",
+      },
+      {
+        title: "2021 Sangmyung University SM Learning Fair Encouragement Prize",
+        description: "Sangmyung University",
+        icon: "🎖️",
+      },
+      {
+        title: "ADsP (Advanced Data Analytics Semi-Professional)",
+        description: "Korea Data Agency · Passed",
+        icon: "📊",
+      },
+      {
+        title: "Engineer Information Processing (Written)",
+        description: "HRDK · Written Exam Passed, preparing for practical",
+        icon: "🧾",
+      },
+    ],
+    interests: [
+      {
+        title: "J-pop Music",
+        description: "Listening to and collecting J-pop tracks.",
+        icon: "🎧",
+      },
+      {
+        title: "Biking",
+        description: "Exploring new places and short trips on a bike.",
+        icon: "🚴",
+      },
+      {
+        title: "Reading",
+        description: "Diving into books to discover new ideas.",
+        icon: "📚",
       },
     ],
   },
-  {
-    title: "Infra / DevOps",
-    description: "CI/CD 파이프라인과 클라우드 배포 경험이 있습니다.",
-    skills: [
-      {
-        name: "GitHub Actions",
-        icon: "⚙️",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 65,
-      },
-      {
-        name: "Docker",
-        icon: "🐳",
-        level: "beginner",
-        levelLabel: "Learning",
-        proficiency: 50,
-      },
-      {
-        name: "Vercel",
-        icon: "▲",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 80,
-      },
-    ],
-  },
-  {
-    title: "Database",
-    description: "경량 데이터 모델링과 쿼리 튜닝을 수행한 경험이 있습니다.",
-    skills: [
-      {
-        name: "PostgreSQL",
-        icon: "🐘",
-        level: "intermediate",
-        levelLabel: "Intermediate",
-        proficiency: 62,
-      },
-      {
-        name: "Firebase",
-        icon: "🔥",
-        level: "comfortable",
-        levelLabel: "Comfortable",
-        proficiency: 77,
-      },
-    ],
-  },
-  {
-    title: "AI / Etc",
-    description: "프론트엔드 워크플로우에 AI 도구를 도입하고 있습니다.",
-    skills: [
-      {
-        name: "OpenAI API",
-        icon: "🧠",
-        level: "beginner",
-        levelLabel: "Learning",
-        proficiency: 40,
-      },
-      {
-        name: "LangChain",
-        icon: "🔗",
-        level: "beginner",
-        levelLabel: "Learning",
-        proficiency: 35,
-      },
-    ],
-  },
-];
+};
 
-const awards: Award[] = [
-  {
-    title: "Best Developer Award",
-    description: "Innovatech · 2022.12",
-    icon: "🏆",
-  },
-  {
-    title: "Open Source Contribution",
-    description: "UI-Kit 프로젝트 컨트리뷰터 · 2021.08",
-    icon: "🧩",
-  },
-  {
-    title: "Tech Conference Speaker",
-    description: "Modern Frontend 컨퍼런스 · 2023.05",
-    icon: "📣",
-  },
-];
-
-const interests: Interest[] = [
-  {
-    title: "Indie Music",
-    description: "새로운 밴드를 발견하고 공유하는 것을 즐깁니다.",
-    icon: "🎧",
-  },
-  {
-    title: "Hiking",
-    description: "주말마다 산을 오르며 재충전합니다.",
-    icon: "🥾",
-  },
-  {
-    title: "Specialty Coffee",
-    description: "핸드드립으로 커피를 내려 맛과 향을 기록합니다.",
-    icon: "☕",
-  },
-];
-
-export async function fetchAboutData(): Promise<AboutApiResponse> {
-  return {
-    profile,
-    experiences,
-    skillCategories,
-    awards,
-    interests,
-  };
+export async function fetchAboutData(
+  language: Language = "ko"
+): Promise<AboutApiResponse> {
+  if (language in aboutContent) {
+    return aboutContent[language as Language];
+  }
+  return aboutContent.ko;
 }

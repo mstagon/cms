@@ -8,11 +8,15 @@ import SectionHeading from "@/app/components/atoms/SectionHeading";
 interface InterestGridProps {
   interests: Interest[];
   delay?: number;
+  headingTitle?: string;
+  headingSubtitle?: string;
 }
 
 export default function InterestGrid({
   interests,
   delay = 0.4,
+  headingTitle = "Interests",
+  headingSubtitle = "일상 속 영감의 원천",
 }: InterestGridProps) {
   return (
     <section
@@ -21,11 +25,7 @@ export default function InterestGrid({
       data-animate="scroll"
       style={{ transitionDelay: `${delay}s` }}
     >
-      <SectionHeading
-        title="Interests"
-        subtitle="일상 속 영감의 원천"
-        align="left"
-      />
+      <SectionHeading title={headingTitle} subtitle={headingSubtitle} align="left" />
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {interests.map((interest, index) => (
           <Card

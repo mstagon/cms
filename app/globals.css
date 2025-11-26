@@ -4,22 +4,62 @@
 
 /* Tailwind 루트 색상과의 호환을 위해 기본 전경/배경 색상을 지정합니다. */
 :root {
-  --bg: 0 0% 0%;
-  --fg: 0 0% 100%;
+  --color-bg-primary: #05060f;
+  --color-bg-elevated: #12131c;
+  --color-bg-surface: rgba(17, 24, 39, 0.68);
+  --color-overlay-faint: rgba(10, 12, 24, 0.3);
+  --color-overlay-soft: rgba(10, 12, 24, 0.4);
+  --color-overlay-mid: rgba(10, 12, 24, 0.45);
+  --color-overlay-medium: rgba(10, 12, 24, 0.6);
+  --color-overlay-medium-strong: rgba(8, 10, 22, 0.7);
+  --color-overlay-strong: rgba(6, 8, 20, 0.8);
+  --color-text-primary: 255 255 255;
+  --color-border-soft: rgba(255, 255, 255, 0.15);
+  --color-border-strong: rgba(255, 255, 255, 0.25);
+  --color-border-stronger: rgba(255, 255, 255, 0.38);
+  --color-surface-muted: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.12);
+  --color-divider: rgba(255, 255, 255, 0.12);
+  --video-overlay: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg-primary: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: rgba(255, 255, 255, 0.92);
+  --color-overlay-faint: rgba(15, 23, 42, 0.06);
+  --color-overlay-soft: rgba(15, 23, 42, 0.08);
+  --color-overlay-mid: rgba(15, 23, 42, 0.1);
+  --color-overlay-medium: rgba(15, 23, 42, 0.12);
+  --color-overlay-medium-strong: rgba(15, 23, 42, 0.16);
+  --color-overlay-strong: rgba(15, 23, 42, 0.18);
+  --color-text-primary: 15 23 42;
+  --color-border-soft: rgba(15, 23, 42, 0.12);
+  --color-border-strong: rgba(15, 23, 42, 0.18);
+  --color-border-stronger: rgba(15, 23, 42, 0.28);
+  --color-surface-muted: rgba(15, 23, 42, 0.08);
+  --color-surface-hover: rgba(15, 23, 42, 0.12);
+  --color-divider: rgba(15, 23, 42, 0.12);
+  --video-overlay: rgba(248, 250, 252, 0.58);
 }
 
 /* 문서와 body 기본 배경/텍스트 컬러 설정 */
 html,
 body {
-  color: hsl(var(--fg));
-  background-color: hsl(var(--bg));
+  color: rgb(var(--color-text-primary));
+  background-color: var(--color-bg-primary);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 /* 스크롤 인터섹션 애니메이션을 위한 초기 상태 */
 [data-animate="scroll"] {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -27,4 +67,136 @@ body {
 [data-animate="scroll"].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 다크/라이트 테마 전환을 위한 공용 유틸리티 오버라이드 */
+.text-white {
+  color: rgb(var(--color-text-primary)) !important;
+}
+
+.text-white\/95 {
+  color: rgb(var(--color-text-primary) / 0.95) !important;
+}
+
+.text-white\/90 {
+  color: rgb(var(--color-text-primary) / 0.9) !important;
+}
+
+.text-white\/85 {
+  color: rgb(var(--color-text-primary) / 0.85) !important;
+}
+
+.text-white\/80 {
+  color: rgb(var(--color-text-primary) / 0.8) !important;
+}
+
+.text-white\/75 {
+  color: rgb(var(--color-text-primary) / 0.75) !important;
+}
+
+.text-white\/70 {
+  color: rgb(var(--color-text-primary) / 0.7) !important;
+}
+
+.text-white\/65 {
+  color: rgb(var(--color-text-primary) / 0.65) !important;
+}
+
+.text-white\/60 {
+  color: rgb(var(--color-text-primary) / 0.6) !important;
+}
+
+.text-white\/55 {
+  color: rgb(var(--color-text-primary) / 0.55) !important;
+}
+
+.bg-black {
+  background-color: var(--color-bg-primary) !important;
+}
+
+.bg-\[\#121212\] {
+  background-color: var(--color-bg-elevated) !important;
+}
+
+.bg-\[rgba\(17,
+24,
+39,
+0\.68\)\] {
+  background-color: var(--color-bg-surface) !important;
+}
+
+.bg-black\/80 {
+  background-color: var(--color-overlay-strong) !important;
+}
+
+.bg-black\/70 {
+  background-color: var(--color-overlay-medium-strong) !important;
+}
+
+.bg-black\/60 {
+  background-color: var(--color-overlay-medium) !important;
+}
+
+.bg-black\/45 {
+  background-color: var(--video-overlay) !important;
+}
+
+.bg-black\/40 {
+  background-color: var(--color-overlay-soft) !important;
+}
+
+.bg-black\/30 {
+  background-color: var(--color-overlay-faint) !important;
+}
+
+.bg-white\/10 {
+  background-color: var(--color-surface-muted) !important;
+}
+
+.bg-white\/12,
+.bg-white\/8 {
+  background-color: var(--color-divider) !important;
+}
+
+.hover\:bg-white\/10:hover {
+  background-color: var(--color-surface-muted) !important;
+}
+
+.hover\:bg-white\/20:hover {
+  background-color: var(--color-surface-hover) !important;
+}
+
+.hover\:bg-black\/60:hover {
+  background-color: var(--color-overlay-medium) !important;
+}
+
+.hover\:bg-black\/40:hover {
+  background-color: var(--color-overlay-soft) !important;
+}
+
+.hover\:bg-black\/20:hover {
+  background-color: var(--color-overlay-faint) !important;
+}
+
+.border-white\/8,
+.border-white\/10,
+.border-white\/12,
+.border-white\/15 {
+  border-color: var(--color-border-soft) !important;
+}
+
+.border-white\/20 {
+  border-color: var(--color-border-strong) !important;
+}
+
+.border-white\/40 {
+  border-color: var(--color-border-stronger) !important;
+}
+
+.hover\:border-white\/40:hover {
+  border-color: var(--color-border-stronger) !important;
+}
+
+.hover\:border-white\/15:hover {
+  border-color: var(--color-border-soft) !important;
 }

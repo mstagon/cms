@@ -12,6 +12,7 @@ import SectionHeading from "@/app/components/atoms/SectionHeading";
 import FeaturedProjectCard from "@/app/components/molecules/FeaturedProjectCard";
 import OtherProjectCard from "@/app/components/molecules/OtherProjectCard";
 import ProjectDetailModal from "@/app/components/organisms/projects/detail/ProjectDetailModal";
+import { useUI } from "@/app/context/UIContext";
 
 interface ProjectsShowcaseProps {
   featured: ProjectItem[];
@@ -22,6 +23,7 @@ export default function ProjectsShowcase({
   featured,
   others,
 }: ProjectsShowcaseProps) {
+  const { language } = useUI();
   const sectionRef = useRef<HTMLElement | null>(null);
   useScrollReveal(sectionRef, { threshold: 0.2 });
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -29,6 +31,25 @@ export default function ProjectsShowcase({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const isModalOpen = selectedSlug !== null;
+
+  const copy = {
+    ko: {
+      subtitle: "대표 프로젝트",
+      description: "사용자 경험과 비즈니스 임팩트를 동시에 만족시킨 프로젝트입니다.",
+      otherProjects: "다른 프로젝트",
+      detailError: "프로젝트 상세 데이터를 불러오지 못했습니다.",
+      unknownError: "알 수 없는 오류가 발생했습니다.",
+    },
+    en: {
+      subtitle: "Selected Works",
+      description: "Projects that align user experience with measurable business impact.",
+      otherProjects: "Other Projects",
+      detailError: "Failed to load project details.",
+      unknownError: "An unexpected error occurred.",
+    },
+  } as const;
+
+  const messages = copy[language] ?? copy.ko;
 
   useEffect(() => {
     if (!selectedSlug) {
@@ -44,9 +65,11 @@ export default function ProjectsShowcase({
         setIsLoading(true);
         setError(null);
         setDetail(null);
-        const response = await fetch(`/api/projects/${selectedSlug}`);
+        const response = await fetch(`/api/projects/${selectedSlug}?lang=${language}`, {
+          cache: "no-store",
+        });
         if (!response.ok) {
-          throw new Error("프로젝트 상세 데이터를 불러오지 못했습니다.");
+          throw new Error(messages.detailError);
         }
         const data = (await response.json()) as ProjectDetail;
         if (!isCancelled) {
@@ -57,7 +80,7 @@ export default function ProjectsShowcase({
           setError(
             fetchError instanceof Error
               ? fetchError.message
-              : "알 수 없는 오류가 발생했습니다."
+              : messages.unknownError,
           );
         }
       } finally {
@@ -72,7 +95,7 @@ export default function ProjectsShowcase({
     return () => {
       isCancelled = true;
     };
-  }, [selectedSlug]);
+  }, [selectedSlug, language, messages.detailError, messages.unknownError]);
 
   const handleOpenDetail = (slug: string) => {
     setSelectedSlug(slug);
@@ -89,11 +112,11 @@ export default function ProjectsShowcase({
           <div data-animate="scroll" style={{ transitionDelay: "0.1s" }}>
             <SectionHeading
               title="Projects"
-              subtitle="Selected Works"
+              subtitle={messages.subtitle}
               align="center"
             />
             <p className="mx-auto mt-4 max-w-2xl text-center text-base text-white/65">
-              사용자 경험과 비즈니스 임팩트를 동시에 만족시킨 프로젝트입니다.
+              {messages.description}
             </p>
           </div>
 
@@ -114,7 +137,7 @@ export default function ProjectsShowcase({
             data-animate="scroll"
             style={{ transitionDelay: `${0.2 + featured.length * 0.15}s` }}
           >
-            <h3 className="text-2xl font-bold">Other Projects</h3>
+            <h3 className="text-2xl font-bold">{messages.otherProjects}</h3>
             <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
               {others.map((project, idx) => (
                 <OtherProjectCard

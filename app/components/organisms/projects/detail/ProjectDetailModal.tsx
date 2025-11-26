@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import ProjectDetailView from "@/app/components/organisms/projects/detail/ProjectDetailView";
 import type { ProjectDetail } from "@/app/types/projects";
+import { useUI } from "@/app/context/UIContext";
 
 interface ProjectDetailModalProps {
   isOpen: boolean;
@@ -20,6 +21,22 @@ export default function ProjectDetailModal({
   error,
   onClose,
 }: ProjectDetailModalProps) {
+  const { language } = useUI();
+  const copy = {
+    ko: {
+      closeLabel: "프로젝트 상세 닫기",
+      loading: "데이터를 불러오는 중입니다...",
+      closeButton: "닫기",
+    },
+    en: {
+      closeLabel: "Close project detail",
+      loading: "Loading project data...",
+      closeButton: "Close",
+    },
+  } as const;
+
+  const messages = copy[language] ?? copy.ko;
+
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -53,7 +70,7 @@ export default function ProjectDetailModal({
           type="button"
           onClick={onClose}
           className="group absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white transition hover:border-white/40 hover:bg-black/60"
-          aria-label="프로젝트 상세 닫기"
+          aria-label={messages.closeLabel}
         >
           <span
             aria-hidden
@@ -65,7 +82,7 @@ export default function ProjectDetailModal({
         <div className="max-h-[90vh] overflow-y-auto pr-2">
           {isLoading ? (
             <div className="flex min-h-[40vh] items-center justify-center px-6 py-16 text-white/70">
-              데이터를 불러오는 중입니다...
+              {messages.loading}
             </div>
           ) : error ? (
             <div className="flex min-h-[40vh] flex-col items-center justify-center gap-4 px-6 py-16 text-center text-white/80">
@@ -75,7 +92,7 @@ export default function ProjectDetailModal({
                 onClick={onClose}
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/10"
               >
-                닫기
+                {messages.closeButton}
               </button>
             </div>
           ) : detail ? (

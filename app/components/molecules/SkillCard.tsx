@@ -33,9 +33,8 @@ export default function SkillCard({
     <div
       data-animate="scroll"
       data-progress-container
-      className="relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-white/15 bg-[rgba(12,18,32,0.65)] p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-[hsl(var(--color-accent))]"
+      className="relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-white/15 bg-[rgba(17,24,39,0.68)] p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-[hsl(var(--color-accent))]"
       style={{
-        background: "rgba(12,18,32,0.65)",
         transitionDelay: `${revealDelay}s`,
       }}
     >
@@ -55,9 +54,9 @@ export default function SkillCard({
           </div>
           <LevelBadge label={skill.levelLabel} color={levelColor} />
         </div>
-        <span className="text-sm font-semibold text-white/80">
+        {/* <span className="text-sm font-semibold text-white/80">
           {skill.proficiency}%
-        </span>
+        </span> */}
       </div>
       <div className="relative">
         <ProgressBar
@@ -70,5 +69,3 @@ export default function SkillCard({
     </div>
   );
 }
-
-

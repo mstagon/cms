@@ -7,9 +7,16 @@ import SectionHeading from "@/app/components/atoms/SectionHeading";
 interface AwardsListProps {
   awards: Award[];
   delay?: number;
+  headingTitle?: string;
+  headingSubtitle?: string;
 }
 
-export default function AwardsList({ awards, delay = 0.35 }: AwardsListProps) {
+export default function AwardsList({
+  awards,
+  delay = 0.35,
+  headingTitle = "Awards",
+  headingSubtitle = "활동과 성과",
+}: AwardsListProps) {
   return (
     <section
       id="awards"
@@ -18,8 +25,8 @@ export default function AwardsList({ awards, delay = 0.35 }: AwardsListProps) {
       style={{ transitionDelay: `${delay}s` }}
     >
       <SectionHeading
-        title="Awards"
-        subtitle="활동과 성과"
+        title={headingTitle}
+        subtitle={headingSubtitle}
         align="left"
       />
       <div className="space-y-6">

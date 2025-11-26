@@ -8,6 +8,8 @@ import SectionHeading from "@/app/components/atoms/SectionHeading";
 interface SkillsSectionProps {
   categories: SkillCategory[];
   delay?: number;
+  headingTitle?: string;
+  headingSubtitle?: string;
 }
 
 const levelColors: Record<SkillLevel, string> = {
@@ -27,6 +29,8 @@ const levelGradients: Record<SkillLevel, string> = {
 export default function SkillsSection({
   categories,
   delay = 0.18,
+  headingTitle = "Skills",
+  headingSubtitle = "분야별 기술 역량과 숙련도",
 }: SkillsSectionProps) {
   return (
     <section
@@ -36,8 +40,8 @@ export default function SkillsSection({
       style={{ transitionDelay: `${delay}s` }}
     >
       <SectionHeading
-        title="Skills"
-        subtitle="분야별 기술 역량과 숙련도"
+        title={headingTitle}
+        subtitle={headingSubtitle}
         align="left"
       />
 

@@ -12,12 +12,14 @@ import ProjectDetailTechStack from "@/app/components/molecules/project-detail/Pr
 import ProjectDetailActions from "@/app/components/molecules/project-detail/ProjectDetailActions";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 import type { ProjectDetail } from "@/app/types/projects";
+import { useUI } from "@/app/context/UIContext";
 
 interface ProjectDetailViewProps {
   detail: ProjectDetail;
 }
 
 export default function ProjectDetailView({ detail }: ProjectDetailViewProps) {
+  const { language } = useUI();
   const containerRef = useRef<HTMLElement | null>(null);
   useScrollReveal(containerRef, { threshold: 0.1 });
 
@@ -32,11 +34,23 @@ export default function ProjectDetailView({ detail }: ProjectDetailViewProps) {
     links,
   } = detail;
 
+  const copy = {
+    ko: {
+      techStack: "사용 기술",
+      process: "구현 과정 및 기여",
+      features: "핵심 기능",
+    },
+    en: {
+      techStack: "Tech Stack",
+      process: "Process & Contribution",
+      features: "Key Features",
+    },
+  } as const;
+
+  const messages = copy[language] ?? copy.ko;
+
   return (
-    <section
-      ref={containerRef}
-      className="relative flex w-full flex-col bg-[#121212] text-[#E0E0E0]"
-    >
+    <section ref={containerRef} className="relative flex w-full flex-col bg-[#121212] text-white">
       <div className="flex justify-center py-8 sm:px-2 md:px-6">
         <div className="flex w-full max-w-4xl flex-col px-2 md:px-4">
           <ProjectDetailHeader title={title} subtitle={subtitle} />
@@ -50,12 +64,12 @@ export default function ProjectDetailView({ detail }: ProjectDetailViewProps) {
             <ProjectMetaGrid items={meta} />
           </ProjectDetailSection>
 
-          <ProjectDetailSection title="사용 기술" delay={0.4} className="mt-16">
+          <ProjectDetailSection title={messages.techStack} delay={0.4} className="mt-16">
             <ProjectDetailTechStack items={techStack} />
           </ProjectDetailSection>
 
           <ProjectDetailSection
-            title="구현 과정 및 기여"
+            title={messages.process}
             delay={0.45}
             className="mt-16"
             contentClassName="space-y-12"
@@ -66,7 +80,7 @@ export default function ProjectDetailView({ detail }: ProjectDetailViewProps) {
           </ProjectDetailSection>
 
           <ProjectDetailSection
-            title="핵심 기능"
+            title={messages.features}
             delay={0.5}
             className="mt-12"
             contentClassName="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
