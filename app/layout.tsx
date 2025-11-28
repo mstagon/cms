@@ -1,7 +1,7 @@
 // RootLayout는 글로벌 스타일, 메타데이터, 배경 영상, 푸터를 묶어 모든 페이지를 구성합니다.
 import "./globals.css";
 import type { Metadata } from "next";
-import { suit } from "@/app/fonts";
+import { spaceGrotesk } from "@/app/fonts";
 import FooterContainer from "@/app/components/organisms/layout/FooterContainer";
 import VideoBackground from "@/app/components/organisms/layout/VideoBackground";
 import { getServerBaseUrl } from "@/app/lib/server/baseUrl";
@@ -53,8 +53,14 @@ export default async function RootLayout({
 
   return (
     <html lang={initialLanguage} data-theme={initialTheme}>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${suit.className} relative m-0 p-0 min-h-screen overflow-x-hidden bg-black text-white`}
+        className={`${spaceGrotesk.className} ${spaceGrotesk.variable} relative m-0 p-0 min-h-screen overflow-x-hidden bg-black text-white`}
       >
         <UIProvider initialLanguage={initialLanguage} initialTheme={initialTheme}>
           <VideoBackground />

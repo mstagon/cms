@@ -1,13 +1,9 @@
-// next/font/local을 사용해 전역에서 활용할 SUIT 가변 폰트를 로드합니다.
-import localFont from "next/font/local";
+// 전역 기본 폰트로 사용할 Space Grotesk를 로드합니다.
+import { Space_Grotesk } from "next/font/google";
 
-export const suit = localFont({
-  src: [
-    {
-      path: "../public/SUIT-Variable.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
+export const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
+  variable: "--font-space-grotesk",
 });

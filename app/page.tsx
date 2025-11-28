@@ -1,4 +1,4 @@
-// 홈 화면은 스티키 인트로 뒤에 소개와 프로젝트 리스트를 순차적으로 배치합니다.
+// 홈 화면은 스티키 인트로 뒤에 소개와 프로젝트를 순차적으로 배치합니다.
 import HomeContent from "@/app/components/organisms/home/HomeContent";
 import { getServerBaseUrl } from "@/app/lib/server/baseUrl";
 import type { AboutApiResponse } from "@/app/lib/api/about";
@@ -27,15 +27,13 @@ export default async function Home() {
     throw new Error("프로젝트 데이터를 불러오지 못했습니다.");
   }
 
-  const { profile, experiences, skillCategories, awards, interests } =
-    (await aboutResponse.json()) as AboutApiResponse;
-  const { featured, others } =
-    (await projectsResponse.json()) as ProjectsApiResponse;
+  const aboutJson = (await aboutResponse.json()) as AboutApiResponse;
+  const projectsJson = (await projectsResponse.json()) as ProjectsApiResponse;
 
   return (
     <HomeContent
-      initialAbout={{ profile, experiences, skillCategories, awards, interests }}
-      initialProjects={{ featured, others }}
+      initialAbout={aboutJson}
+      initialProjects={projectsJson}
       initialLanguage={initialLanguage}
     />
   );
