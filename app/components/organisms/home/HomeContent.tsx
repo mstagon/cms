@@ -41,7 +41,7 @@ export default function HomeContent({
         ]);
 
         if (!aboutResponse.ok || !projectsResponse.ok) {
-          throw new Error("컨텐츠를 불러오지 못했습니다.");
+          throw new Error("콘텐츠를 불러오지 못했습니다.");
         }
 
         const [aboutJson, projectsJson] = await Promise.all([
