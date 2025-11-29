@@ -1,171 +1,83 @@
-// 프로젝트 상세 정보를 반환하는 목업 API 로직입니다.
+// 프로젝트 상세 데이터 API
 import type { ProjectDetail } from "@/app/types/projects";
 import type { Language } from "@/app/types/ui";
 
-const detailByLanguage: Record<Language, Record<string, ProjectDetail>> = {
-  ko: {
-    "vanilla-extract-design-system": {
-      slug: "vanilla-extract-design-system",
-      title: "Vanilla Extract 기반 디자인 시스템 구축",
-      subtitle:
-        "Emotion의 런타임 비용과 타입 불일치를 해결하고, 타입 안정성과 빌드 타임 CSS 생성을 통해 개발 경험과 성능을 동시에 확보한 사내 디자인 시스템 프로젝트입니다.",
-      heroImage: {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC5H6Ciw3E1WVleTAI4i9VqSXpndnEhjFxhk_sxU9YZJ-_PxtoljNQAnUf4zsrQFKVqmJU5_mWmQ6heQQYNC0pjScw0Lbjc_zQfYebykkkBp6qKOg8J2ktO1AdAcrwH2UwPGqaZq1kquINtBa2cY1rnuq9F9N42QXjnSL2CbjtBUCmKOHXwHjOpQGZC7zVz7hk7Jt3tckuGZAEGCsXlGTZnj_CsC7cV_bHq12qdPTQsUJQBCu_rZYIRkMSbZBL8YC5iLGa_YQ99sgla",
-        alt: "데스크톱과 모바일 UI 목업으로 구성된 디자인 시스템 프로젝트 프리뷰",
-      },
-      meta: [
-        {
-          label: "프로젝트 목표",
-          value:
-            "타입스크립트 기반 타입-세이프 디자인 시스템 구축으로 개발 생산성 향상",
-        },
-        {
-          label: "기간",
-          value: "2023.08 - 2023.11",
-        },
-        {
-          label: "기여도",
-          value: "프론트엔드 개발 100%",
-        },
-      ],
-      techStack: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Vanilla Extract",
-        "Storybook",
-      ],
-      processes: [
-        {
-          title: "1. 컴포넌트 아키텍처 설계 및 구현",
-          description:
-            "Atomic Design 패턴을 기반으로 재사용성과 확장성을 고려한 컴포넌트 구조를 설계했습니다. Polymorphic 컴포넌트를 도입해 `as` prop으로 HTML 태그 변경이 가능하도록 만들어 UI 활용성을 극대화했습니다.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuCA86Cukm_QwrCqEZkNJ7C1Uru3thCZCM9WInTalpc7jzj0FwMouif1fga18m_xw_Hbb0Cjltd6uFCoA00_t7bPxnaFk-SjAPfVzVKHl6M_7WGXDoylly7ZVOzYxRwl7zDy7eIWZE7NcQJ9kjdGW9J34xvgVSaiJ7KiecWfrW3-hY0YrLKIRNEPXpNU_7JbMIu_KXoqiAgln-Ws5uZEi03Iq1mbWgYqKpWslZgrjV5uQvEDTx0WGV4soe5PCKjf-EoHPOmAT4OyiNf1",
-          imageAlt: "컴포넌트 아키텍처 다이어그램",
-          alignment: "normal",
-        },
-        {
-          title: "2. Storybook을 이용한 문서화 및 테스트",
-          description:
-            "Storybook을 도입하여 컴포넌트의 다양한 상태를 문서화하고 Chromatic 기반 UI 회귀 테스트를 자동화했습니다. 디자이너와 개발자의 협업 효율이 크게 향상되었습니다.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDnmgyZnM8rPwr4bB_XPXoekyGHvC5gIKoxSfJTJErC-nOMBXb1-FVRaDq-QlsOi--9Z1mFjrZAnwrPKDHjJ5H5TRyA5VqmwRGYUsT_J9Fxk5e3telsdtsDTBF9iOgkWEuRqEa8IsQbYmjdF7rfBhgsxBXa6FHuwWyUDTkqwXPBjD-KkrcXCdOuJTgLZAE8Z-dbFOOTozJavG9udt6xskxNN5990Kt4VCopLvVGuOc5vH8doMIKOV-k3uq4zl_XD9x1ol3pLUscXiuO",
-          imageAlt: "Storybook 인터페이스 화면",
-          alignment: "reversed",
-        },
-      ],
-      features: [
-        {
-          title: "타입-세이프 테마",
-          description:
-            "CSS 변수와 TypeScript를 연동해 테마를 코드로 관리하고 자동완성을 통해 오타나 잘못된 값 사용을 차단했습니다.",
-        },
-        {
-          title: "제로 런타임 스타일링",
-          description:
-            "Vanilla Extract의 빌드 타임 CSS 생성을 활용해 런타임 오버헤드를 제거하고 초기 로딩 성능을 크게 개선했습니다.",
-        },
-        {
-          title: "손쉬운 다크 모드",
-          description:
-            "CSS 변수 기반 테마 토글 구조를 설계해 단일 토글만으로 다크/라이트 전환이 가능하도록 만들었습니다.",
-        },
-      ],
-      links: {
-        liveDemo: "#",
-        repository: "#",
-      },
-    },
-  },
-  en: {
-    "vanilla-extract-design-system": {
-      slug: "vanilla-extract-design-system",
-      title: "Vanilla Extract Design System Build",
-      subtitle:
-        "Replaced Emotion to remove runtime costs, enforce type safety, and ship build-time CSS—bringing both performance gains and a better developer experience.",
-      heroImage: {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC5H6Ciw3E1WVleTAI4i9VqSXpndnEhjFxhk_sxU9YZJ-_PxtoljNQAnUf4zsrQFKVqmJU5_mWmQ6heQQYNC0pjScw0Lbjc_zQfYebykkkBp6qKOg8J2ktO1AdAcrwH2UwPGqaZq1kquINtBa2cY1rnuq9F9N42QXjnSL2CbjtBUCmKOHXwHjOpQGZC7zVz7hk7Jt3tckuGZAEGCsXlGTZnj_CsC7cV_bHq12qdPTQsUJQBCu_rZYIRkMSbZBL8YC5iLGa_YQ99sgla",
-        alt: "Design system preview showcasing desktop and mobile UI mockups",
-      },
-      meta: [
-        {
-          label: "Goal",
-          value:
-            "Boost developer productivity with a type-safe design system powered by TypeScript.",
-        },
-        {
-          label: "Duration",
-          value: "Aug 2023 - Nov 2023",
-        },
-        {
-          label: "Ownership",
-          value: "100% frontend responsibility",
-        },
-      ],
-      techStack: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Vanilla Extract",
-        "Storybook",
-      ],
-      processes: [
-        {
-          title: "1. Component Architecture & Implementation",
-          description:
-            "Designed an Atomic Design-based component system prioritizing reuse and scalability. Introduced polymorphic components so designers could swap HTML tags with an `as` prop for greater flexibility.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuCA86Cukm_QwrCqEZkNJ7C1Uru3thCZCM9WInTalpc7jzj0FwMouif1fga18m_xw_Hbb0Cjltd6uFCoA00_t7bPxnaFk-SjAPfVzVKHl6M_7WGXDoylly7ZVOzYxRwl7zDy7eIWZE7NcQJ9kjdGW9J34xvgVSaiJ7KiecWfrW3-hY0YrLKIRNEPXpNU_7JbMIu_KXoqiAgln-Ws5uZEi03Iq1mbWgYqKpWslZgrjV5uQvEDTx0WGV4soe5PCKjf-EoHPOmAT4OyiNf1",
-          imageAlt: "Diagram illustrating the component architecture",
-          alignment: "normal",
-        },
-        {
-          title: "2. Documentation & Testing with Storybook",
-          description:
-            "Adopted Storybook to document every component state and automated visual regression testing via Chromatic. Collaboration between designers and developers became significantly smoother.",
-          image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDnmgyZnM8rPwr4bB_XPXoekyGHvC5gIKoxSfJTJErC-nOMBXb1-FVRaDq-QlsOi--9Z1mFjrZAnwrPKDHjJ5H5TRyA5VqmwRGYUsT_J9Fxk5e3telsdtsDTBF9iOgkWEuRqEa8IsQbYmjdF7rfBhgsxBXa6FHuwWyUDTkqwXPBjD-KkrcXCdOuJTgLZAE8Z-dbFOOTozJavG9udt6xskxNN5990Kt4VCopLvVGuOc5vH8doMIKOV-k3uq4zl_XD9x1ol3pLUscXiuO",
-          imageAlt: "Storybook interface highlighting component documentation",
-          alignment: "reversed",
-        },
-      ],
-      features: [
-        {
-          title: "Type-safe theming",
-          description:
-            "Connected CSS variables with TypeScript definitions, eliminating typos and unlocking autocomplete-driven theme authoring.",
-        },
-        {
-          title: "Zero-runtime styling",
-          description:
-            "Used Vanilla Extract to ship build-time CSS, removing runtime overhead and boosting initial load responsiveness.",
-        },
-        {
-          title: "Effortless dark mode",
-          description:
-            "Engineered a CSS variable-driven theme toggle so dark and light modes switch with a single toggle.",
-        },
-      ],
-      links: {
-        liveDemo: "#",
-        repository: "#",
-      },
-    },
-  },
-};
-
-export async function fetchProjectDetail(
+export async function getProjectDetail(
   slug: string,
   language: Language = "ko"
 ): Promise<ProjectDetail | null> {
-  const localized = detailByLanguage[language]?.[slug];
-  if (localized) {
-    return localized;
-  }
-  return detailByLanguage.ko[slug] ?? null;
+  // 실제로는 API나 데이터베이스에서 가져올 수 있습니다
+  // 여기서는 예시 데이터를 반환합니다
+
+  const details: Record<string, ProjectDetail> = {
+    "ecommerce-analytics": {
+      objective:
+        language === "ko"
+          ? "이 프로젝트는 사용자가 사이버펑크 세계관 속 데이터 아카이브를 탐색하는 듯한 독특한 경험을 제공하는 프론트엔드 포트폴리오 웹사이트를 구축하는 것을 목표로 합니다. 정적인 레이아웃에서 벗어나, 동적인 애니메이션과 인터랙션을 통해 사용자의 몰입감을 극대화하고 개발자의 기술적 개성을 드러냅니다."
+          : "This project aims to build a frontend portfolio website that provides a unique experience of exploring a data archive in a cyberpunk world. Moving away from static layouts, it maximizes user immersion through dynamic animations and interactions while showcasing the developer's technical personality.",
+      images: [
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      ],
+      role: {
+        title: language === "ko" ? "Lead Frontend & UI/UX Design" : "Lead Frontend & UI/UX Design",
+        responsibilities:
+          language === "ko"
+            ? [
+                "사이버펑크 컨셉에 부합하는 전체 UI/UX 디자인 및 프로토타이핑.",
+                "React 및 Tailwind CSS를 사용한 컴포넌트 기반 아키텍처 설계 및 구현.",
+                "GSAP를 활용하여 스크롤 기반 인터랙티브 애니메이션 및 글리치 효과 개발.",
+                "프로젝트 데이터 구조화 및 동적 렌더링 로직 구현.",
+              ]
+            : [
+                "Complete UI/UX design and prototyping aligned with cyberpunk concept.",
+                "Component-based architecture design and implementation using React and Tailwind CSS.",
+                "Development of scroll-based interactive animations and glitch effects using GSAP.",
+                "Project data structuring and dynamic rendering logic implementation.",
+              ],
+      },
+      timeframe: "Q1 2023",
+      platform: "Web",
+      type: "Portfolio",
+      techStack: ["React", "Tailwind CSS", "GSAP", "Framer Motion", "Vite"],
+      performance: {
+        pageLoadSpeed: { value: 95, improvement: "+25% improvement" },
+        lighthouseScore: { value: 98, score: "98/100" },
+      },
+    },
+    "vr-data-visualization": {
+      objective:
+        language === "ko"
+          ? "복잡한 데이터셋을 3D 공간에서 시각화하는 몰입형 가상현실 경험을 제공합니다."
+          : "Provides an immersive virtual reality experience to visualize complex datasets in a 3D space.",
+      images: [
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCb28nXfQI9MtventpjpfMG9qnODYiO852Yrgkgk2FKGzjZY5j5MxI1QYizly5UW_je-HTTWPJiRcUVgGmc4XG37QVpu1yEizWrsZAoPxI4eqninwSJC1ChtIjP6hSLAXb4s2LcaK-Nevk6FQsKEkeKBmgFpVpbKn7twwyQlbyKgbvsq9IAJBUhazT8Rl0dZiOkbCmpYG5S3SJBhHNr9QTGVzrCEyiaJv7lHEdIe7LCvnkWIt0NVdM6DlHn3Y23rcP0PDcv0uL-gA",
+      ],
+      role: {
+        title: language === "ko" ? "Frontend Developer" : "Frontend Developer",
+        responsibilities:
+          language === "ko"
+            ? [
+                "A-Frame과 Three.js를 활용한 VR 환경 구축.",
+                "데이터 시각화 알고리즘 구현.",
+                "성능 최적화 및 사용자 경험 개선.",
+              ]
+            : [
+                "VR environment construction using A-Frame and Three.js.",
+                "Data visualization algorithm implementation.",
+                "Performance optimization and user experience improvement.",
+              ],
+      },
+      timeframe: "Q2 2023",
+      platform: "Web VR",
+      type: "Data Visualization",
+      techStack: ["A-Frame", "Three.js", "WebGL"],
+      performance: {
+        pageLoadSpeed: { value: 88, improvement: "+15% improvement" },
+        lighthouseScore: { value: 92, score: "92/100" },
+      },
+    },
+  };
+
+  return details[slug] || null;
 }
 
-export async function fetchProjectDetailSlugs(): Promise<string[]> {
-  return Object.keys(detailByLanguage.ko);
-}

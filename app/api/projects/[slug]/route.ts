@@ -1,20 +1,48 @@
-// /api/projects/[slug] 엔드포인트는 특정 프로젝트의 상세 데이터를 제공합니다.
+// 프로젝트 상세 API 라우트
 import { NextResponse } from "next/server";
-import { fetchProjectDetail } from "@/app/lib/api/projectDetails";
+import { getProjectDetail } from "@/app/lib/api/projectDetails";
+import { getProjects } from "@/app/lib/api/projects";
 import type { Language } from "@/app/types/ui";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } },
+    request: Request,
+    { params }: { params: { slug: string } }
 ) {
-  const { searchParams } = new URL(request.url);
-  const language = (searchParams.get("lang") ?? "ko") as Language;
-  const detail = await fetchProjectDetail(params.slug, language);
+  try {
+    const { searchParams } = new URL(request.url);
+    const lang = (searchParams.get("lang") || "ko") as Language;
+    const { slug } = params;
 
-  if (!detail) {
-    return NextResponse.json({ message: "프로젝트를 찾을 수 없습니다." }, { status: 404 });
+    const [projectDetail, allProjects] = await Promise.all([
+      getProjectDetail(slug, lang),
+      getProjects(lang),
+    ]);
+
+    // 프로젝트 기본 정보 찾기
+    const project = [
+      ...allProjects.featured,
+      ...allProjects.others,
+    ].find((p) => p.slug === slug);
+
+    if (!project) {
+      return NextResponse.json(
+          { error: "프로젝트를 찾을 수 없습니다." },
+          { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      project,
+      detail: projectDetail,
+    });
+  } catch (error) {
+    console.error("프로젝트 상세 데이터를 불러오는 중 오류 발생:", error);
+    return NextResponse.json(
+        { error: "프로젝트 상세 데이터를 불러오지 못했습니다." },
+        { status: 500 }
+    );
   }
-
-  return NextResponse.json(detail);
 }
 
