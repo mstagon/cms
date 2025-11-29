@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import HeroSection from "@/app/components/organisms/hero/HeroSection";
 import AboutSection from "@/app/components/organisms/about/AboutSection";
-import ProjectsShowcase from "@/app/components/organisms/projects/ProjectsShowcase";
 import { useUI } from "@/app/context/UIContext";
 import type { AboutApiResponse } from "@/app/lib/api/about";
 import type { ProjectsApiResponse } from "@/app/lib/api/projects";
 import type { Language } from "@/app/types/ui";
+import ProjectsArchive from "@/app/components/organisms/projects/ProjectsArchive";
 
 interface HomeContentProps {
   initialAbout: AboutApiResponse;
@@ -22,8 +22,10 @@ export default function HomeContent({
 }: HomeContentProps) {
   const { language } = useUI();
   const [aboutData, setAboutData] = useState<AboutApiResponse>(initialAbout);
-  const [projectsData, setProjectsData] = useState<ProjectsApiResponse>(initialProjects);
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(initialLanguage);
+  const [projectsData, setProjectsData] =
+    useState<ProjectsApiResponse>(initialProjects);
+  const [currentLanguage, setCurrentLanguage] =
+    useState<Language>(initialLanguage);
   const isUpdatingLanguage = language !== currentLanguage;
 
   useEffect(() => {
@@ -84,10 +86,12 @@ export default function HomeContent({
           awards={aboutData.awards}
           interests={aboutData.interests}
         />
-        <ProjectsShowcase featured={projectsData.featured} others={projectsData.others} />
+        <ProjectsArchive
+            featured={projectsData.featured || []}
+            others={projectsData.others || []}
+        />
       </div>
+
     </div>
   );
 }
-
-
