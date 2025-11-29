@@ -7,7 +7,7 @@ import VideoBackground from "@/app/components/organisms/layout/VideoBackground";
 import { getServerBaseUrl } from "@/app/lib/server/baseUrl";
 import type { FooterInfo } from "@/app/types/layout";
 import { UIProvider } from "@/app/context/UIContext";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import type { Language } from "@/app/types/ui";
 
 export const metadata: Metadata = {
@@ -39,16 +39,38 @@ export default async function RootLayout({
   const initialLanguage = (cookieLanguage === "en" ? "en" : "ko") as Language;
   const cookieTheme = cookieStore.get("theme")?.value;
   const initialTheme = cookieTheme === "light" ? "light" : "dark";
-  const baseUrl = getServerBaseUrl();
-  const footerResponse = await fetch(`${baseUrl}/api/footer?lang=${initialLanguage}`, {
-    cache: "no-store",
-  });
 
-  if (!footerResponse.ok) {
+  let footerInfo: FooterInfo;
+  try {
+    // 현재 요청의 호스트를 가져와서 동적으로 base URL 구성
+    const headersList = await headers();
+    const host = headersList.get("host");
+    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+    const baseUrl = host ? `${protocol}://${host}` : getServerBaseUrl();
+
+    const footerResponse = await fetch(
+      `${baseUrl}/api/footer?lang=${initialLanguage}`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!footerResponse.ok) {
+      const errorText = await footerResponse
+        .text()
+        .catch(() => "Unknown error");
+      throw new Error(
+        `푸터 데이터를 불러오지 못했습니다. (Status: ${footerResponse.status}, URL: ${baseUrl}/api/footer?lang=${initialLanguage}, Error: ${errorText})`
+      );
+    }
+
+    footerInfo = (await footerResponse.json()) as FooterInfo;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`푸터 데이터를 불러오지 못했습니다: ${error.message}`);
+    }
     throw new Error("푸터 데이터를 불러오지 못했습니다.");
   }
-
-  const footerInfo = (await footerResponse.json()) as FooterInfo;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -62,7 +84,10 @@ export default async function RootLayout({
       <body
         className={`${spaceGrotesk.className} ${spaceGrotesk.variable} relative m-0 p-0 min-h-screen overflow-x-hidden bg-black text-white`}
       >
-        <UIProvider initialLanguage={initialLanguage} initialTheme={initialTheme}>
+        <UIProvider
+          initialLanguage={initialLanguage}
+          initialTheme={initialTheme}
+        >
           <VideoBackground />
           <main className="relative z-10">{children}</main>
           <div className="relative z-10">
