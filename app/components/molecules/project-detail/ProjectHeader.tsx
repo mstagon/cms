@@ -11,7 +11,7 @@ interface ProjectHeaderProps {
   };
 }
 
-export default function ProjectHeader({ title, subtitle, links }: ProjectHeaderProps) {
+export default function ProjectHeader({ title, subtitle }: ProjectHeaderProps) {
   return (
     <div className="flex flex-wrap justify-between gap-3 p-4 border-b border-primary/20 mb-8">
       <div className="flex min-w-72 flex-col gap-3">
