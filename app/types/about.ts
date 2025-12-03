@@ -14,7 +14,11 @@ export interface Experience {
   tags: string[];
 }
 
-export type SkillLevel = "beginner" | "intermediate" | "comfortable" | "advanced";
+export type SkillLevel =
+  | "beginner"
+  | "intermediate"
+  | "comfortable"
+  | "advanced";
 
 export interface SkillItem {
   name: string;
@@ -42,6 +46,8 @@ export interface Interest {
   icon: string;
 }
 
-
-
-
+export interface Certification {
+  title: string;
+  description: string;
+  icon: string;
+}

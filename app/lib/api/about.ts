@@ -1,6 +1,7 @@
 // 소개 섹션에 필요한 데이터를 패칭하는 비동기 함수 모음입니다.
 import type {
   Award,
+  Certification,
   Experience,
   Interest,
   ProfileIntro,
@@ -14,6 +15,7 @@ export interface AboutApiResponse {
   skillCategories: SkillCategory[];
   awards: Award[];
   interests: Interest[];
+  certifications: Certification[];
 }
 
 const sharedSkills = {
@@ -335,6 +337,8 @@ const aboutContent: Record<Language, AboutApiResponse> = {
         description: "상명대학교",
         icon: "🎖️",
       },
+    ],
+    certifications: [
       {
         title: "ADsP (데이터 분석 준전문가)",
         description: "한국데이터산업진흥원 · 합격",
@@ -422,6 +426,8 @@ const aboutContent: Record<Language, AboutApiResponse> = {
         description: "Sangmyung University",
         icon: "🎖️",
       },
+    ],
+    certifications: [
       {
         title: "ADsP (Advanced Data Analytics Semi-Professional)",
         description: "Korea Data Agency · Passed",

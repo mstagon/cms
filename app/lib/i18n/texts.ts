@@ -78,7 +78,7 @@ export function getAboutTexts(
         "비주얼을 넘어 직관적이며 효율적인 경험을 만드는 시스템을 구축합니다.",
       timelineTitle: "// DATA_STREAM.LOG",
       timelineLabel: "TIMESTAMP",
-      capabilitiesTitle: "// MAIN_CORES.LOG",
+      capabilitiesTitle: "// CORE_SPECS.LOG",
       ctaTitle: "[ ESTABLISH_CONNECTION? ]",
       ctaDescription:
         "> 제 작업에 관심이 있거나 협업을 제안하고 싶다면 언제든지 연락 주세요.",

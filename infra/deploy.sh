@@ -2,13 +2,13 @@
 
 set -e
 
-# Blue 컨테이너가 실행 중인지 확인
+# Check if Blue container is running
 IS_BLUE_UP=$(docker ps --format '{{.Names}}' | grep "${DOCKER_APP_NAME}-blue" || true)
 
-# NGINX 먼저 실행
+# Start NGINX first
 docker compose -f infra/docker-compose.yml up -d nginx
 
-# Blue가 살아 있으면 Green 배포
+# If Blue is up, deploy Green
 if [ "$IS_BLUE_UP" ]; then
   echo "✅ Blue is up → deploying Green"
   docker compose -f infra/docker-compose.yml pull green
@@ -22,7 +22,7 @@ if [ "$IS_BLUE_UP" ]; then
     fi
   done
 
-  # nginx 설정을 green으로 전환
+  # Switch nginx config to green
   sed -i 's/blue/green/g' infra/nginx/default.conf
   docker exec nginx nginx -s reload
   docker compose -f infra/docker-compose.yml stop blue
@@ -40,7 +40,7 @@ else
     fi
   done
 
-  # nginx 설정을 blue로 전환
+  # Switch nginx config to blue
   sed -i 's/green/blue/g' infra/nginx/default.conf
   docker exec nginx nginx -s reload
   docker compose -f infra/docker-compose.yml stop green

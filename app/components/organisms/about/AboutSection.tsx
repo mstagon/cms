@@ -2,6 +2,7 @@
 
 import type {
   Award,
+  Certification,
   Experience,
   Interest,
   ProfileIntro,
@@ -24,9 +25,10 @@ interface AboutSectionProps {
   skillCategories: SkillCategory[];
   awards: Award[];
   interests: Interest[];
+  certifications: Certification[];
 }
 
-const MAX_CARDS = 4;
+const MAX_CARDS = 6;
 const MAX_STATS = 4;
 
 export default function AboutSection({
@@ -35,6 +37,7 @@ export default function AboutSection({
   skillCategories,
   awards,
   interests,
+  certifications,
 }: AboutSectionProps) {
   const { language } = useUI();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -77,7 +80,8 @@ export default function AboutSection({
   );
 
   const dynamicCards = useMemo(() => {
-    const merged = [...awards, ...interests]
+    // 자격증을 우선적으로 포함하고, 그 다음 awards와 interests를 추가
+    const merged = [...certifications, ...awards, ...interests]
       .map((item, index) => ({
         icon: index % 2 === 0 ? "person_alert" : "code_blocks",
         title: item.title,
@@ -86,7 +90,7 @@ export default function AboutSection({
       .slice(0, MAX_CARDS);
 
     return merged.length ? merged : text.fallbackCards;
-  }, [awards, interests, text.fallbackCards]);
+  }, [awards, interests, certifications, text.fallbackCards]);
 
   const timelineEntries = useMemo(() => {
     if (experiences.length === 0) {

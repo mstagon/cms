@@ -30,6 +30,32 @@ export default function ProjectDetailView({
     setIsLoading(false);
   }, []);
 
+  // 목차 아이템 생성
+  const tocItems = [];
+  let order = 1;
+
+  if (projectDetail?.overview || projectDetail?.objective) {
+    tocItems.push({ id: "section-overview", label: "OVERVIEW", order: order++ });
+  }
+  if ((projectDetail?.images && projectDetail.images.length > 0) || project.image) {
+    tocItems.push({ id: "section-visual", label: "VISUAL_OUTPUT", order: order++ });
+  }
+  if (projectDetail?.role) {
+    tocItems.push({ id: "section-role", label: "MY_ROLE", order: order++ });
+  }
+  if (projectDetail?.challenges && projectDetail.challenges.length > 0) {
+    tocItems.push({ id: "section-challenges", label: "CHALLENGES", order: order++ });
+  }
+  if (projectDetail?.architecture) {
+    tocItems.push({ id: "section-architecture", label: "ARCHITECTURE", order: order++ });
+  }
+  if (projectDetail?.achievements && projectDetail.achievements.length > 0) {
+    tocItems.push({ id: "section-achievements", label: "ACHIEVEMENTS", order: order++ });
+  }
+  if (projectDetail?.retrospective) {
+    tocItems.push({ id: "section-retrospective", label: "RETROSPECTIVE", order: order++ });
+  }
+
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden p-4 sm:p-6 md:p-8" style={{ backgroundColor: "#131022" }}>
       {/* Toolbar */}
@@ -75,7 +101,8 @@ export default function ProjectDetailView({
             platform={projectDetail?.platform}
             type={projectDetail?.type}
             techStack={projectDetail?.techStack || project.tags}
-            performance={projectDetail?.performance}
+            links={projectDetail?.links}
+            tocItems={tocItems}
           />
         </div>
       </main>
