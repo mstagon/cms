@@ -23,6 +23,9 @@ RUN yarn build
 # 실행 단계
 FROM base AS runner
 WORKDIR /app
+
+ENV NODE_ENV=production
+
 RUN addgroup -g 1001 -S nodejs && adduser -u 1001 -S nextjs -G nodejs
 
 # 빌드 산출물 복사
@@ -31,5 +34,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
+
 EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
 CMD ["node", "server.js"]
