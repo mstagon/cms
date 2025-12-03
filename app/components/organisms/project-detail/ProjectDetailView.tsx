@@ -1,7 +1,7 @@
 // 프로젝트 상세 뷰 유기체
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import CloseButton from "@/app/components/atoms/CloseButton";
 import DecryptionLoader from "@/app/components/molecules/project-detail/DecryptionLoader";
@@ -13,11 +13,15 @@ import type { ProjectItem, ProjectDetail } from "@/app/types/projects";
 interface ProjectDetailViewProps {
   project: ProjectItem;
   projectDetail?: ProjectDetail;
+  publicHeroImage?: string | null;
+  publicArchImages?: string[];
 }
 
 export default function ProjectDetailView({
   project,
   projectDetail,
+  publicHeroImage,
+  publicArchImages = [],
 }: ProjectDetailViewProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +34,57 @@ export default function ProjectDetailView({
     setIsLoading(false);
   }, []);
 
+  // 이미지 우선순위: public/projects/[slug]/hero.* > project.image > projectDetail.images
+  const images = useMemo(() => {
+    const imageList: string[] = [];
+    if (publicHeroImage) {
+      imageList.push(publicHeroImage);
+    }
+    if (project.image && !imageList.includes(project.image)) {
+      imageList.push(project.image);
+    }
+    if (projectDetail?.images) {
+      projectDetail.images.forEach(img => {
+        if (!imageList.includes(img)) {
+          imageList.push(img);
+        }
+      });
+    }
+    return imageList;
+  }, [publicHeroImage, project.image, projectDetail?.images]);
+
+  // 아키텍처 이미지 우선순위: public/projects/[slug]/architecture/ > projectDetail.architecture.diagrams
+  // description이 있으면 섹션 헤더는 표시 (이미지는 선택적)
+  const architecture = useMemo(() => {
+    // public 폴더에 아키텍처 이미지가 있으면 우선 사용
+    if (publicArchImages.length > 0) {
+      return {
+        description: projectDetail?.architecture?.description,
+        diagrams: publicArchImages.map((image, index) => ({
+          image,
+          title: `Architecture ${index + 1}`,
+          alt: `${project.title} - Architecture ${index + 1}`,
+        })),
+      };
+    }
+    
+    // public 폴더에 없으면 기존 architecture 사용
+    // description이 있으면 섹션 헤더는 표시
+    if (projectDetail?.architecture) {
+      // 유효한 이미지가 있는 diagrams만 필터링
+      const validDiagrams = projectDetail.architecture.diagrams?.filter(
+        (diagram) => diagram.image && diagram.image.trim() !== ""
+      ) || [];
+      
+      return {
+        ...projectDetail.architecture,
+        diagrams: validDiagrams,
+      };
+    }
+    
+    return undefined;
+  }, [projectDetail?.architecture, publicArchImages, project.title]);
+
   // 목차 아이템 생성
   const tocItems = [];
   let order = 1;
@@ -37,7 +92,7 @@ export default function ProjectDetailView({
   if (projectDetail?.overview || projectDetail?.objective) {
     tocItems.push({ id: "section-overview", label: "OVERVIEW", order: order++ });
   }
-  if ((projectDetail?.images && projectDetail.images.length > 0) || project.image) {
+  if (images.length > 0) {
     tocItems.push({ id: "section-visual", label: "VISUAL_OUTPUT", order: order++ });
   }
   if (projectDetail?.role) {
@@ -46,7 +101,7 @@ export default function ProjectDetailView({
   if (projectDetail?.challenges && projectDetail.challenges.length > 0) {
     tocItems.push({ id: "section-challenges", label: "CHALLENGES", order: order++ });
   }
-  if (projectDetail?.architecture) {
+  if (architecture) {
     tocItems.push({ id: "section-architecture", label: "ARCHITECTURE", order: order++ });
   }
   if (projectDetail?.achievements && projectDetail.achievements.length > 0) {
@@ -86,11 +141,11 @@ export default function ProjectDetailView({
           {/* Main Content Column */}
           <ProjectMainContent
             objective={projectDetail?.objective}
-            images={projectDetail?.images || (project.image ? [project.image] : [])}
+            images={images}
             role={projectDetail?.role}
             overview={projectDetail?.overview}
             challenges={projectDetail?.challenges}
-            architecture={projectDetail?.architecture}
+            architecture={architecture}
             retrospective={projectDetail?.retrospective}
             achievements={projectDetail?.achievements}
           />
