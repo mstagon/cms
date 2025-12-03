@@ -32,7 +32,7 @@ export default function FeaturedProjectCard({
   const ctaLabel = labels[language] ?? labels.ko;
 
   const handleOpenDetail = () => {
-    if (onOpenDetail) {
+    if (onOpenDetail && project.slug) {
       onOpenDetail(project.slug);
     }
   };

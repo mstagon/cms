@@ -103,7 +103,7 @@ export default function AboutTimelineSection({
                 </span>
               </div>
               <p className="text-primary/80 text-xs pl-1 transition-all duration-300 group-hover:text-primary group-hover:pl-2">
-                <span className="text-primary/60">//</span> {label}: <span className="text-accent">{entry.timestamp}</span>
+                <span className="text-primary/60">{"// "}</span>{label}: <span className="text-accent">{entry.timestamp}</span>
               </p>
               <p className="text-[#8892B0] text-sm leading-relaxed pl-1 transition-all duration-300 group-hover:text-[#a8b2d1] group-hover:pl-2">
                 {entry.description}

@@ -11,7 +11,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useUI } from "@/app/context/UIContext";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 import { getAboutTexts } from "@/app/lib/i18n/texts";
-import AboutSystemHeader from "@/app/components/molecules/about/AboutSystemHeader";
 import AboutHeroIntro from "@/app/components/molecules/about/AboutHeroIntro";
 import AboutVisualPanel from "@/app/components/molecules/about/AboutVisualPanel";
 import AboutPhilosophySection from "@/app/components/molecules/about/AboutPhilosophySection";

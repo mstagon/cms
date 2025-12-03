@@ -5,7 +5,6 @@ import HeroSection from "@/app/components/organisms/hero/HeroSection";
 import AboutSection from "@/app/components/organisms/about/AboutSection";
 import { useUI } from "@/app/context/UIContext";
 import type { AboutApiResponse } from "@/app/lib/api/about";
-import type { ProjectsApiResponse } from "@/app/lib/api/projects";
 import type { Language } from "@/app/types/ui";
 
 interface HomeContentProps {

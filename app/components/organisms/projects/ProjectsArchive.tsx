@@ -74,10 +74,10 @@ export default function ProjectsArchive({
     >
       <div className="text-center py-10">
         <h1 className="text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em] glitch-text text-accent uppercase" data-text="// SYSTEM_ARCHIVE_ACCESS">
-          <GlitchText>// SYSTEM_ARCHIVE_ACCESS</GlitchText>
+          <GlitchText>{"// SYSTEM_ARCHIVE_ACCESS"}</GlitchText>
         </h1>
         <p className="text-white/70 text-base md:text-lg font-normal leading-normal mt-4 max-w-2xl mx-auto font-mono">
-          // Directory scan complete. Data modules awaiting user interaction [HOVER/CLICK].
+          {"// Directory scan complete. Data modules awaiting user interaction [HOVER/CLICK]."}
         </p>
       </div>
 
@@ -86,10 +86,10 @@ export default function ProjectsArchive({
         <div className="mb-16">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-white font-mono mb-2">
-              // FEATURED_PROJECTS
+              {"// FEATURED_PROJECTS"}
             </h2>
             <p className="text-[#8892B0] text-sm font-mono">
-              // High-priority data modules
+              {"// High-priority data modules"}
             </p>
           </div>
           <ProjectsArchiveGrid projects={featured} onAccess={handleAccess} />
@@ -101,10 +101,10 @@ export default function ProjectsArchive({
         <div className="mt-16">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-white font-mono mb-2">
-              // OTHER_PROJECTS
+              {"// OTHER_PROJECTS"}
             </h2>
             <p className="text-[#8892B0] text-sm font-mono">
-              // Additional data modules
+              {"// Additional data modules"}
             </p>
           </div>
           <OtherProjectsGrid projects={others} onAccess={handleAccess} />

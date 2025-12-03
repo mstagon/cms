@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import ProgressBar from "@/app/components/atoms/ProgressBar";
 
 interface DecryptionLoaderProps {
   filename?: string;

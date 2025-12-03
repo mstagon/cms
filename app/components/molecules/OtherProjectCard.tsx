@@ -13,7 +13,6 @@ interface OtherProjectCardProps {
 export default function OtherProjectCard({
   title,
   description,
-  href,
   delay,
 }: OtherProjectCardProps) {
   return (

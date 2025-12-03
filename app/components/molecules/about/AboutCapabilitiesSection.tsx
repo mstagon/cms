@@ -25,7 +25,6 @@ function getClipPath(value: string) {
 
 export default function AboutCapabilitiesSection({
   title,
-  stats,
   skillCategories,
   onHeightChange,
 }: AboutCapabilitiesSectionProps) {
