@@ -20,6 +20,8 @@ export default function FeaturedProjectCard({
   onOpenDetail,
 }: FeaturedProjectCardProps) {
   const { language } = useUI();
+  
+  // 서버에서 이미 계산된 이미지 경로 사용 (getProjects에서 이미 처리됨)
   const imageSrc = project.image?.split("=")[0] ?? project.image;
   const isReversed = project.layout === "reversed";
   const isInternalLink = Boolean(onOpenDetail);
