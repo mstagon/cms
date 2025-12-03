@@ -82,7 +82,7 @@ export function getAboutTexts(
       ctaTitle: "[ ESTABLISH_CONNECTION? ]",
       ctaDescription:
         "> 제 작업에 관심이 있거나 협업을 제안하고 싶다면 언제든지 연락 주세요.",
-      primaryCta: "ENTER_ARCHIVE",
+      primaryCta: "VIEW_PROJECTS",
       secondaryCta: "CONTACT.EXE",
       navItems: [
         { icon: "psychology", title: "ACCESS: PHILOSOPHY.LOG" },
@@ -117,7 +117,7 @@ export function getAboutTexts(
       ctaTitle: "[ ESTABLISH_CONNECTION? ]",
       ctaDescription:
         "> If you're interested in my work or want to collaborate, feel free to reach out.",
-      primaryCta: "ENTER_ARCHIVE",
+      primaryCta: "VIEW_PROJECTS",
       secondaryCta: "CONTACT.EXE",
       navItems: [
         { icon: "psychology", title: "ACCESS: PHILOSOPHY.LOG" },
