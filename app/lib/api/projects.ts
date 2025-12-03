@@ -1,194 +1,179 @@
-// 프로젝트 데이터를 패칭하는 비동기 함수입니다.
-import type { ProjectItem, ProjectSummary } from "@/app/types/projects";
+// 프로젝트 데이터 API
+import type { ProjectItem } from "@/app/types/projects";
+import type { ProjectsApiResponse } from "@/app/types/projects";
 import type { Language } from "@/app/types/ui";
 
-export interface ProjectsApiResponse {
-  featured: ProjectItem[];
-  others: ProjectSummary[];
-}
+export type { ProjectsApiResponse };
 
-const featuredBase: Array<
-  Pick<ProjectItem, "slug" | "href" | "image" | "tags" | "layout" | "unoptimized">
-> = [
-  {
-    slug: "vanilla-extract-design-system",
-    href: "/projects/vanilla-extract-design-system",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC5H6Ciw3E1WVleTAI4i9VqSXpndnEhjFxhk_sxU9YZJ-_PxtoljNQAnUf4zsrQFKVqmJU5_mWmQ6heQQYNC0pjScw0Lbjc_zQfYebykkkBp6qKOg8J2ktO1AdAcrwH2UwPGqaZq1kquINtBa2cY1rnuq9F9N42QXjnSL2CbjtBUCmKOHXwHjOpQGZC7zVz7hk7Jt3tckuGZAEGCsXlGTZnj_CsC7cV_bHq12qdPTQsUJQBCu_rZYIRkMSbZBL8YC5iLGa_YQ99sgla",
-    tags: ["Next.js", "TypeScript", "Vanilla Extract", "Storybook"],
-    layout: "default",
-  },
-  {
-    slug: "brand-experience-platform",
-    href: "#",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBeItotLSH2crkmZYlhQbXYzplXFSjnmY3CfZ0hlsuqnGYcpXhByd1ivwBucubos80-f1zGngZSTxKyOTJjgV5sXjPXXLiRA4U6Qbqh-e6Bj_tHPGDISLlOGyYwvh7ZKagdSlpVZntzwjlapoUmWMmEvV4QUyPlYQ0yK7hnS9A3dB41qocuNdNsCsidjLNx42gP95iJipkSJI3fbNRHxXDUMU-7zjUHVlpz-xmOzpmMC54Gm1ofuw5nVizZpZMfb0h-QQ3aATSY4rm-z8k",
-    tags: ["Next.js", "GSAP", "WebGL", "i18n"],
-    layout: "reversed",
-  },
-  {
-    slug: "ecommerce-replatforming",
-    href: "#",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDHOnsIiftrosbI90PyI-DkNaVTie6uxteFft3y2PCWsHiHR_m8sDO2T9WSlEDXSo8VYQ3W__hyphenhyphenLXyV36Pw58E0e4N2LXWIKQFgNd0QFJul8WRDW1JpHpB4hzDyp5WLtWZOInN-w3Dk3k_VynsqTCO538EiyjR2SsumOHuVMJBM3ONPS4XienNoCj6LicgUMcwINXUUP31hDKm2WOwVFFPcV4uIbX-Y83EfevYIqyXbWUxgj7DWuBP8s33Iy-wNTZ5ubguvogSB3zP",
-    tags: ["React Query", "Stripe", "SWR", "Storybook"],
-    layout: "default",
-  },
-  {
-    slug: "collaboration-workflow-suite",
-    href: "#",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC9Z3riBmtBOexwaXF2APDTTt-DJK4JMoqdxrq4TcwRzu0G8Ljlcb7oTGOLn-Wm7NtFFfG0q9c_nYEojpgRLUPJdJkoYNmpPbgMgBpGSvWYrUQvjeD_WgrgaLY4g8zyBUkGexztZVJ6BxMDgNYl_RQqh23X_u86DSiBi11LILlA0Jx31Har8SjlsR1nMZ7wc0bYciJFg5zAChd82MZVlypqun2sl2FqJhKf2of0g0z0zy9pyBbQi9P2GLZ5Et8hzAqVnV9TBAJbXqRvKyR",
-    tags: ["React", "Recoil", "WebSocket", "Design System"],
-    layout: "reversed",
-  },
-];
+export async function getProjects(language: Language = "ko"): Promise<ProjectsApiResponse> {
+  // 실제로는 API나 데이터베이스에서 가져올 수 있습니다
+  // 여기서는 예시 데이터를 반환합니다
+  
+  const featured: ProjectItem[] = [
+    {
+      id: "doss",
+      title: language === "ko" ? "DOSS" : "DOSS",
+      description:
+        language === "ko"
+          ? "설치 없이 어디서든 앱처럼 사용할 수 있는 모바일 뷰 기반 주식 확인 증권 웹 서비스. 한국투자증권 API와 Elasticsearch를 활용한 실시간 주식 정보 제공 및 빠른 검색 기능."
+          : "A mobile-view-based stock checking securities web service that works like an app without installation, accessible anywhere. Provides real-time stock information using Korea Investment & Securities API and fast search functionality with Elasticsearch.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      imageAlt: language === "ko" ? "DOSS 주식 확인 서비스" : "DOSS Stock Checking Service",
+      tags: ["Next.js", "React", "TypeScript", "Spring Boot", "Elasticsearch"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_01:PROJ_DOSS",
+      slug: "doss",
+    },
+    {
+      id: "rest-forest",
+      title: language === "ko" ? "휴림 (Rest Forest)" : "Rest Forest (휴림)",
+      description:
+        language === "ko"
+          ? "게임화된 디지털 디톡스 모바일 애플리케이션. NFC 태그 기반 스마트폰 거치 감지 시스템과 가상 식물 성장 메커니즘을 통해 스마트폰 사용 시간을 줄이고 건강한 디지털 라이프를 실현합니다."
+          : "A gamified digital detox mobile application. Reduces smartphone usage time and achieves a healthy digital life through NFC tag-based smartphone docking detection system and virtual plant growth mechanism.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCb28nXfQI9MtventpjpfMG9qnODYiO852Yrgkgk2FKGzjZY5j5MxI1QYizly5UW_je-HTTWPJiRcUVgGmc4XG37QVpu1yEizWrsZAoPxI4eqninwSJC1ChtIjP6hSLAXb4s2LcaK-Nevk6FQsKEkeKBmgFpVpbKn7twwyQlbyKgbvsq9IAJBUhazT8Rl0dZiOkbCmpYG5S3SJBhHNr9QTGVzrCEyiaJv7lHEdIe7LCvnkWIt0NVdM6DlHn3Y23rcP0PDcv0uL-gA",
+      imageAlt: language === "ko" ? "휴림 디지털 디톡스 앱" : "Rest Forest Digital Detox App",
+      tags: ["Flutter", "Dart", "NFC", "Provider", "Mobile"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_02:PROJ_REST_FOREST",
+      slug: "rest-forest",
+    },
+    {
+      id: "phc",
+      title: language === "ko" ? "PHC (보건소 통합 관리 시스템)" : "PHC (Public Health Center)",
+      description:
+        language === "ko"
+          ? "보건소의 디지털 전환을 위한 통합 관리 시스템. React와 Flutter 하이브리드 아키텍처를 통해 환자 접수, 예약 관리, 진료 기록, 처방전 관리를 디지털화하여 효율성을 극대화합니다."
+          : "An integrated management system for digital transformation of public health centers. Digitizes patient check-in, appointment management, medical records, and prescription management through React and Flutter hybrid architecture to maximize efficiency.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      imageAlt: language === "ko" ? "PHC 보건소 관리 시스템" : "PHC Public Health Center Management System",
+      tags: ["React", "Flutter", "FastAPI", "Python", "Healthcare"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_03:PROJ_PHC",
+      slug: "phc",
+    },
+    {
+      id: "planz",
+      title: language === "ko" ? "Planz (수면 관리 앱)" : "Planz (Sleep Management App)",
+      description:
+        language === "ko"
+          ? "개인 맞춤형 수면 관리 모바일 애플리케이션. 사용자의 일정을 고려하여 최적의 수면 시간을 자동으로 계획하고, 루틴 기반 스케줄 관리와 수면 기록 기능을 통해 규칙적인 수면 패턴을 형성하도록 돕습니다."
+          : "A personalized sleep management mobile application. Automatically plans optimal sleep times considering user schedules, and helps form regular sleep patterns through routine-based schedule management and sleep record features.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCb28nXfQI9MtventpjpfMG9qnODYiO852Yrgkgk2FKGzjZY5j5MxI1QYizly5UW_je-HTTWPJiRcUVgGmc4XG37QVpu1yEizWrsZAoPxI4eqninwSJC1ChtIjP6hSLAXb4s2LcaK-Nevk6FQsKEkeKBmgFpVpbKn7twwyQlbyKgbvsq9IAJBUhazT8Rl0dZiOkbCmpYG5S3SJBhHNr9QTGVzrCEyiaJv7lHEdIe7LCvnkWIt0NVdM6DlHn3Y23rcP0PDcv0uL-gA",
+      imageAlt: language === "ko" ? "Planz 수면 관리 앱" : "Planz Sleep Management App",
+      tags: ["Flutter", "Dart", "Spring Boot", "Mobile", "Health"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_04:PROJ_PLANZ",
+      slug: "planz",
+    },
+    {
+      id: "moyang",
+      title: language === "ko" ? "Moyang (모양)" : "Moyang (모양)",
+      description:
+        language === "ko"
+          ? "자취생과 원룸 거주자들을 위한 통합 양도 플랫폼. 자취방 양도 거래를 중심으로 지역별 채팅, 지도 기반 매물 조회, 실시간 알림 등 사용자 경험을 극대화하는 커뮤니티 기반 거래 플랫폼입니다."
+          : "An integrated transfer platform for people living alone and studio apartment residents. A community-based trading platform centered around room transfer transactions, maximizing user experience with regional chat, map-based property search, and real-time notifications.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      imageAlt: language === "ko" ? "Moyang 양도 플랫폼" : "Moyang Transfer Platform",
+      tags: ["Flutter", "Dart", "Riverpod", "GoRouter", "Community"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_05:PROJ_MOYANG",
+      slug: "moyang",
+    },
+    {
+      id: "tripcut",
+      title: language === "ko" ? "TripCut" : "TripCut",
+      description:
+        language === "ko"
+          ? "K-드라마 촬영지를 중심으로 여행지를 탐색·저장·리뷰하고, 테마/지역별 추천 코스로 일정을 손쉽게 구성하는 모바일 최적화 웹 서비스. PWA 기술을 통해 네이티브 앱 수준의 사용자 경험을 제공합니다."
+          : "A mobile-optimized web service that allows users to explore, save, and review travel destinations centered around K-drama filming locations, and easily create itineraries with recommended courses by theme/region. Provides native app-level user experience through PWA technology.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      imageAlt: language === "ko" ? "TripCut 여행 플랫폼" : "TripCut Travel Platform",
+      tags: ["Next.js", "React", "TypeScript", "PWA", "Tourism"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_06:PROJ_TRIPCUT",
+      slug: "tripcut",
+    },
+    {
+      id: "teamo",
+      title: language === "ko" ? "Teamo" : "Teamo",
+      description:
+        language === "ko"
+          ? "개발자 팀원 모집 플랫폼. Next.js와 NestJS 기반 풀스택 애플리케이션으로, Docker Compose를 활용한 멀티 컨테이너 인프라와 GitHub Actions를 통한 무중단 자동 배포 시스템을 구축했습니다. 라즈베리파이 서버에서 운영되며 완전 자동화된 DevOps 파이프라인을 갖추고 있습니다."
+          : "Developer team recruitment platform. A full-stack application based on Next.js and NestJS, with multi-container infrastructure using Docker Compose and a zero-downtime automated deployment system through GitHub Actions. Operates on Raspberry Pi server with a fully automated DevOps pipeline.",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2ETtSdBZbHBVRQ6lbiSvArsP17MOlwaPns-HIiRrwnYXZYgylpUZtoFeTzDCZ9gTpLrUuLYoiHUMsMOGkDEssrthVI4o8gbMe_zOBbWavyQf6aK2D97Ae9d5ZzhY9TivjI0E3zymTkkBLWSfzxQ57dG3zV-QcbHWpYe3Lx65rx55Skq10h48CzN9uGoFS41f8jQ8H7y9KodoaEyB-EZtrR28QC12mvKe7UWQlqWZYXRHQjN9a8Szs6RltxuCc0ELRXhNQrlZg9Q",
+      imageAlt: language === "ko" ? "Teamo 팀원 모집 플랫폼" : "Teamo Team Recruitment Platform",
+      tags: ["Next.js", "NestJS", "Docker", "CI/CD", "DevOps"],
+      type: "featured",
+      status: "online",
+      directory: "DIR_07:PROJ_TEAMO",
+      slug: "teamo",
+    },
+  ];
 
-const featuredCopy: Record<
-  Language,
-  Record<string, Pick<ProjectItem, "title" | "description" | "imageAlt">>
-> = {
-  ko: {
-    "vanilla-extract-design-system": {
-      title: "Vanilla Extract 기반 디자인 시스템 구축",
+  const others: ProjectItem[] = [
+    {
+      id: "employment",
+      title: language === "ko" ? "취업의신" : "Employment God",
       description:
-        "Emotion 기반 스타일링을 대체하고 타입 안정성과 빌드 타임 CSS 생성을 도입해 개발 효율을 개선한 사내 디자인 시스템 프로젝트입니다.",
-      imageAlt: "데스크톱과 모바일 UI 목업으로 구성된 디자인 시스템 프로젝트 프리뷰",
+        language === "ko"
+          ? "AI 기반 통합 취업 지원 플랫폼. 챗봇을 활용한 실시간 채용 정보 검색, OpenAI GPT를 활용한 자소서 첨삭 및 면접 예상 질문 제공 기능을 통해 취업 준비생들을 체계적으로 지원합니다."
+          : "AI-based integrated employment support platform. Systematically supports job seekers through chatbot-based real-time recruitment information search, resume editing using OpenAI GPT, and expected interview questions.",
+      type: "regular",
+      status: "online",
+      tags: ["React", "Flask", "OpenAI GPT", "FullCalendar"],
+      filename: "employment.proj",
+      slug: "employment",
     },
-    "brand-experience-platform": {
-      title: "Brand Experience Platform",
+    {
+      id: "smu-ecampus-progress-checking",
+      title: language === "ko" ? "SMU e-Campus 진도율 체크" : "SMU e-Campus Progress Check",
       description:
-        "글로벌 브랜드의 감성적인 캠페인을 위한 반응형 SPA를 구축했습니다. GSAP와 WebGL을 활용해 몰입감 있는 스크롤 인터랙션을 구현하고, SSR 기반 SEO 최적화를 달성했습니다.",
-      imageAlt: "대형 LED 월과 인터랙티브 조명으로 구성된 브랜드 캠페인 현장 이미지",
+        language === "ko"
+          ? "Python Tkinter 기반 데스크톱 애플리케이션. e-Campus 웹사이트에 자동 로그인하여 수강 중인 모든 과목의 진도율을 한 번에 확인할 수 있는 도구입니다. 웹 스크래핑 기술을 활용하여 진도율 정보를 자동으로 수집하고 직관적인 테이블 형태로 표시합니다."
+          : "Python Tkinter-based desktop application. A tool that automatically logs into the e-Campus website to check the progress rates of all enrolled courses at once. Uses web scraping technology to automatically collect progress rate information and display it in an intuitive table format.",
+      type: "regular",
+      status: "online",
+      tags: ["Python", "Tkinter", "BeautifulSoup", "Web Scraping"],
+      filename: "smu-ecampus.proj",
+      slug: "smu-ecampus-progress-checking",
     },
-    "ecommerce-replatforming": {
-      title: "E-commerce Replatforming",
+    {
+      id: "digital-bridge",
+      title: language === "ko" ? "Digital Bridge" : "Digital Bridge",
       description:
-        "대규모 전자상거래 플랫폼을 Next.js로 리플랫폼했습니다. 페이지 전환 속도를 40% 이상 개선하고, 구매 전환율을 끌어올린 마이크로 인터랙션을 설계했습니다.",
-      imageAlt: "다양한 기기에서 쇼핑 중인 사용자를 형상화한 전자상거래 애니메이션",
+        language === "ko"
+          ? "시니어 계층을 위한 디지털 교육 플랫폼. Django 기반 웹 애플리케이션으로, 강의 영상과 실습 사이트를 같은 페이지에 배치하여 사용자가 강의를 보면서 동시에 실제 웹사이트를 직접 조작하며 학습할 수 있는 혁신적인 학습 환경을 제공합니다."
+          : "Digital education platform for senior citizens. A Django-based web application that provides an innovative learning environment by placing lecture videos and practice sites on the same page, allowing users to watch lectures while simultaneously manipulating actual websites.",
+      type: "regular",
+      status: "online",
+      tags: ["Django", "Python", "Bootstrap", "Education"],
+      filename: "digital-bridge.proj",
+      slug: "digital-bridge",
     },
-    "collaboration-workflow-suite": {
-      title: "Collaboration Workflow Suite",
+    {
+      id: "6",
+      title: language === "ko" ? "추가 프로젝트" : "Additional Projects",
       description:
-        "원격 협업을 위한 프로젝트 관리 도구를 구축했습니다. 대시보드와 실시간 작업 보드를 React 기반으로 구현하고, 성능 최적화로 렌더링 시간을 절반으로 단축했습니다.",
-      imageAlt: "협업 도구 대시보드를 나타내는 추상적인 UI 컴포넌트",
+        language === "ko"
+          ? "더 많은 프로젝트와 케이스 스터디에 대해 논의하려면 연락해주세요."
+          : "Contact me to discuss more projects and case studies not featured here.",
+      type: "encrypted",
+      status: "locked",
+      tags: [],
+      filename: "ARCHIVE_ENCRYPTED",
     },
-  },
-  en: {
-    "vanilla-extract-design-system": {
-      title: "Building a Vanilla Extract Design System",
-      description:
-        "Replaced Emotion-based styling with type-safe Vanilla Extract to boost developer efficiency and ship zero-runtime styles for our in-house design system.",
-      imageAlt: "Design system preview featuring desktop and mobile UI mockups",
-    },
-    "brand-experience-platform": {
-      title: "Brand Experience Platform",
-      description:
-        "Delivered an immersive campaign SPA for a global brand. Used GSAP and WebGL for storytelling interactions while keeping SEO strong with SSR.",
-      imageAlt: "Campaign scene with a large LED wall and interactive lighting",
-    },
-    "ecommerce-replatforming": {
-      title: "E-commerce Replatforming",
-      description:
-        "Replatformed a large-scale commerce site to Next.js. Cut page transitions by 40% and engineered micro interactions that improved conversions.",
-      imageAlt: "Illustration of shoppers across multiple devices in an e-commerce journey",
-    },
-    "collaboration-workflow-suite": {
-      title: "Collaboration Workflow Suite",
-      description:
-        "Built a remote collaboration tool with real-time boards and dashboards in React. Halved rendering time through performance optimization.",
-      imageAlt: "Abstract UI components representing a collaboration dashboard",
-    },
-  },
-};
+  ];
 
-const othersBase: Array<{ slug: string; href: string }> = [
-  { slug: "community-curation-platform", href: "#" },
-  { slug: "personal-dev-blog", href: "#" },
-  { slug: "task-manager-side-project", href: "#" },
-  { slug: "open-source-ui-kit", href: "#" },
-];
-
-const othersCopy: Record<
-  Language,
-  Record<string, Pick<ProjectSummary, "title" | "description">>
-> = {
-  ko: {
-    "community-curation-platform": {
-      title: "Community Curation Platform",
-      description: "사용자 취향 기반 커뮤니티 큐레이션 서비스. SSR + CDN으로 초기 로딩 35% 개선.",
-    },
-    "personal-dev-blog": {
-      title: "Personal Dev Blog",
-      description: "정적 블로그를 구축하고 LCP 1초 이하를 유지하는 성능 최적화를 진행했습니다.",
-    },
-    "task-manager-side-project": {
-      title: "Task Manager Side Project",
-      description: "React + Zustand로 생산성 도구를 제작하고 PWA 기반 오프라인 대응을 포함했습니다.",
-    },
-    "open-source-ui-kit": {
-      title: "Open Source UI Kit",
-      description: "오픈소스 UI 라이브러리에 접근성 개선 기능을 기여했습니다.",
-    },
-  },
-  en: {
-    "community-curation-platform": {
-      title: "Community Curation Platform",
-      description: "Interest-based community discovery service. SSR + CDN reduced initial load by 35%.",
-    },
-    "personal-dev-blog": {
-      title: "Personal Dev Blog",
-      description: "Static developer blog optimized to keep LCP under one second.",
-    },
-    "task-manager-side-project": {
-      title: "Task Manager Side Project",
-      description: "Productivity tool built with React and Zustand, including PWA offline support.",
-    },
-    "open-source-ui-kit": {
-      title: "Open Source UI Kit",
-      description: "Contributed accessibility-focused enhancements to an open-source UI library.",
-    },
-  },
-};
-
-function buildFeatured(language: Language): ProjectItem[] {
-  return featuredBase.map((item) => {
-    const copy = featuredCopy[language]?.[item.slug] ?? featuredCopy.ko[item.slug];
-    return {
-      ...item,
-      title: copy.title,
-      description: copy.description,
-      imageAlt: copy.imageAlt,
-    };
-  });
-}
-
-function buildOthers(language: Language): ProjectSummary[] {
-  return othersBase.map((item) => {
-    const copy = othersCopy[language]?.[item.slug] ?? othersCopy.ko[item.slug];
-    return {
-      ...item,
-      title: copy.title,
-      description: copy.description,
-    };
-  });
-}
-
-const projectsContent: Record<Language, ProjectsApiResponse> = {
-  ko: {
-    featured: buildFeatured("ko"),
-    others: buildOthers("ko"),
-  },
-  en: {
-    featured: buildFeatured("en"),
-    others: buildOthers("en"),
-  },
-};
-
-export async function fetchProjectsData(language: Language = "ko"): Promise<ProjectsApiResponse> {
-  if (language in projectsContent) {
-    return projectsContent[language as Language];
-  }
-  return projectsContent.ko;
+  return {
+    featured,
+    others,
+  };
 }
 
