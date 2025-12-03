@@ -1,6 +1,7 @@
 // 프로젝트 상세 페이지
 import ProjectDetailView from "@/app/components/organisms/project-detail/ProjectDetailView";
 import { getServerBaseUrl } from "@/app/lib/server/baseUrl";
+import { getProjectHeroImage, getProjectArchitectureImages } from "@/app/lib/utils/image";
 import type { ProjectItem, ProjectDetail } from "@/app/types/projects";
 import type { Language } from "@/app/types/ui";
 import { cookies } from "next/headers";
@@ -34,8 +35,17 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         detail: ProjectDetail | null;
     };
 
+    // 서버에서 이미지 목록 가져오기
+    const publicHeroImage = data.project.slug ? await getProjectHeroImage(data.project.slug) : null;
+    const publicArchImages = data.project.slug ? await getProjectArchitectureImages(data.project.slug) : [];
+
     return (
-        <ProjectDetailView project={data.project} projectDetail={data.detail || undefined} />
+        <ProjectDetailView 
+            project={data.project} 
+            projectDetail={data.detail || undefined}
+            publicHeroImage={publicHeroImage}
+            publicArchImages={publicArchImages}
+        />
     );
 }
 
