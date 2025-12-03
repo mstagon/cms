@@ -15,16 +15,15 @@ export default function ScrollIndicatorLink({ label, linkRef }: ScrollIndicatorL
         href="#about"
         id="scroll-link"
         ref={linkRef}
-        className="group flex flex-col items-center gap-2 text-text-light transition-colors hover:text-accent"
+        className="group flex flex-col items-center gap-2 text-accent transition-colors"
       >
-        <span className="text-xs font-medium tracking-[0.3em] group-hover:text-shadow-neon-accent">
+        <span className="text-xs font-medium tracking-[0.3em]">
           {label}
         </span>
         <svg
-          className="h-12 w-12 animate-bounce text-current"
+          className="h-12 w-12 animate-bounce stroke-accent"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
           strokeWidth={1.8}
           strokeLinecap="round"
           strokeLinejoin="round"

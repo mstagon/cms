@@ -8,19 +8,20 @@ import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 
 interface ProjectDetailPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+    const { slug } = await params;
     const baseUrl = getServerBaseUrl();
     const cookieStore = await cookies();
     const cookieLanguage = cookieStore.get("lang")?.value;
     const language = (cookieLanguage === "en" ? "en" : "ko") as Language;
 
     const response = await fetch(
-        `${baseUrl}/api/projects/${params.slug}?lang=${language}`,
+        `${baseUrl}/api/projects/${slug}?lang=${language}`,
         { cache: "no-store" }
     );
 

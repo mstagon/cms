@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SkillCategory } from "@/app/types/about";
 import { useIntersectionObserver } from "@/app/hooks/useIntersectionObserver";
 
@@ -30,6 +30,7 @@ export default function AboutCapabilitiesSection({
   onHeightChange,
 }: AboutCapabilitiesSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showAllSubCores, setShowAllSubCores] = useState(false);
   const isVisible = useIntersectionObserver(containerRef, {
     threshold: 0.2,
     triggerOnce: true,
@@ -65,14 +66,59 @@ export default function AboutCapabilitiesSection({
     };
   }, [onHeightChange, isVisible, skillCategories]);
 
-  // 서브 코어 데이터 준비
-  const subCores = skillCategories.flatMap((category) =>
-    category.skills.map((skill) => ({
-      name: skill.name,
-      value: skill.proficiency,
-      level: skill.levelLabel,
-    }))
+  // 핵심 코어 (프레임워크 & 언어) 필터링
+  const mainCores = skillCategories.flatMap((category) =>
+    category.skills
+      .filter((skill) => {
+        const name = skill.name.toLowerCase();
+        // 핵심 프레임워크와 언어만 필터링
+        return (
+          name === "react" ||
+          name === "next.js" ||
+          name === "javascript" ||
+          name === "typescript" ||
+          name === "flutter" ||
+          name === "python" ||
+          name === "node.js"
+        );
+      })
+      .map((skill) => ({
+        name: skill.name,
+        value: skill.proficiency,
+        level: skill.levelLabel,
+        icon: skill.icon,
+      }))
   );
+
+  // 서브 코어 데이터 준비 (나머지 스킬들)
+  const allSubCores = skillCategories.flatMap((category) =>
+    category.skills
+      .filter((skill) => {
+        const name = skill.name.toLowerCase();
+        // 핵심 코어에 포함되지 않은 것들만
+        return !(
+          name === "react" ||
+          name === "next.js" ||
+          name === "javascript" ||
+          name === "typescript" ||
+          name === "flutter" ||
+          name === "python" ||
+          name === "node.js"
+        );
+      })
+      .map((skill) => ({
+        name: skill.name,
+        value: skill.proficiency,
+        level: skill.levelLabel,
+      }))
+  );
+
+  // 초기에는 8개만 표시
+  const INITIAL_SUB_CORES_COUNT = 8;
+  const displayedSubCores = showAllSubCores
+    ? allSubCores
+    : allSubCores.slice(0, INITIAL_SUB_CORES_COUNT);
+  const hasMoreSubCores = allSubCores.length > INITIAL_SUB_CORES_COUNT;
 
   return (
     <div ref={containerRef} className="flex flex-col gap-6">
@@ -82,30 +128,40 @@ export default function AboutCapabilitiesSection({
         </h2>
       </div>
       <div className="flex flex-col gap-6">
-        {/* 핵심 코어 */}
+        {/* 핵심 코어 - 프레임워크 & 언어 */}
         <div className="relative flex min-w-[20rem] max-w-md flex-col gap-6 border border-primary/20 bg-[rgba(10,25,47,0.6)] p-6 text-left backdrop-blur-sm">
           <div className="absolute -top-1 -left-1 h-4 w-4 border-l-2 border-t-2 border-primary" />
           <div className="absolute -top-1 -right-1 h-4 w-4 border-r-2 border-t-2 border-primary" />
           <div className="absolute -bottom-1 -left-1 h-4 w-4 border-l-2 border-b-2 border-primary" />
           <div className="absolute -bottom-1 -right-1 h-4 w-4 border-r-2 border-b-2 border-primary" />
           <p className="text-[#E6F1FF] text-lg font-bold font-mono">
-            [CORE_SPECS]
+            [MAIN_CORES]
           </p>
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {stats.map((stat) => (
+            {mainCores.map((core, index) => (
               <div
-                key={stat.name}
-                className="flex flex-col items-center gap-2 text-center"
+                key={`${core.name}-${index}`}
+                className={`flex flex-col items-center gap-2 text-center transition-all duration-500 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                }`}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                }}
               >
                 <div className="relative flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10">
                   <div
                     className="absolute inset-0 rounded-full border-t-2 border-primary animate-spin"
-                    style={{ clipPath: getClipPath(stat.value) }}
+                    style={{ 
+                      clipPath: getClipPath(`${core.value}%`),
+                      animationDuration: "2s",
+                    }}
                   />
-                  <p className="text-primary text-lg font-bold">{stat.value}</p>
+                  <p className="text-primary text-lg font-bold relative z-10">{core.value}%</p>
                 </div>
-                <p className="text-[#8892B0] text-[0.65rem] font-bold tracking-wide font-mono">
-                  {stat.label}
+                <p className="text-[#8892B0] text-[0.65rem] font-bold tracking-wide font-mono mt-2">
+                  {core.name.toUpperCase()}
                 </p>
               </div>
             ))}
@@ -122,7 +178,7 @@ export default function AboutCapabilitiesSection({
             [SUB_CORES]
           </p>
           <div className="flex flex-col gap-4">
-            {subCores.map((core, index) => (
+            {displayedSubCores.map((core, index) => (
               <div
                 key={`${core.name}-${index}`}
                 className={`flex flex-col gap-2 transition-all duration-500 ${
@@ -166,6 +222,20 @@ export default function AboutCapabilitiesSection({
               </div>
             ))}
           </div>
+          
+          {/* 더 보기 버튼 */}
+          {hasMoreSubCores && (
+            <div className="text-center mt-4">
+              <button
+                onClick={() => setShowAllSubCores(!showAllSubCores)}
+                className="px-4 py-2 border border-accent/30 text-accent font-mono text-xs font-bold tracking-wider hover:border-accent hover:bg-accent/10 transition-all duration-300"
+              >
+                {showAllSubCores
+                  ? `[ COLLAPSE ]`
+                  : `[ VIEW_ALL ] (${allSubCores.length - INITIAL_SUB_CORES_COUNT} more)`}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

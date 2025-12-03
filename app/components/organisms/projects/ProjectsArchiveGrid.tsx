@@ -38,15 +38,29 @@ export default function ProjectsArchiveGrid({
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-fr gap-4 lg:gap-6 py-10">
-      {projects.map((project, index) => (
-        <ProjectDataModule
-          key={project.id}
-          project={project}
-          className={getGridClasses(index, projects.length)}
-          onAccess={onAccess}
-        />
-      ))}
+    <div className="relative">
+      {/* 파일 탐색기 스타일 헤더 */}
+      <div className="mb-4 p-3 bg-white/5 border border-white/10 rounded-t font-mono">
+        <div className="flex items-center gap-2 text-xs text-[#8892B0]">
+          <span className="material-symbols-outlined text-accent text-sm">
+            folder
+          </span>
+          <span>// DIRECTORY: FEATURED_PROJECTS</span>
+          <span className="text-accent/70">({projects.length} files)</span>
+        </div>
+      </div>
+
+      {/* 프로젝트 그리드 */}
+      <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-fr gap-4 lg:gap-6 py-10">
+        {projects.map((project, index) => (
+          <ProjectDataModule
+            key={project.id}
+            project={project}
+            className={getGridClasses(index, projects.length)}
+            onAccess={onAccess}
+          />
+        ))}
+      </div>
     </div>
   );
 }

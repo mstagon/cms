@@ -3,81 +3,15 @@
 
 import { useEffect, useRef } from "react";
 import { useUI } from "@/app/context/UIContext";
-import HeroControls from "@/app/components/organisms/hero/HeroControls";
 import BootSequenceOverlay from "@/app/components/molecules/hero/BootSequenceOverlay";
 import GlitchOverlay from "@/app/components/molecules/hero/GlitchOverlay";
 import HeroHeading from "@/app/components/molecules/hero/HeroHeading";
 import TechPillList from "@/app/components/molecules/hero/TechPillList";
 import ScrollIndicatorLink from "@/app/components/molecules/hero/ScrollIndicatorLink";
-import type { BootLine } from "@/app/types/hero";
-import type { Language } from "@/app/types/ui";
+import AboutSystemHeader from "@/app/components/molecules/about/AboutSystemHeader";
+import { heroTexts } from "@/app/lib/i18n/texts";
 
 const TECH_PILLS = ["React", "Next.js", "TypeScript", "WebGL", "Three.js"];
-
-interface CopyContent {
-  role: string;
-  tagline: string;
-  glitchText: string;
-  glitchMessage: string;
-  transitionText: string;
-  scroll: string;
-  bootSequence: BootLine[];
-}
-
-const COPY = {
-  ko: {
-    role: "FRONTEND DEVELOPER",
-    tagline: "MINSEOK CHOI",
-    glitchText: "데이터_손상",
-    glitchMessage: "연결 재설정 중...",
-    transitionText: "ABOUT 모듈 접속 중...",
-    scroll: "INITIATE_SEQUENCE",
-    bootSequence: [
-      { content: "> 시스템 부팅 중...", delay: 0.2 },
-      {
-        content: "> 뉴럴 링크 연결 중...",
-        delay: 1.0,
-        highlight: { text: "성공", className: "text-text-main" },
-      },
-      {
-        content: "> CYBER PORTFOLIO V1.0 로딩...",
-        delay: 1.8,
-        highlight: { text: "완료", className: "text-text-main" },
-      },
-      {
-        content: "> 접근 허용. 환영합니다.",
-        delay: 2.6,
-        className: "text-secondary-accent",
-      },
-    ] as BootLine[],
-  },
-  en: {
-    role: "FRONTEND DEVELOPER",
-    tagline: "MINSEOK CHOI",
-    glitchText: "DATA_CORRUPTED",
-    glitchMessage: "Attempting to re-establish connection...",
-    transitionText: "Linking with ABOUT module...",
-    scroll: "INITIATE_SEQUENCE",
-    bootSequence: [
-      { content: "> BOOTING SYSTEM...", delay: 0.2 },
-      {
-        content: "> ESTABLISHING NEURAL LINK...",
-        delay: 1.0,
-        highlight: { text: "OK", className: "text-text-main" },
-      },
-      {
-        content: "> LOADING CYBERPUNK PORTFOLIO V2.04...",
-        delay: 1.8,
-        highlight: { text: "DONE", className: "text-text-main" },
-      },
-      {
-        content: "> ACCESS GRANTED. WELCOME.",
-        delay: 2.6,
-        className: "text-secondary-accent",
-      },
-    ] as BootLine[],
-  },
-} satisfies Record<Language, CopyContent>;
 
 export default function HeroSection() {
   const { language } = useUI();
@@ -88,6 +22,7 @@ export default function HeroSection() {
   const transitionOverlayRef = useRef<HTMLDivElement>(null);
   const isInertiaScrollingRef = useRef(false);
   const inertiaTimeoutRef = useRef<number | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   const playSectionTransition = (onComplete: () => void) => {
     const overlay = transitionOverlayRef.current;
@@ -290,7 +225,22 @@ export default function HeroSection() {
     };
   }, []);
 
-  const text = COPY[language] ?? COPY.ko;
+  // 부팅 시퀀스가 끝난 후 헤더를 보이게 함
+  useEffect(() => {
+    // 부팅 시퀀스의 마지막 delay (2.6초) + 약간의 여유 시간 (1초) = 3.6초
+    const showHeaderTimer = setTimeout(() => {
+      if (headerRef.current) {
+        headerRef.current.style.opacity = "1";
+        headerRef.current.style.transition = "opacity 0.6s ease-in";
+      }
+    }, 3600);
+
+    return () => {
+      clearTimeout(showHeaderTimer);
+    };
+  }, []);
+
+  const text = heroTexts[language] ?? heroTexts.ko;
 
   return (
     <div className="font-display relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-dark text-text-light">
@@ -309,15 +259,11 @@ export default function HeroSection() {
         overlayRef={glitchOverlayRef}
         title={text.glitchText}
         message={text.glitchMessage}
-        successMessage={
-          language === "ko"
-            ? "연결 완료. 전송 중..."
-            : "Connection established. Transferring..."
-        }
+        successMessage={text.successMessage[language]}
       />
 
-      <div className="pointer-events-none absolute right-6 top-6 z-30 flex justify-end sm:right-10 sm:top-10">
-        <HeroControls className="pointer-events-auto border-white/15 bg-black/40" />
+      <div ref={headerRef} style={{ opacity: 0 }}>
+        <AboutSystemHeader brandLabel="cms.sys" />
       </div>
 
       <main

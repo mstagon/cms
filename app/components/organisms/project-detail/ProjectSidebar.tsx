@@ -12,7 +12,6 @@ interface ProjectSidebarProps {
   techStack?: string[];
   performance?: {
     pageLoadSpeed?: { value: number; improvement?: string };
-    lighthouseScore?: { value: number; score?: string };
   };
 }
 
@@ -61,16 +60,6 @@ export default function ProjectSidebar({
                   value={performance.pageLoadSpeed.value}
                   showLabel
                   label={performance.pageLoadSpeed.improvement}
-                />
-              </div>
-            )}
-            {performance.lighthouseScore && (
-              <div>
-                <p className="text-sm text-[#9b92c9] mb-1">Lighthouse Score</p>
-                <ProgressBar
-                  value={performance.lighthouseScore.value}
-                  showLabel
-                  label={performance.lighthouseScore.score}
                 />
               </div>
             )}

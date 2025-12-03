@@ -21,11 +21,29 @@ export default function AboutTimelineSection({
 }: AboutTimelineSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // 비주얼 패널 로딩 상태 추적
+  useEffect(() => {
+    const handleVisualPanelLoading = (event: Event) => {
+      const customEvent = event as CustomEvent<{
+        isLoading: boolean;
+      }>;
+      setIsLoading(customEvent.detail.isLoading);
+    };
+
+    window.addEventListener("visualPanelLoading", handleVisualPanelLoading);
+
+    return () => {
+      window.removeEventListener("visualPanelLoading", handleVisualPanelLoading);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        // 로딩 중이 아닐 때만 표시
+        if (entry.isIntersecting && !isLoading) {
           setIsVisible(true);
         }
       },
@@ -37,8 +55,11 @@ export default function AboutTimelineSection({
     }
 
     // 커스텀 이벤트 리스너 (어바웃 인트로에서 전환될 때)
+    // 로딩이 완료된 후에만 타임라인 표시
     const handleTransition = () => {
-      setIsVisible(true);
+      if (!isLoading) {
+        setIsVisible(true);
+      }
     };
     window.addEventListener("aboutIntroToTimeline", handleTransition);
 
@@ -46,10 +67,16 @@ export default function AboutTimelineSection({
       observer.disconnect();
       window.removeEventListener("aboutIntroToTimeline", handleTransition);
     };
-  }, []);
+  }, [isLoading]);
 
   return (
-    <div ref={sectionRef} className="flex flex-col gap-6">
+    <div 
+      ref={sectionRef} 
+      id="timeline-section"
+      className={`flex flex-col gap-6 transition-opacity duration-500 ${
+        isLoading ? "opacity-0" : "opacity-100"
+      }`}
+    >
       <div className="flex flex-col gap-2">
         <h2 className="text-primary text-3xl font-bold tracking-[0.3em]">
           {title}
@@ -60,7 +87,7 @@ export default function AboutTimelineSection({
           <div
             key={`${entry.title}-${entry.timestamp}`}
             className={`group relative border-l-2 border-primary/20 pl-4 transition-all duration-500 hover:border-primary/60 hover:bg-primary/5 hover:pl-6 hover:shadow-[0_0_20px_rgba(0,255,149,0.1)] ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+              isVisible && !isLoading ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
             }`}
             style={{
               animationDelay: `${index * 0.15}s`,

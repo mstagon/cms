@@ -49,7 +49,11 @@ export default function ProjectDetailView({
         )}
 
         {/* Page Heading */}
-        <ProjectHeader title={project.title} subtitle={project.description} />
+        <ProjectHeader
+          title={project.title}
+          subtitle={project.description}
+          links={projectDetail?.links}
+        />
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
@@ -58,6 +62,11 @@ export default function ProjectDetailView({
             objective={projectDetail?.objective}
             images={projectDetail?.images || (project.image ? [project.image] : [])}
             role={projectDetail?.role}
+            overview={projectDetail?.overview}
+            challenges={projectDetail?.challenges}
+            architecture={projectDetail?.architecture}
+            retrospective={projectDetail?.retrospective}
+            achievements={projectDetail?.achievements}
           />
 
           {/* Sidebar Column */}

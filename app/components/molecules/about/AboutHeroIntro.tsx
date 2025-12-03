@@ -30,6 +30,33 @@ export default function AboutHeroIntro({
     threshold: 0.1,
   });
 
+  // IntersectionObserver로 섹션이 뷰포트에 들어올 때마다 표시
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+            // 섹션이 뷰포트에 들어오면 표시
+            setIsMounted(true);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "-10% 0px",
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     // 히어로에서 넘어올 때 페이드 인 효과
     const handleHeroTransition = () => {
@@ -39,28 +66,10 @@ export default function AboutHeroIntro({
     // 커스텀 이벤트 리스너
     window.addEventListener("heroToAboutTransition", handleHeroTransition);
 
-    // 일반 스크롤로 도달한 경우 약간의 지연 후 표시
-    const checkVisibility = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          // 이미 뷰포트에 있으면 즉시 표시
-          setTimeout(() => {
-            if (!isMounted) {
-              setIsMounted(true);
-            }
-          }, 300);
-        }
-      }
-    };
-
-    const timer = setTimeout(checkVisibility, 500);
-
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("heroToAboutTransition", handleHeroTransition);
     };
-  }, [isMounted]);
+  }, []);
 
   // 관성 스크롤 트리거 핸들러
   const handleInertiaScroll = useCallback(() => {
@@ -71,40 +80,80 @@ export default function AboutHeroIntro({
       return;
     }
 
-    // 1. 어바웃 인트로 콘텐츠 페이드 아웃 (부팅 애니메이션처럼)
+    // 1. 비주얼 패널 로딩 시작 (300ms 지연)
+    // 타임라인 도착까지 약 3500ms, 로딩 시간 5000ms이므로 도착 시점 진행률은 약 70%
+    // 더 자연스러운 느낌을 위해 40%부터 시작하도록 조정
+    setTimeout(() => {
+      window.dispatchEvent(
+        new CustomEvent("visualPanelLoading", {
+          detail: {
+            isLoading: true,
+            message: "ACCESSING DATA_STREAM.LOG...",
+            initialProgress: 40, // 도착 시점에 이미 진행 중인 느낌
+          },
+        })
+      );
+    }, 300);
+
+    // 2. 어바웃 인트로 콘텐츠 페이드 아웃 (부팅 애니메이션처럼)
     fadeOutContent(contentRef, 1000);
 
-    // 2. 페이드 아웃 후 전환 오버레이 표시
+    // 3. 페이드 아웃 후 전환 오버레이 표시
+    let timelineFadeInTriggered = false;
+
+    // 로딩 완료 이벤트 리스너 등록
+    const handleLoadingComplete = () => {
+      if (!timelineFadeInTriggered) {
+        timelineFadeInTriggered = true;
+
+        // 로딩 완료 후 약간의 지연을 두고 타임라인 페이드인 (더 자연스러운 느낌)
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("aboutIntroToTimeline"));
+
+          // 비주얼 패널 로딩 종료
+          window.dispatchEvent(
+            new CustomEvent("visualPanelLoading", {
+              detail: { isLoading: false },
+            })
+          );
+        }, 300); // 로딩 완료 후 300ms 지연
+
+        window.removeEventListener(
+          "visualPanelLoadingComplete",
+          handleLoadingComplete
+        );
+      }
+    };
+
+    window.addEventListener(
+      "visualPanelLoadingComplete",
+      handleLoadingComplete
+    );
+
     setTimeout(() => {
       playTransition("ACCESSING DATA_STREAM.LOG...", "#timeline-section", {
         fadeOutDuration: 1000,
         overlayDuration: 1500,
         onComplete: () => {
-          // 4. 타임라인으로 이동한 후 비주얼 패널 로딩 애니메이션 시작
-          setTimeout(() => {
-            window.dispatchEvent(
-              new CustomEvent("visualPanelLoading", {
-                detail: {
-                  isLoading: true,
-                  message: "ACCESSING DATA_STREAM.LOG...",
-                },
-              })
-            );
+          // onComplete 시점에 로딩이 완료되었는지 확인
+          // 로딩 시작: 300ms, 로딩 시간: 5000ms, 로딩 완료: 5300ms
+          // 타임라인 도착: 300ms + 1000ms + 1000ms + 1500ms = 3800ms
+          // 로딩 완료까지 남은 시간: 5300ms - 3800ms = 1500ms
+          // 로딩이 아직 완료되지 않았으면 완료 이벤트를 기다림
+          // 이미 완료되었으면 즉시 타임라인 페이드인
+          const loadingStartTime = 300;
+          const loadingDuration = 5000;
+          const loadingCompleteTime = loadingStartTime + loadingDuration; // 5300ms
+          const currentTime = 300 + 1000 + 1000 + 1500; // 3800ms (onComplete 시점)
+          const remainingTime = loadingCompleteTime - currentTime; // 1500ms
 
-            // 5. 타임라인 섹션 페이드 인 이벤트
-            setTimeout(() => {
-              window.dispatchEvent(new CustomEvent("aboutIntroToTimeline"));
-
-              // 비주얼 패널 로딩 종료
-              setTimeout(() => {
-                window.dispatchEvent(
-                  new CustomEvent("visualPanelLoading", {
-                    detail: { isLoading: false },
-                  })
-                );
-              }, 2000); // 로딩 애니메이션 2초 표시
-            }, 300);
-          }, 300);
+          if (remainingTime > 0) {
+            // 로딩이 아직 완료되지 않았으면 완료 이벤트를 기다림
+            // handleLoadingComplete가 처리함
+          } else {
+            // 로딩이 이미 완료되었으면 즉시 타임라인 페이드인
+            handleLoadingComplete();
+          }
         },
       });
     }, 1000);
@@ -156,10 +205,34 @@ export default function AboutHeroIntro({
           }`}
           style={{ transitionDelay: isMounted ? "0.4s" : "0s" }}
         >
-          <span className="glitch-text" data-text={glitchLabel}>
-            {glitchLabel}
-          </span>
-          {roleSuffix}
+          {glitchLabel.includes("\n") ? (
+            <>
+              <div className="block">
+                <span
+                  className="glitch-text"
+                  data-text={glitchLabel.split("\n")[0]}
+                >
+                  {glitchLabel.split("\n")[0]}
+                </span>
+              </div>
+              <div className="block mt-2">
+                <span
+                  className="glitch-text"
+                  data-text={glitchLabel.split("\n")[1]}
+                >
+                  {glitchLabel.split("\n")[1]}
+                </span>
+                {roleSuffix}
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="glitch-text" data-text={glitchLabel}>
+                {glitchLabel}
+              </span>
+              {roleSuffix}
+            </>
+          )}
         </h1>
         <p
           className={`max-w-2xl text-base text-[#8892B0] md:text-lg transition-all duration-800 ease-out ${
@@ -172,9 +245,9 @@ export default function AboutHeroIntro({
       </div>
       {isVisible && (
         <div className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-2 animate-bounce">
-          <span className="font-mono text-sm text-primary">{scrollLabel}</span>
-          <div className="h-10 w-px bg-primary/50" />
-          <div className="h-3 w-3 rounded-full border-2 border-primary" />
+          <span className="font-mono text-sm text-accent">{scrollLabel}</span>
+          <div className="h-10 w-px bg-accent" />
+          <div className="h-3 w-3 rounded-full border-2 border-accent" />
         </div>
       )}
     </section>

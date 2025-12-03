@@ -280,7 +280,7 @@ function buildSkillCategories(language: Language): SkillCategory[] {
 const aboutContent: Record<Language, AboutApiResponse> = {
   ko: {
     profile: {
-      headline: "성장하는 프론트엔드 개발자,\n최민석입니다.",
+      headline: "성장하는 프론트엔드 개발자\n최민석입니다",
       description:
         "상명대학교 스마트정보통신공학과 전공, 앱&웹 연계전공을 복수 전공하며 이론과 실무를 함께 익혔습니다. 사용자 경험을 최우선으로 생각하며, 비즈니스 목표에 기여하는 웹 서비스를 만듭니다.",
       imageAlt: "최민석 프로필 이미지",
@@ -366,7 +366,7 @@ const aboutContent: Record<Language, AboutApiResponse> = {
   },
   en: {
     profile: {
-      headline: "Growing Frontend Developer,\nChoi Min Seok.",
+      headline: "Growing Frontend Developer\nChoi Min Seok",
       description:
         "Double-majoring in Smart Information & Communication Engineering and the App & Web convergence program at Sangmyung University. I build web services that prioritize user experience while supporting business goals.",
       imageAlt: "Profile portrait of Choi Min Seok",

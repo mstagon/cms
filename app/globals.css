@@ -7,7 +7,7 @@
   --color-bg-dark: #01010a;
   --color-bg-light: #f6f6f8;
   --color-primary: #3713ec;
-  --color-accent: #00f6ff;
+  --color-accent: #00fe95;
   --color-secondary-accent: #bc13fe;
   --color-text-main: #e6f1ff;
   --color-text-light: #8892b0;
@@ -252,6 +252,14 @@ body {
 
 .border-accent {
   border-color: var(--color-accent) !important;
+}
+
+.stroke-accent {
+  stroke: var(--color-accent) !important;
+}
+
+.bg-accent {
+  background-color: var(--color-accent) !important;
 }
 
 .bg-accent\/10 {
@@ -937,4 +945,38 @@ body {
       0 0 20px rgba(0, 255, 149, 0.6),
       0 0 30px rgba(0, 255, 149, 0.4);
   }
+}
+
+/* 비주얼 패널 완료 애니메이션 */
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
 }

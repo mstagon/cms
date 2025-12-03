@@ -10,6 +10,7 @@ import type {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useUI } from "@/app/context/UIContext";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
+import { getAboutTexts } from "@/app/lib/i18n/texts";
 import AboutSystemHeader from "@/app/components/molecules/about/AboutSystemHeader";
 import AboutHeroIntro from "@/app/components/molecules/about/AboutHeroIntro";
 import AboutVisualPanel from "@/app/components/molecules/about/AboutVisualPanel";
@@ -43,6 +44,8 @@ export default function AboutSection({
   const [visualPanelMessage, setVisualPanelMessage] = useState<
     string | undefined
   >();
+  const [visualPanelInitialProgress, setVisualPanelInitialProgress] =
+    useState(0);
   useScrollReveal(sectionRef, { threshold: 0.12, rootMargin: "-10% 0px" });
 
   // 비주얼 패널 로딩 상태 관리
@@ -51,9 +54,13 @@ export default function AboutSection({
       const customEvent = event as CustomEvent<{
         isLoading: boolean;
         message?: string;
+        initialProgress?: number;
       }>;
       setVisualPanelLoading(customEvent.detail.isLoading);
       setVisualPanelMessage(customEvent.detail.message);
+      if (customEvent.detail.initialProgress !== undefined) {
+        setVisualPanelInitialProgress(customEvent.detail.initialProgress);
+      }
     };
 
     window.addEventListener("visualPanelLoading", handleVisualPanelLoading);
@@ -65,93 +72,10 @@ export default function AboutSection({
     };
   }, []);
 
-  const copy = useMemo(
-    () => ({
-      ko: {
-        brand: `${profile.headline || "OOO"}.sys`,
-        resume: "[ GET_RESUME ]",
-        initLabel: "[INITIATING_CONNECTION...]",
-        glitchLabel: profile.headline || "OOO",
-        roleSuffix: ": FRONTEND_DEV",
-        heroDescription:
-          profile.description ||
-          "> 감성과 성능이 공존하는 인터페이스를 설계합니다.",
-        scrollLabel: "[SCROLL_SEQUENCE]",
-        philosophyTitle: "// PHILOSOPHY.LOG",
-        philosophyDescription:
-          "비주얼을 넘어 직관적이며 효율적인 경험을 만드는 시스템을 구축합니다.",
-        timelineTitle: "// DATA_STREAM.LOG",
-        timelineLabel: "TIMESTAMP",
-        capabilitiesTitle: "// CORE_SPECS.LOG",
-        ctaTitle: "[ ESTABLISH_CONNECTION? ]",
-        ctaDescription:
-          "> 제 작업에 관심이 있거나 협업을 제안하고 싶다면 언제든지 연락 주세요.",
-        primaryCta: "VIEW_PROJECTS",
-        secondaryCta: "CONTACT.EXE",
-        navItems: [
-          { icon: "psychology", title: "ACCESS: PHILOSOPHY.LOG" },
-          { icon: "memory", title: "ACCESS: CORE_SPECS.LOG" },
-          { icon: "timeline", title: "ACCESS: DATA_STREAM.LOG" },
-          { icon: "outgoing_mail", title: "EXECUTE: CONTACT.EXE" },
-        ],
-        fallbackCards: [
-          {
-            icon: "person_alert",
-            title: "사용자 중심 프로토콜",
-            body: "모든 여정은 실제 사용자 시나리오에서 출발합니다.",
-          },
-          {
-            icon: "code_blocks",
-            title: "효율적인 코드베이스",
-            body: "명료한 설계와 성능 최적화를 결합한 시스템을 구축합니다.",
-          },
-        ],
-      },
-      en: {
-        brand: `${profile.headline || "OOO"}.sys`,
-        resume: "[ GET_RESUME ]",
-        initLabel: "[INITIATING_CONNECTION...]",
-        glitchLabel: profile.headline || "OOO",
-        roleSuffix: ": FRONTEND_DEV",
-        heroDescription:
-          profile.description ||
-          "> Building immersive web experiences with precision and passion.",
-        scrollLabel: "[SCROLL_SEQUENCE]",
-        philosophyTitle: "// PHILOSOPHY.LOG",
-        philosophyDescription:
-          "Accessing kernel... Beyond visuals, I craft intuitive, efficient, accessible systems.",
-        timelineTitle: "// DATA_STREAM.LOG",
-        timelineLabel: "TIMESTAMP",
-        capabilitiesTitle: "// CORE_SPECS.LOG",
-        ctaTitle: "[ ESTABLISH_CONNECTION? ]",
-        ctaDescription:
-          "> If you’re interested in my work or want to collaborate, feel free to reach out.",
-        primaryCta: "VIEW_PROJECTS",
-        secondaryCta: "CONTACT.EXE",
-        navItems: [
-          { icon: "psychology", title: "ACCESS: PHILOSOPHY.LOG" },
-          { icon: "memory", title: "ACCESS: CORE_SPECS.LOG" },
-          { icon: "timeline", title: "ACCESS: DATA_STREAM.LOG" },
-          { icon: "outgoing_mail", title: "EXECUTE: CONTACT.EXE" },
-        ],
-        fallbackCards: [
-          {
-            icon: "person_alert",
-            title: "User-Centric Protocol",
-            body: "Meaningful journeys grounded in real user problems.",
-          },
-          {
-            icon: "code_blocks",
-            title: "Efficient Codebase",
-            body: "Clean, scalable, performant code built to last.",
-          },
-        ],
-      },
-    }),
-    [profile]
+  const text = useMemo(
+    () => getAboutTexts(language, profile),
+    [language, profile]
   );
-
-  const text = copy[language] ?? copy.en;
 
   const dynamicCards = useMemo(() => {
     const merged = [...awards, ...interests]
@@ -237,13 +161,8 @@ export default function AboutSection({
       ref={sectionRef}
       className="relative isolate flex w-full flex-col items-center bg-background-dark text-[#a8b2d1]"
     >
-      {/* <div className="animate-circuitFlow pointer-events-none fixed inset-0 z-0 opacity-10" />
+      <div className="animate-circuitFlow pointer-events-none fixed inset-0 z-0 opacity-10" />
       <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-transparent to-background-dark" />
-      <AboutSystemHeader
-        brandLabel={text.brand}
-        resumeLabel={text.resume}
-        navItems={text.navItems}
-      /> */}
       <main className="relative z-10 w-full max-w-5xl px-6">
         <AboutHeroIntro
           initLabel={text.initLabel}
@@ -263,6 +182,7 @@ export default function AboutSection({
               <AboutVisualPanel
                 isLoading={visualPanelLoading}
                 loadingMessage={visualPanelMessage}
+                initialProgress={visualPanelInitialProgress}
               />
             </div>
           </div>

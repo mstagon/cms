@@ -3,6 +3,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import ProjectsArchiveGrid from "@/app/components/organisms/projects/ProjectsArchiveGrid";
+import OtherProjectsGrid from "@/app/components/organisms/projects/OtherProjectsGrid";
 import GlitchText from "@/app/components/atoms/GlitchText";
 import type { ProjectItem } from "@/app/types/projects";
 
@@ -15,10 +16,10 @@ export default function ProjectsArchive({
   featured,
   others = [],
 }: ProjectsArchiveProps) {
-  const [isVisible, setIsVisible] = useState(true); // 초기 상태를 visible로 변경
+  const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // IntersectionObserver로 스크롤 시 표시 (선택적)
+  // IntersectionObserver로 스크롤 시 표시
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,25 +46,15 @@ export default function ProjectsArchive({
 
   const handleAccess = (slug?: string) => {
     if (slug) {
-      // 프로젝트 상세 페이지로 이동
       window.location.href = `/projects/${slug}`;
     } else {
-      // 연락처로 이동
       window.location.href = "/#contact";
     }
   };
 
-  // 모든 프로젝트 합치기
-  const allProjects = [...featured, ...others];
+  const totalProjects = featured.length + others.length;
 
-  // 디버깅: 데이터 확인 (개발 환경에서만)
-  if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-    console.log("ProjectsArchive - featured:", featured);
-    console.log("ProjectsArchive - others:", others);
-    console.log("ProjectsArchive - allProjects:", allProjects);
-  }
-
-  if (allProjects.length === 0) {
+  if (totalProjects === 0) {
     return (
       <section ref={sectionRef} id="projects-archive" className="relative">
         <div className="text-center py-10">
@@ -90,7 +81,35 @@ export default function ProjectsArchive({
         </p>
       </div>
 
-      <ProjectsArchiveGrid projects={allProjects} onAccess={handleAccess} />
+      {/* Featured Projects Section - 큰 카드 */}
+      {featured.length > 0 && (
+        <div className="mb-16">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-white font-mono mb-2">
+              // FEATURED_PROJECTS
+            </h2>
+            <p className="text-[#8892B0] text-sm font-mono">
+              // High-priority data modules
+            </p>
+          </div>
+          <ProjectsArchiveGrid projects={featured} onAccess={handleAccess} />
+        </div>
+      )}
+
+      {/* Other Projects Section - 파일 탐색기 스타일 */}
+      {others.length > 0 && (
+        <div className="mt-16">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-white font-mono mb-2">
+              // OTHER_PROJECTS
+            </h2>
+            <p className="text-[#8892B0] text-sm font-mono">
+              // Additional data modules
+            </p>
+          </div>
+          <OtherProjectsGrid projects={others} onAccess={handleAccess} />
+        </div>
+      )}
     </section>
   );
 }

@@ -3,6 +3,12 @@
 
 import SectionHeader from "@/app/components/molecules/project-detail/SectionHeader";
 import ImageCarousel from "@/app/components/molecules/project-detail/ImageCarousel";
+import OverviewSection from "@/app/components/molecules/project-detail/OverviewSection";
+import ChallengeSection from "@/app/components/molecules/project-detail/ChallengeSection";
+import ArchitectureSection from "@/app/components/molecules/project-detail/ArchitectureSection";
+import RetrospectiveSection from "@/app/components/molecules/project-detail/RetrospectiveSection";
+import AchievementSection from "@/app/components/molecules/project-detail/AchievementSection";
+import type { ProjectDetail } from "@/app/types/projects";
 
 interface ProjectMainContentProps {
   objective?: string;
@@ -11,17 +17,35 @@ interface ProjectMainContentProps {
     title: string;
     responsibilities: string[];
   };
+  overview?: ProjectDetail["overview"];
+  challenges?: ProjectDetail["challenges"];
+  architecture?: ProjectDetail["architecture"];
+  retrospective?: string;
+  achievements?: ProjectDetail["achievements"];
 }
 
 export default function ProjectMainContent({
   objective,
   images = [],
   role,
+  overview,
+  challenges,
+  architecture,
+  retrospective,
+  achievements,
 }: ProjectMainContentProps) {
   return (
     <div className="md:col-span-2 flex flex-col gap-12">
-      {/* Objective Overview Section */}
-      {objective && (
+      {/* Overview Section */}
+      {overview && (
+        <OverviewSection
+          description={overview.description}
+          stats={overview.stats}
+        />
+      )}
+
+      {/* Objective Overview Section (fallback if overview not provided) */}
+      {!overview && objective && (
         <section>
           <SectionHeader title="// OBJECTIVE_OVERVIEW.log" />
           <div className="bg-white/5 border border-white/10 rounded-lg p-6 text-[#c5c0e5]">
@@ -51,6 +75,44 @@ export default function ProjectMainContent({
             </ul>
           </div>
         </section>
+      )}
+
+      {/* Challenges Section */}
+      {challenges && challenges.length > 0 && (
+        <section className="space-y-8">
+          <SectionHeader title="// CHALLENGES_SOLUTIONS.log" />
+          <div className="space-y-8">
+            {challenges.map((challenge, index) => (
+              <ChallengeSection
+                key={index}
+                title={challenge.title}
+                asIs={challenge.asIs}
+                toBe={challenge.toBe}
+                result={challenge.result}
+                githubLink={challenge.githubLink}
+                docsLink={challenge.docsLink}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Architecture Section */}
+      {architecture && (
+        <ArchitectureSection
+          description={architecture.description}
+          diagrams={architecture.diagrams}
+        />
+      )}
+
+      {/* Achievements Section */}
+      {achievements && achievements.length > 0 && (
+        <AchievementSection achievements={achievements} />
+      )}
+
+      {/* Retrospective Section */}
+      {retrospective && (
+        <RetrospectiveSection content={retrospective} />
       )}
     </div>
   );

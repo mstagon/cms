@@ -8,12 +8,12 @@ export const dynamic = "force-dynamic";
 
 export async function GET(
     request: Request,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     const { searchParams } = new URL(request.url);
     const lang = (searchParams.get("lang") || "ko") as Language;
-    const { slug } = params;
+    const { slug } = await params;
 
     const [projectDetail, allProjects] = await Promise.all([
       getProjectDetail(slug, lang),
@@ -39,8 +39,13 @@ export async function GET(
     });
   } catch (error) {
     console.error("프로젝트 상세 데이터를 불러오는 중 오류 발생:", error);
+    console.error("Error details:", error instanceof Error ? error.message : String(error));
+    console.error("Error stack:", error instanceof Error ? error.stack : "No stack trace");
     return NextResponse.json(
-        { error: "프로젝트 상세 데이터를 불러오지 못했습니다." },
+        { 
+          error: "프로젝트 상세 데이터를 불러오지 못했습니다.",
+          details: error instanceof Error ? error.message : String(error)
+        },
         { status: 500 }
     );
   }
