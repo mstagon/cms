@@ -16,9 +16,10 @@ export default function ArchitectureSection({
   description,
   diagrams = [],
 }: ArchitectureSectionProps) {
-  if (!description && diagrams.length === 0) {
-    return null;
-  }
+  // 유효한 이미지가 있는 diagrams만 필터링
+  const validDiagrams = diagrams?.filter(
+    (diagram) => diagram.image && diagram.image.trim() !== ""
+  ) || [];
 
   return (
     <section className="space-y-6">
@@ -28,9 +29,9 @@ export default function ArchitectureSection({
           <p className="text-sm leading-relaxed">{description}</p>
         </div>
       )}
-      {diagrams.length > 0 && (
+      {validDiagrams.length > 0 && (
         <div className="space-y-6">
-          {diagrams.map((diagram, index) => (
+          {validDiagrams.map((diagram, index) => (
             <div key={index} className="bg-white/5 border border-white/10 rounded-lg p-4 overflow-hidden">
               {diagram.title && (
                 <h4 className="font-bold text-white mb-3 text-sm font-mono">
