@@ -50,7 +50,6 @@ export function useSectionTransition() {
       options: TransitionOptions = {}
     ) => {
       const {
-        fadeOutDuration = 1000,
         overlayDuration = 1500,
         onComplete,
       } = options;

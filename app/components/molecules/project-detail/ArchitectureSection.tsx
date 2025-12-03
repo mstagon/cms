@@ -38,6 +38,7 @@ export default function ArchitectureSection({
                 </h4>
               )}
               <div className="relative w-full aspect-video bg-black/20 rounded overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={diagram.image}
                   alt={diagram.alt || diagram.title || `Architecture diagram ${index + 1}`}

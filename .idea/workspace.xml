@@ -5,16 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d199b217-95ec-4228-a8a4-dd8189468ca7" name="변경" comment="test">
-      <change afterPath="$PROJECT_DIR$/public/SUIT-Variable.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Hero/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Hero/Hero.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/SmoothScroll.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/VideoComponents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/VideoComponents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/projects/[slug]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/projects/[slug]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/LanguageSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/LanguageSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/ThemeToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/ThemeToggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutCTASection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutCTASection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutCapabilitiesSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutCapabilitiesSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutHeroIntro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutHeroIntro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutSystemHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutSystemHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutTimelineSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutTimelineSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/about/AboutVisualPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/about/AboutVisualPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/hero/HeroHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/hero/HeroHeading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/hero/ScrollIndicatorLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/hero/ScrollIndicatorLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/molecules/project-detail/ProjectHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/molecules/project-detail/ProjectHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/about/AboutSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/about/AboutSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/hero/HeroSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/hero/HeroSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/home/HomeContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/home/HomeContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/layout/FooterSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/layout/FooterSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/project-detail/ProjectDetailView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/project-detail/ProjectDetailView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/project-detail/ProjectMainContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/project-detail/ProjectMainContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/projects/ProjectsArchive.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/projects/ProjectsArchive.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/organisms/projects/ProjectsArchiveGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/organisms/projects/ProjectsArchiveGrid.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/api/about.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/api/about.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/api/projectDetails.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/api/projectDetails.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/api/projects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/api/projects.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/projects/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/projects/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/types/projects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/types/projects.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,31 +76,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Node.js.next.config.ts.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/cms/ureka/cms/.github&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;/Users/cms/ureka/cms/node_modules/eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/cms/ureka/cms/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/cms/ureka/cms/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Node.js.next.config.ts.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "prototype",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "/Users/cms/ureka/cms/.github",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "/Users/cms/ureka/cms/node_modules/eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/cms/ureka/cms/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/cms/ureka/cms2/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github" />
@@ -152,6 +169,7 @@
       <workItem from="1760491085719" duration="581000" />
       <workItem from="1760491683889" duration="4830000" />
       <workItem from="1761462523957" duration="2846000" />
+      <workItem from="1764632182576" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="feat: prettier 및 eslint 설정&#10;&#10;Related to: #1">
       <option name="closed" value="true" />

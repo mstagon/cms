@@ -22,7 +22,7 @@ export default function HeroSection() {
   const transitionOverlayRef = useRef<HTMLDivElement>(null);
   const isInertiaScrollingRef = useRef(false);
   const inertiaTimeoutRef = useRef<number | null>(null);
-  const headerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const playSectionTransition = (onComplete: () => void) => {
     const overlay = transitionOverlayRef.current;

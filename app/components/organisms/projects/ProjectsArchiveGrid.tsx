@@ -14,7 +14,7 @@ export default function ProjectsArchiveGrid({
   onAccess,
 }: ProjectsArchiveGridProps) {
   // 그리드 레이아웃 계산 (HTML 구조 기반)
-  const getGridClasses = (index: number, total: number) => {
+  const getGridClasses = (index: number) => {
     // 첫 번째: md:col-span-8 md:row-span-2
     if (index === 0) return "md:col-span-8 md:row-span-2";
     
@@ -45,7 +45,7 @@ export default function ProjectsArchiveGrid({
           <span className="material-symbols-outlined text-accent text-sm">
             folder
           </span>
-          <span>// DIRECTORY: FEATURED_PROJECTS</span>
+          <span>{"// DIRECTORY: FEATURED_PROJECTS"}</span>
           <span className="text-accent/70">({projects.length} files)</span>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function ProjectsArchiveGrid({
           <ProjectDataModule
             key={project.id}
             project={project}
-            className={getGridClasses(index, projects.length)}
+            className={getGridClasses(index)}
             onAccess={onAccess}
           />
         ))}

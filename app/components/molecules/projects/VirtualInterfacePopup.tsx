@@ -1,7 +1,6 @@
 // 가상 인터페이스 팝업 분자
 "use client";
 
-import GlitchText from "@/app/components/atoms/GlitchText";
 import type { ProjectItem } from "@/app/types/projects";
 
 interface VirtualInterfacePopupProps {

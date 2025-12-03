@@ -70,7 +70,7 @@ export default function AboutPhilosophySection({
           <h2 className="text-primary text-3xl font-bold tracking-[0.3em]">
             {title}
           </h2>
-          <p className="text-[#8892B0] text-sm font-mono">// {description}</p>
+          <p className="text-[#8892B0] text-sm font-mono">{"// "}{description}</p>
         </div>
         <div className="flex flex-col gap-4 font-mono text-sm">
           {cards.map((card, index) => (
@@ -94,7 +94,7 @@ export default function AboutPhilosophySection({
                 </h3>
               </div>
               <p className="text-[#8892B0] text-sm leading-relaxed pl-7 transition-all duration-300 group-hover:text-[#a8b2d1] group-hover:pl-8">
-                <span className="text-primary/60">//</span> {card.body}
+                <span className="text-primary/60">{"// "}</span>{card.body}
               </p>
             </div>
           ))}

@@ -4,7 +4,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import StatusLight from "@/app/components/atoms/StatusLight";
-import GlitchText from "@/app/components/atoms/GlitchText";
 import VirtualInterfacePopup from "@/app/components/molecules/projects/VirtualInterfacePopup";
 import type { ProjectItem } from "@/app/types/projects";
 

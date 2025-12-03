@@ -25,7 +25,7 @@ export default function OtherProjectsGrid({
           <span className="material-symbols-outlined text-accent text-sm">
             folder
           </span>
-          <span>// DIRECTORY: OTHER_PROJECTS</span>
+          <span>{"// DIRECTORY: OTHER_PROJECTS"}</span>
           <span className="text-accent/70">({projects.length} files)</span>
         </div>
       </div>

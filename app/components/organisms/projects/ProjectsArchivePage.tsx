@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import ProjectsArchive from "@/app/components/organisms/projects/ProjectsArchive";
 import { useUI } from "@/app/context/UIContext";
 import type { ProjectsApiResponse } from "@/app/types/projects";
@@ -17,7 +16,6 @@ export default function ProjectsArchivePage({
   initialProjects,
   initialLanguage,
 }: ProjectsArchivePageProps) {
-  const router = useRouter();
   const { language } = useUI();
   const [projectsData, setProjectsData] =
     useState<ProjectsApiResponse>(initialProjects);

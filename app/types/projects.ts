@@ -12,6 +12,8 @@ export interface ProjectItem {
   status: "online" | "locked";
   directory?: string;
   filename?: string;
+  layout?: "reversed" | "normal";
+  unoptimized?: boolean;
 }
 
 export interface ProjectDetail {
