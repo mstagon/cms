@@ -1,0 +1,74 @@
+/* PDF 인쇄 스타일 */
+
+/* PDF 라우트에서 푸터 숨기기 */
+body:has(.pdf-layout) .pdf-hide-footer {
+  display: none !important;
+}
+
+/* PDF 페이지 스타일 */
+.pdf-layout {
+  background: white !important;
+  color: #111827 !important;
+}
+
+body:has(.pdf-layout) {
+  background: white !important;
+  color: #111827 !important;
+}
+
+body:has(.pdf-layout) * {
+  color: #111827 !important;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0.8cm;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background: white !important;
+    color: #111827 !important;
+  }
+
+  /* PDF 라우트 푸터 숨기기 */
+  .pdf-hide-footer {
+    display: none !important;
+  }
+
+  /* 페이지 브레이크 */
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 링크 숨기기 */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* 인쇄 시 숨길 요소 */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Tailwind의 print:hidden 클래스는 인라인으로 처리되므로 여기서는 제거 */
+}

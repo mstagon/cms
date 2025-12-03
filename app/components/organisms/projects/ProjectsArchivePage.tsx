@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import ProjectsArchive from "@/app/components/organisms/projects/ProjectsArchive";
 import { useUI } from "@/app/context/UIContext";
 import type { ProjectsApiResponse } from "@/app/types/projects";
@@ -36,16 +37,16 @@ export default function ProjectsArchivePage({
 
     const loadTranslatedData = async () => {
       try {
-        const projectsResponse = await fetch(
-          `/api/projects?lang=${language}`,
-          { cache: "no-store" }
-        );
+        const projectsResponse = await fetch(`/api/projects?lang=${language}`, {
+          cache: "no-store",
+        });
 
         if (!projectsResponse.ok) {
           throw new Error("프로젝트 데이터를 불러오지 못했습니다.");
         }
 
-        const projectsJson = (await projectsResponse.json()) as ProjectsApiResponse;
+        const projectsJson =
+          (await projectsResponse.json()) as ProjectsApiResponse;
 
         if (!cancelled) {
           setProjectsData(projectsJson);
@@ -66,7 +67,7 @@ export default function ProjectsArchivePage({
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background-dark">
       <div className="circuit-bg fixed inset-0" />
-      
+
       {/* About CTA 섹션으로 돌아가기 버튼 */}
       <div className="fixed top-4 left-4 z-50">
         <button
@@ -92,6 +93,36 @@ export default function ProjectsArchivePage({
         </button>
       </div>
 
+      {/* PDF 목록으로 이동 버튼 */}
+      <div className="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
+        <Link
+          href="/pdf"
+          className="group flex items-center gap-2 px-4 py-2 bg-white/5 border border-accent/30 rounded-lg hover:border-accent hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+        >
+          <svg
+            className="w-4 h-4 text-accent transition-transform group-hover:scale-110"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+            />
+          </svg>
+          <span className="text-sm font-mono text-accent font-bold tracking-wider">
+            [ PDF_VIEW ]
+          </span>
+        </Link>
+        <p className="text-xs font-mono text-[#8892B0]/70 text-right max-w-[200px] leading-relaxed">
+          {language === "ko"
+            ? "// 오프라인 검토를 위한 정적 문서 내보내기 제공"
+            : "// Static document export available for offline review"}
+        </p>
+      </div>
+
       <main className="relative z-10 px-4 md:px-10 lg:px-20 xl:px-40 py-10 md:py-20">
         <div className="max-w-7xl mx-auto">
           <ProjectsArchive
@@ -103,4 +134,3 @@ export default function ProjectsArchivePage({
     </div>
   );
 }
-

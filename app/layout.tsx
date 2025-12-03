@@ -58,7 +58,7 @@ export default async function RootLayout({
           initialTheme={initialTheme}
         >
           <main className="relative z-10">{children}</main>
-          <div className="relative z-10">
+          <div className="relative z-10 pdf-hide-footer">
             <FooterContainer
               initialInfo={footerInfo}
               initialLanguage={initialLanguage}

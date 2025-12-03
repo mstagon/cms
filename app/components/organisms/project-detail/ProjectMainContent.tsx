@@ -100,7 +100,7 @@ export default function ProjectMainContent({
         </section>
       )}
 
-      {/* Architecture Section */}
+      {/* Architecture Section - description이 있으면 헤더 표시 (이미지는 선택적) */}
       {architecture && (
         <section id="section-architecture">
           <ArchitectureSection
