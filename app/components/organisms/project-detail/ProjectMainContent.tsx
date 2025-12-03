@@ -34,19 +34,22 @@ export default function ProjectMainContent({
   retrospective,
   achievements,
 }: ProjectMainContentProps) {
+
   return (
     <div className="md:col-span-2 flex flex-col gap-12">
       {/* Overview Section */}
       {overview && (
-        <OverviewSection
-          description={overview.description}
-          stats={overview.stats}
-        />
+        <section id="section-overview">
+          <OverviewSection
+            description={overview.description}
+            stats={overview.stats}
+          />
+        </section>
       )}
 
       {/* Objective Overview Section (fallback if overview not provided) */}
       {!overview && objective && (
-        <section>
+        <section id="section-overview">
           <SectionHeader title="// OBJECTIVE_OVERVIEW.log" />
           <div className="bg-white/5 border border-white/10 rounded-lg p-6 text-[#c5c0e5]">
             <p>{objective}</p>
@@ -56,7 +59,7 @@ export default function ProjectMainContent({
 
       {/* Image Carousel */}
       {images.length > 0 && (
-        <section>
+        <section id="section-visual">
           <SectionHeader title="// VISUAL_OUTPUT.dat" />
           <ImageCarousel images={images} alt="Project visual output" />
         </section>
@@ -64,7 +67,7 @@ export default function ProjectMainContent({
 
       {/* My Role Section */}
       {role && (
-        <section>
+        <section id="section-role">
           <SectionHeader title="// MY_ROLE.md" />
           <div className="bg-white/5 border border-white/10 rounded-lg p-6 space-y-4 text-[#c5c0e5]">
             <h3 className="font-bold text-lg text-white">{role.title}</h3>
@@ -79,7 +82,7 @@ export default function ProjectMainContent({
 
       {/* Challenges Section */}
       {challenges && challenges.length > 0 && (
-        <section className="space-y-8">
+        <section id="section-challenges" className="space-y-8">
           <SectionHeader title="// CHALLENGES_SOLUTIONS.log" />
           <div className="space-y-8">
             {challenges.map((challenge, index) => (
@@ -99,20 +102,26 @@ export default function ProjectMainContent({
 
       {/* Architecture Section */}
       {architecture && (
-        <ArchitectureSection
-          description={architecture.description}
-          diagrams={architecture.diagrams}
-        />
+        <section id="section-architecture">
+          <ArchitectureSection
+            description={architecture.description}
+            diagrams={architecture.diagrams}
+          />
+        </section>
       )}
 
       {/* Achievements Section */}
       {achievements && achievements.length > 0 && (
-        <AchievementSection achievements={achievements} />
+        <section id="section-achievements">
+          <AchievementSection achievements={achievements} />
+        </section>
       )}
 
       {/* Retrospective Section */}
       {retrospective && (
-        <RetrospectiveSection content={retrospective} />
+        <section id="section-retrospective">
+          <RetrospectiveSection content={retrospective} />
+        </section>
       )}
     </div>
   );

@@ -74,6 +74,7 @@ export default function HomeContent({
           skillCategories={aboutData.skillCategories}
           awards={aboutData.awards}
           interests={aboutData.interests}
+          certifications={aboutData.certifications}
         />
       </div>
 

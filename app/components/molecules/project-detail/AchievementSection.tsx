@@ -33,18 +33,6 @@ export default function AchievementSection({
               <h4 className="font-bold text-white text-base font-mono">
                 {achievement.title}
               </h4>
-              {achievement.value !== undefined && (
-                <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-bold text-accent">
-                    {achievement.value}
-                  </span>
-                  {achievement.unit && (
-                    <span className="text-sm text-accent/70">
-                      {achievement.unit}
-                    </span>
-                  )}
-                </div>
-              )}
             </div>
             <p className="text-sm text-[#c5c0e5] leading-relaxed">
               {achievement.description}

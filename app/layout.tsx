@@ -1,9 +1,8 @@
-// RootLayout는 글로벌 스타일, 메타데이터, 배경 영상, 푸터를 묶어 모든 페이지를 구성합니다.
+// RootLayout는 글로벌 스타일, 메타데이터, 푸터를 묶어 모든 페이지를 구성합니다.
 import "./globals.css";
 import type { Metadata } from "next";
 import { spaceGrotesk } from "@/app/fonts";
 import FooterContainer from "@/app/components/organisms/layout/FooterContainer";
-import VideoBackground from "@/app/components/organisms/layout/VideoBackground";
 import { UIProvider } from "@/app/context/UIContext";
 import { cookies } from "next/headers";
 import type { Language } from "@/app/types/ui";
@@ -58,7 +57,6 @@ export default async function RootLayout({
           initialLanguage={initialLanguage}
           initialTheme={initialTheme}
         >
-          <VideoBackground />
           <main className="relative z-10">{children}</main>
           <div className="relative z-10">
             <FooterContainer
