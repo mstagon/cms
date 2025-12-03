@@ -2,6 +2,7 @@
 import type { ProjectItem } from "@/app/types/projects";
 import type { ProjectsApiResponse } from "@/app/types/projects";
 import type { Language } from "@/app/types/ui";
+import { getProjectHeroImage } from "@/app/lib/utils/image";
 
 export type { ProjectsApiResponse };
 
@@ -171,9 +172,34 @@ export async function getProjects(language: Language = "ko"): Promise<ProjectsAp
     },
   ];
 
+  // 각 프로젝트에 public 폴더 이미지 경로 추가
+  const featuredWithImages = await Promise.all(
+    featured.map(async (project) => {
+      if (project.slug) {
+        const heroImage = await getProjectHeroImage(project.slug);
+        if (heroImage) {
+          return { ...project, image: heroImage };
+        }
+      }
+      return project;
+    })
+  );
+
+  const othersWithImages = await Promise.all(
+    others.map(async (project) => {
+      if (project.slug) {
+        const heroImage = await getProjectHeroImage(project.slug);
+        if (heroImage) {
+          return { ...project, image: heroImage };
+        }
+      }
+      return project;
+    })
+  );
+
   return {
-    featured,
-    others,
+    featured: featuredWithImages,
+    others: othersWithImages,
   };
 }
 
