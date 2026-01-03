@@ -234,7 +234,7 @@ const skillCopy: Record<
     frontend: "웹 · 모바일 프런트엔드 전반을 다루며 UI/UX 품질을 끌어올립니다.",
     backend: "다양한 백엔드 프레임워크로 비즈니스 로직과 API를 설계합니다.",
     infra: "배포 자동화와 서비스 운영 환경을 안정적으로 구성합니다.",
-    database: "관계형/비관계형 DB와 클라우드 백엔드를 활용합니다.",
+    database: "관계형/비관계형 DB와 클라우드 서비스를 활용합니다.",
     ai: "AI 기반 서비스와 데이터 파이프라인을 프로덕트에 접목합니다.",
   },
   en: {
@@ -244,7 +244,7 @@ const skillCopy: Record<
     infra:
       "Building reliable deployment automation and operations environments.",
     database:
-      "Leveraging relational, non-relational databases and cloud backends.",
+      "Leveraging relational, non-relational databases and cloud services.",
     ai: "Integrating AI services and data pipelines into products.",
   },
 };
@@ -282,7 +282,7 @@ function buildSkillCategories(language: Language): SkillCategory[] {
 const aboutContent: Record<Language, AboutApiResponse> = {
   ko: {
     profile: {
-      headline: "성장하는 프론트엔드 개발자\n최민석입니다",
+      headline: "성장하는 풀사이클 개발자\n최민석입니다",
       description:
         "상명대학교 스마트정보통신공학과 전공, 앱&웹 연계전공을 복수 전공하며 이론과 실무를 함께 익혔습니다. 사용자 경험을 최우선으로 생각하며, 비즈니스 목표에 기여하는 웹 서비스를 만듭니다.",
       imageAlt: "최민석 프로필 이미지",
@@ -370,7 +370,7 @@ const aboutContent: Record<Language, AboutApiResponse> = {
   },
   en: {
     profile: {
-      headline: "Growing Frontend Developer\nChoi Min Seok",
+      headline: "Growing FullCycle Developer\nChoi Min Seok",
       description:
         "Double-majoring in Smart Information & Communication Engineering and the App & Web convergence program at Sangmyung University. I build web services that prioritize user experience while supporting business goals.",
       imageAlt: "Profile portrait of Choi Min Seok",

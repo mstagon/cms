@@ -11,7 +11,7 @@ import ScrollIndicatorLink from "@/app/components/molecules/hero/ScrollIndicator
 import AboutSystemHeader from "@/app/components/molecules/about/AboutSystemHeader";
 import { heroTexts } from "@/app/lib/i18n/texts";
 
-const TECH_PILLS = ["React", "Next.js", "TypeScript", "WebGL", "Three.js"];
+const TECH_PILLS = ["React", "Next.js", "TypeScript", "Node.js", "Flutter"];
 
 export default function HeroSection() {
   const { language } = useUI();

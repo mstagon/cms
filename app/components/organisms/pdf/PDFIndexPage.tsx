@@ -10,6 +10,16 @@ interface PDFIndexPageProps {
 export default function PDFIndexPage({ projects }: PDFIndexPageProps) {
   return (
     <div className="pdf-layout min-h-screen bg-white text-gray-900">
+      {/* 홈으로 이동 */}
+      <div className="fixed top-4 right-4 print:hidden z-50">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+        >
+          홈으로
+        </Link>
+      </div>
+
       <div className="max-w-4xl mx-auto px-8 py-12 print:px-12 print:py-16">
         <header className="mb-12 print:mb-16 text-center border-b-2 border-gray-200 pb-8 print:pb-12">
           <h1 className="text-4xl print:text-5xl font-bold text-gray-900 mb-4 print:mb-6">
@@ -29,39 +39,63 @@ export default function PDFIndexPage({ projects }: PDFIndexPageProps) {
               </h2>
               <div className="space-y-6 print:space-y-8">
                 {projects.featured.map((project) => (
-                  <div
-                    key={project.id}
-                    className="border border-gray-200 rounded-lg p-6 print:p-8 hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex items-start justify-between mb-4 print:mb-6">
-                      <div>
-                        <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-base print:text-lg text-gray-600 leading-relaxed">
-                          {project.description}
-                        </p>
+                  project.slug ? (
+                    <Link
+                      key={project.id}
+                      href={`/pdf/${project.slug}`}
+                      className="group block border border-gray-200 rounded-lg p-6 print:p-8 hover:shadow-lg transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    >
+                      <div className="flex items-start justify-between mb-4 print:mb-6">
+                        <div>
+                          <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-base print:text-lg text-gray-600 leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-base print:text-lg text-blue-600 group-hover:text-blue-800 font-semibold print:hidden">
+                        View PDF <span aria-hidden>→</span>
+                      </span>
+                    </Link>
+                  ) : (
+                    <div
+                      key={project.id}
+                      className="border border-gray-200 rounded-lg p-6 print:p-8"
+                    >
+                      <div className="flex items-start justify-between mb-4 print:mb-6">
+                        <div>
+                          <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-base print:text-lg text-gray-600 leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
-                      {project.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    {project.slug && (
-                      <Link
-                        href={`/pdf/${project.slug}`}
-                        className="inline-block text-base print:text-lg text-blue-600 hover:text-blue-800 font-semibold print:hidden"
-                      >
-                        View PDF →
-                      </Link>
-                    )}
-                  </div>
+                  )
                 ))}
               </div>
             </section>
@@ -75,39 +109,63 @@ export default function PDFIndexPage({ projects }: PDFIndexPageProps) {
               </h2>
               <div className="space-y-6 print:space-y-8">
                 {projects.others.map((project) => (
-                  <div
-                    key={project.id}
-                    className="border border-gray-200 rounded-lg p-6 print:p-8 hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex items-start justify-between mb-4 print:mb-6">
-                      <div>
-                        <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-base print:text-lg text-gray-600 leading-relaxed">
-                          {project.description}
-                        </p>
+                  project.slug ? (
+                    <Link
+                      key={project.id}
+                      href={`/pdf/${project.slug}`}
+                      className="group block border border-gray-200 rounded-lg p-6 print:p-8 hover:shadow-lg transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    >
+                      <div className="flex items-start justify-between mb-4 print:mb-6">
+                        <div>
+                          <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-base print:text-lg text-gray-600 leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-base print:text-lg text-blue-600 group-hover:text-blue-800 font-semibold print:hidden">
+                        View PDF <span aria-hidden>→</span>
+                      </span>
+                    </Link>
+                  ) : (
+                    <div
+                      key={project.id}
+                      className="border border-gray-200 rounded-lg p-6 print:p-8"
+                    >
+                      <div className="flex items-start justify-between mb-4 print:mb-6">
+                        <div>
+                          <h3 className="text-xl print:text-2xl font-bold text-gray-900 mb-2 print:mb-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-base print:text-lg text-gray-600 leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 mb-4 print:mb-6">
-                      {project.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 text-sm print:text-base bg-gray-100 text-gray-700 rounded-md"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    {project.slug && (
-                      <Link
-                        href={`/pdf/${project.slug}`}
-                        className="inline-block text-base print:text-lg text-blue-600 hover:text-blue-800 font-semibold print:hidden"
-                      >
-                        View PDF →
-                      </Link>
-                    )}
-                  </div>
+                  )
                 ))}
               </div>
             </section>
