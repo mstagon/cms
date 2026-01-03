@@ -35,6 +35,13 @@ export default function AboutCapabilitiesSection({
     triggerOnce: true,
   });
 
+  const capabilityBrief = skillCategories
+    .map((category) => ({
+      title: category.title,
+      description: category.description,
+    }))
+    .filter((item) => item.description && item.description.trim().length > 0);
+
   // 실제 높이 측정 및 부모에 전달
   useEffect(() => {
     if (!containerRef.current || !onHeightChange) return;
@@ -125,6 +132,20 @@ export default function AboutCapabilitiesSection({
         <h2 className="text-primary text-3xl font-bold tracking-[0.3em]">
           {title}
         </h2>
+        {capabilityBrief.length > 0 && (
+          <div className="mt-2 flex flex-col gap-1 border-l-2 border-primary/30 pl-3 text-[0.75rem] leading-relaxed text-[#a8b2d1]">
+            {capabilityBrief.map((item) => (
+              <p key={item.title} className="font-mono">
+                <span className="text-primary/90">{"> "}</span>
+                <span className="text-[#E6F1FF]">
+                  {item.title.toUpperCase()}
+                </span>
+                <span className="text-primary/60">{" :: "}</span>
+                <span>{item.description}</span>
+              </p>
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex flex-col gap-6">
         {/* 핵심 코어 - 프레임워크 & 언어 */}

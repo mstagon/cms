@@ -71,7 +71,7 @@ export function getAboutTexts(
     ko: {
       resume: "[ GET_RESUME ]",
       initLabel: "[INITIATING_CONNECTION...]",
-      roleSuffix: ": FRONTEND_DEV",
+      roleSuffix: ": FULLCYCLE_DEV",
       scrollLabel: "[SCROLL_SEQUENCE]",
       philosophyTitle: "// PHILOSOPHY.LOG",
       philosophyDescription:
@@ -106,7 +106,7 @@ export function getAboutTexts(
     en: {
       resume: "[ GET_RESUME ]",
       initLabel: "[INITIATING_CONNECTION...]",
-      roleSuffix: ": FRONTEND_DEV",
+      roleSuffix: ": FULLCYCLE_DEV",
       scrollLabel: "[SCROLL_SEQUENCE]",
       philosophyTitle: "// PHILOSOPHY.LOG",
       philosophyDescription:
@@ -157,7 +157,7 @@ export function getAboutTexts(
 // Hero 섹션 텍스트
 export const heroTexts: Record<Language, HeroTexts> = {
   ko: {
-    role: "FRONTEND DEVELOPER",
+    role: "FULLCYCLE DEVELOPER",
     tagline: "MINSEOK CHOI",
     glitchText: "데이터_손상",
     glitchMessage: "연결 재설정 중...",
@@ -187,7 +187,7 @@ export const heroTexts: Record<Language, HeroTexts> = {
     },
   },
   en: {
-    role: "FRONTEND DEVELOPER",
+    role: "FULLCYCLE DEVELOPER",
     tagline: "MINSEOK CHOI",
     glitchText: "DATA_CORRUPTED",
     glitchMessage: "Attempting to re-establish connection...",
