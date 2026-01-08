@@ -5,8 +5,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "PHC(Public Health Center) 프로젝트는 보건소의 디지털 전환을 목표로 한 통합 관리 시스템입니다. 환자 접수, 예약 관리, 진료 기록, 처방전 관리 등 보건소의 핵심 업무를 디지털화하여 효율성을 극대화하고, 환자 경험을 개선하는 것을 목표로 합니다. 또한 팀원 간의 기술 스택 선호도 차이를 조율하여 하이브리드 아키텍처를 구축함으로써, 각 팀원의 강점을 최대한 활용하면서도 통합된 사용자 경험을 제공하는 것을 핵심 목표로 삼았습니다."
-        : "The PHC (Public Health Center) project is an integrated management system aimed at digital transformation of public health centers. The core objective is to digitize essential operations such as patient check-in, appointment management, medical records, and prescription management to maximize efficiency and improve patient experience. Additionally, by coordinating differences in technology stack preferences among team members and building a hybrid architecture, the project aims to maximize each team member's strengths while providing a unified user experience.",
+        ? "보건소 업무(예약/접수/진료 기록 등)를 웹으로 처리하는 통합 관리 시스템을 만들었습니다. 팀 내 기술 스택 선호가 달라 React 메인 앱 + Flutter(Web) 모듈을 웹뷰/iframe 형태로 통합하는 하이브리드 구성을 선택했습니다."
+        : "PHC is a web-based management system for public health center workflows (appointments/check-in/records). Due to mixed stack preferences, we chose a hybrid setup: a React main app plus a Flutter(Web) module integrated via webview/iframe.",
     links: {
       github: "https://github.com/mstagon/phc",
       site: undefined,
@@ -15,13 +15,13 @@ export function getPhcDetail(language: Language): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "PHC 프로젝트는 보건소의 전자화된 업무 처리를 위한 종합 관리 시스템입니다. React 기반의 메인 웹 애플리케이션을 중심으로 구축되었으며, 특정 기능 모듈은 Flutter 웹으로 개발되어 웹뷰를 통해 통합되었습니다. 이는 팀원 간의 기술 스택 선호도 차이를 조율하면서도 각자의 전문성을 활용할 수 있는 하이브리드 아키텍처입니다.\n\n시스템은 환자 접수부터 진료 완료까지의 전체 워크플로우를 지원합니다. 환자는 온라인으로 예약을 생성하고, 접수 시 QR 코드나 전화번호를 통해 빠르게 체크인할 수 있습니다. 의료진은 실시간으로 접수 현황을 확인하고, 진료 기록과 처방전을 디지털로 관리할 수 있습니다. 또한 층별 안내 정보와 건강 프로그램 정보를 제공하여 환자 편의성을 높였습니다.\n\n백엔드는 Python FastAPI로 구축되어 RESTful API를 제공하며, SQLAlchemy ORM을 활용한 데이터베이스 관리와 자동화된 API 문서화를 지원합니다. 프론트엔드와 백엔드 간의 효율적인 통신을 위해 CORS 설정과 에러 핸들링을 최적화했습니다."
-          : "The PHC project is a comprehensive management system for digitized operations of public health centers. It is built around a React-based main web application, with specific feature modules developed in Flutter web and integrated through webview. This is a hybrid architecture that coordinates differences in technology stack preferences among team members while leveraging each person's expertise.\n\nThe system supports the entire workflow from patient check-in to treatment completion. Patients can create appointments online and quickly check in using QR codes or phone numbers. Medical staff can check check-in status in real-time and manage medical records and prescriptions digitally. Additionally, floor-by-floor guide information and health program information are provided to enhance patient convenience.\n\nThe backend is built with Python FastAPI, providing RESTful APIs, and supports database management using SQLAlchemy ORM and automated API documentation. CORS settings and error handling have been optimized for efficient communication between frontend and backend.",
+          ? "React 기반 메인 웹 + Flutter(Web) 모듈을 결합한 하이브리드 구성입니다.\n\n- 주요 흐름: 예약 생성 → 접수(예: QR/전화번호) → 접수 현황 확인 → 진료 기록/처방 관리\n- 백엔드: FastAPI + SQLAlchemy + SQLite\n- 통합: iframe/webview 형태로 Flutter 모듈을 React 앱에 포함\n\n설명은 ‘실제로 구현한 구성/흐름’만 남기고 과장된 지표는 제거했습니다."
+          : "A hybrid setup combining a React main web app and a Flutter(Web) module.\n\n- Flow: appointment → check-in (e.g., QR/phone) → queue/status → records/prescriptions\n- Backend: FastAPI + SQLAlchemy + SQLite\n- Integration: embed Flutter module into the React app via iframe/webview",
       stats: {
         vision:
           language === "ko"
-            ? "보건소의 디지털 전환을 선도하여 국민 건강 관리의 접근성과 효율성을 혁신하는 것"
-            : "Leading the digital transformation of public health centers to revolutionize the accessibility and efficiency of public health management",
+            ? "팀의 기술 선택이 다른 상황에서, 통합 가능한 구조(하이브리드)를 설계하고 끝까지 연결하는 경험을 쌓았습니다."
+            : "Gained experience designing and delivering an integratable hybrid architecture under mixed stack preferences.",
       },
     },
     role: {
@@ -66,7 +66,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
       "RESTful API",
     ],
     performance: {
-      pageLoadSpeed: { value: 85, improvement: "+30% improvement" }},
+      pageLoadSpeed: { value: 85 },
+    },
     challenges: [
       {
         title:
@@ -83,8 +84,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "As a leader, I proposed a hybrid architecture that could leverage the strengths of both technology stacks. React was used as the main framework to structure the entire application, while specific feature modules (check-in management, floor information, etc.) were developed in Flutter web and integrated through iframe or webview. This allowed each team member to develop using their preferred technology stack while providing a unified user experience.",
         result:
           language === "ko"
-            ? "팀원들의 만족도가 크게 향상되었고, 각자의 전문성을 최대한 활용할 수 있게 되었습니다. 프로젝트 일정도 단축되었으며, 결과적으로 더 풍부한 기능을 가진 애플리케이션을 완성할 수 있었습니다."
-            : "Team member satisfaction significantly improved, and each person was able to maximize their expertise. The project timeline was shortened, and we were able to complete an application with richer features.",
+            ? "React/Flutter를 병렬로 진행할 수 있도록 역할을 분리하고, 통합 지점을 명확히 했습니다."
+            : "Separated responsibilities so React and Flutter parts could move in parallel with clear integration points.",
       },
       {
         title:
@@ -101,8 +102,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Implemented bidirectional communication between React and Flutter using the PostMessage API. Optimized CORS settings on both backend and frontend, and designed routing to use React Router as the main router while maintaining independent routing within Flutter modules. Also applied lazy loading and code splitting to reduce initial loading time.",
         result:
           language === "ko"
-            ? "두 프레임워크 간의 원활한 통신이 가능해졌고, 사용자는 하나의 통합된 애플리케이션처럼 경험할 수 있게 되었습니다. 초기 로딩 시간도 30% 개선되었습니다."
-            : "Smooth communication between the two frameworks became possible, and users could experience it as a single integrated application. Initial loading time also improved by 30%.",
+            ? "React ↔ Flutter 간 통신(PostMessage)과 라우팅 경계를 정리해 하나의 앱처럼 동작하도록 구성했습니다."
+            : "Set up PostMessage communication and routing boundaries so the hybrid app feels integrated.",
       },
       {
         title:
@@ -137,8 +138,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Thoroughly applied RESTful API design principles to design a consistent endpoint structure. Used SQLAlchemy's relational queries and joinedload to solve N+1 query problems and applied lazy loading strategies to load data only when needed. Also utilized FastAPI's automatic documentation feature to auto-generate API documentation.",
         result:
           language === "ko"
-            ? "API 응답 시간이 평균 40% 개선되었고, 코드 가독성과 유지보수성이 향상되었습니다. 자동 생성된 API 문서로 프론트엔드 개발자와의 협업 효율도 높아졌습니다."
-            : "API response time improved by an average of 40%, and code readability and maintainability improved. Auto-generated API documentation also increased collaboration efficiency with frontend developers.",
+            ? "엔드포인트 구조를 정리하고, ORM 쿼리(N+1 등) 이슈를 줄이기 위한 로딩 전략을 적용했습니다."
+            : "Standardized endpoints and applied ORM loading strategies to reduce query issues (e.g., N+1).",
       },
       {
         title:
@@ -155,8 +156,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Maximized the use of Tailwind CSS and Flutter's responsive design features to accommodate various screen sizes. Optimized breakpoint settings using media queries and touch event handling. Also automated browser compatibility testing to ensure operation on major browsers.",
         result:
           language === "ko"
-            ? "모든 주요 브라우저와 디바이스에서 정상적으로 작동하며, 모바일 사용자 경험이 크게 개선되었습니다."
-            : "Works properly on all major browsers and devices, and mobile user experience significantly improved.",
+            ? "모바일 환경에서의 레이아웃/터치 이슈를 중심으로 호환성을 점검하고 수정했습니다."
+            : "Verified and fixed compatibility issues (layout/touch) on mobile devices.",
       },
     ],
     architecture: {
@@ -188,8 +189,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "PHC 프로젝트를 통해 기술 리더십과 아키텍처 설계 능력을 크게 향상시킬 수 있었습니다. 팀원 간의 기술 스택 충돌을 해결하기 위해 하이브리드 아키텍처를 제안하고 구현한 경험은, 기술적 완벽함보다는 팀의 협업과 생산성을 우선시하는 실용적인 접근의 중요성을 깨달게 해주었습니다.\n\n특히 React와 Flutter를 하나의 애플리케이션에 통합하는 과정에서 겪은 기술적 도전들은, 서로 다른 기술 스택 간의 통신 방법과 상태 관리 전략에 대한 깊은 이해를 제공했습니다. PostMessage API를 활용한 통신 방식과 모듈화된 아키텍처 설계는 향후 유사한 프로젝트에서도 활용할 수 있는 귀중한 경험이 되었습니다.\n\n아쉬운 점으로는, 프로젝트 초기에 더 명확한 기술 스택 결정 기준을 수립했다면 초기 개발 시간을 더 단축할 수 있었을 것 같습니다. 또한 테스트 코드 작성과 CI/CD 파이프라인 구축을 더 일찍 시작했다면 코드 품질과 배포 효율성을 더 높일 수 있었을 것입니다.\n\n개선하고 싶은 점으로는, 마이크로프론트엔드 아키텍처 패턴을 더 깊이 연구하여 모듈 간의 독립성을 더욱 강화하고, 각 모듈의 독립적인 배포와 버전 관리를 가능하게 하는 것입니다. 또한 TypeScript 도입을 통해 타입 안정성을 높이고, 더 나은 개발자 경험을 제공하고 싶습니다."
-        : "Through the PHC project, I was able to significantly improve my technical leadership and architecture design skills. The experience of proposing and implementing a hybrid architecture to resolve technology stack conflicts among team members made me realize the importance of a practical approach that prioritizes team collaboration and productivity over technical perfection.\n\nIn particular, the technical challenges encountered while integrating React and Flutter into one application provided deep understanding of communication methods and state management strategies between different technology stacks. The communication method using PostMessage API and modular architecture design became valuable experiences that can be utilized in similar future projects.\n\nAs for regrets, I think we could have shortened the initial development time if we had established clearer technology stack decision criteria earlier in the project. Also, if we had started writing test code and building CI/CD pipelines earlier, we could have improved code quality and deployment efficiency.\n\nAs for improvements I'd like to make, I want to research micro-frontend architecture patterns more deeply to further strengthen independence between modules and enable independent deployment and version management of each module. I also want to introduce TypeScript to increase type safety and provide a better developer experience.",
+        ? "팀의 기술 선택이 갈리는 상황에서, ‘한 앱처럼 보이게’ 만들기 위한 통합 방식(iframe/webview, PostMessage, 라우팅 경계)을 정리한 경험이 컸습니다.\n다음에는 모듈 경계를 더 명확히 하고, 타입(TypeScript)과 테스트/배포 자동화를 초기에 같이 잡고 싶습니다."
+        : "A key learning was making a hybrid (iframe/webview + PostMessage + routing boundaries) feel like one app under mixed stack choices.\nNext I’d define module boundaries earlier and add typing/tests/deploy automation from the start.",
     achievements: [
       {
         title:
@@ -198,11 +199,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Successful Hybrid Architecture Implementation",
         description:
           language === "ko"
-            ? "React와 Flutter를 하나의 애플리케이션에 통합하여 팀원 간 기술 스택 충돌을 해결하고 각자의 전문성을 최대한 활용할 수 있도록 함"
-            : "Integrated React and Flutter into one application to resolve technology stack conflicts among team members and maximize each person's expertise",
-        metrics: language === "ko" ? "팀 만족도" : "Team Satisfaction",
-        value: 95,
-        unit: "%",
+            ? "React 메인 앱 + Flutter(Web) 모듈의 하이브리드 구조로 개발을 진행했습니다."
+            : "Implemented a hybrid structure (React main app + Flutter web module).",
       },
       {
         title:
@@ -211,12 +209,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "API Response Time Improvement",
         description:
           language === "ko"
-            ? "SQLAlchemy 쿼리 최적화와 지연 로딩 전략을 통해 백엔드 API 응답 시간을 대폭 개선"
-            : "Significantly improved backend API response time through SQLAlchemy query optimization and lazy loading strategies",
-        metrics:
-          language === "ko" ? "응답 시간 개선" : "Response Time Improvement",
-        value: 40,
-        unit: "%",
+            ? "SQLAlchemy 쿼리/로딩 전략을 정리해 불필요한 조회를 줄였습니다."
+            : "Reduced unnecessary DB queries with SQLAlchemy loading/query strategies.",
       },
       {
         title:
@@ -225,12 +219,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Page Loading Speed Improvement",
         description:
           language === "ko"
-            ? "Lazy loading과 코드 스플리팅을 적용하여 초기 페이지 로딩 시간을 단축"
-            : "Reduced initial page loading time by applying lazy loading and code splitting",
-        metrics:
-          language === "ko" ? "로딩 속도 개선" : "Loading Speed Improvement",
-        value: 30,
-        unit: "%",
+            ? "모듈을 지연 로딩하는 방식으로 초기 진입 부담을 줄였습니다."
+            : "Reduced initial load cost via lazy-loading modules.",
       },
       {
         title:
@@ -239,11 +229,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Cross-platform Compatibility Achieved",
         description:
           language === "ko"
-            ? "다양한 브라우저와 디바이스에서 정상 작동하도록 반응형 디자인과 호환성 최적화를 완료"
-            : "Completed responsive design and compatibility optimization to ensure proper operation across various browsers and devices",
-        metrics: language === "ko" ? "호환 브라우저" : "Compatible Browsers",
-        value: 5,
-        unit: "개",
+            ? "모바일/브라우저 환경에서의 호환성 이슈를 점검하고 수정했습니다."
+            : "Tested and fixed compatibility issues across devices/browsers.",
       },
       {
         title:
@@ -252,11 +239,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Project Timeline Reduction",
         description:
           language === "ko"
-            ? "하이브리드 아키텍처를 통해 각 팀원이 병렬로 개발할 수 있어 전체 프로젝트 일정을 단축"
-            : "Shortened overall project timeline by enabling parallel development through hybrid architecture",
-        metrics: language === "ko" ? "일정 단축" : "Timeline Reduction",
-        value: 25,
-        unit: "%",
+            ? "하이브리드 구조로 역할을 분리해 병렬 개발이 가능하도록 구성했습니다."
+            : "Enabled parallel development by separating responsibilities in the hybrid setup.",
       },
     ],
   };

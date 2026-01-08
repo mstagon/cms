@@ -5,8 +5,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "Planz는 현대인의 고압적이고 불규칙한 활동으로 인한 수면 부족과 수면의 질 저하 문제를 해결하기 위해 기획된 수면 관리 모바일 애플리케이션입니다. 학업 부담, 교대 근무, 야간 근무, 의료 서비스 노동자, 운송 노동자 등 다양한 직업군의 사람들이 겪는 수면 문제를 개인 맞춤형 솔루션으로 제공하는 것이 핵심 목표입니다. 연구 조사를 통해 수면 패턴을 개선하고 싶어 하는 니즈가 있음을 확인했으며, 이를 위해 개인의 일정과 생활 습관을 고려해야 한다는 점을 발견했습니다. 특히 2030 1인 가구 남녀 중 48.2%는 불규칙한 생활 패턴(밤낮이 바뀐 수면 패턴, 늦잠 등 포함)을 개선하고 싶다고 답했고, 불규칙한 수면 패턴의 원인으로 생활 습관의 통제력 부족(53%)이 가장 높게 나타났습니다. Planz는 이러한 문제를 해결하기 위해 사용자의 일정 데이터를 받아 개인 맞춤형 수면 스케줄을 계획하고, 규칙적인 수면 패턴을 유지할 최적의 시간을 계산하며, 평소 습관을 고려한 생활 수칙을 제공하고 알림으로 지속적으로 관리합니다."
-        : "Planz is a sleep management mobile application planned to solve sleep deprivation and poor sleep quality problems caused by modern people's high-pressure and irregular activities. The core goal is to provide personalized solutions for sleep problems experienced by various occupational groups such as students with academic burden, shift workers, night workers, healthcare service workers, and transportation workers. Through research, it was confirmed that there is a need to improve sleep patterns, and it was found that individual schedules and lifestyle habits must be considered for this. In particular, 48.2% of single-person households in their 20s and 30s responded that they want to improve irregular lifestyle patterns (including reversed day-night sleep patterns, oversleeping, etc.), and lack of control over lifestyle habits (53%) was identified as the main cause of irregular sleep patterns. Planz solves these problems by receiving user schedule data to plan personalized sleep schedules, calculating optimal times to maintain regular sleep patterns, and providing lifestyle rules considering usual habits with continuous management through notifications.",
+        ? "사용자가 고정 스케줄(근무/수업 등)을 입력하면 수면/기상/낮잠 시간을 계산해 보여주는 수면 관리 앱을 만들었습니다. 루틴 입력, 수면 기록(캘린더), JWT 인증/토큰 저장, 푸시 알림(FCM) 연동까지 앱 흐름을 구현했습니다."
+        : "Planz is a sleep management app that calculates and displays wake/sleep/nap times based on fixed schedules. It includes routine input, calendar-based sleep records, JWT auth + token storage, and push notifications (FCM).",
     links: {
       github: "https://github.com/mstagon/Planz-Front-End",
       site: undefined,
@@ -15,13 +15,13 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Planz는 Flutter를 활용한 크로스 플랫폼 모바일 애플리케이션으로, 사용자의 고정 스케줄을 입력하면 최적의 수면 시간을 자동으로 계획해주는 지능형 수면 관리 시스템입니다. 사용자의 일정을 고려해 최적의 기상, 취침, 낮잠 스케줄을 계획하고 알림을 통해 규칙적인 수면 패턴과 좋은 수면 습관을 형성하는데 도움을 드립니다. 앱의 핵심 기능은 세 가지로 구성됩니다. 첫째, 스케줄 관리 기능으로 사용자는 근무, 수업, 알바 등 고정된 스케줄을 루틴 단위로 추가할 수 있습니다. 각 루틴은 데이(Day), 이브닝(Evening), 나이트(Night)로 구분되며, 시작 시간과 종료 시간, 그리고 적용되는 날짜를 선택할 수 있습니다. 시스템은 이 정보를 바탕으로 최적의 기상 시간, 취침 시간, 낮잠 시간을 자동으로 계산하여 사용자에게 제공합니다. 둘째, 수면 기록 기능으로 사용자는 매일 아침 수면을 기록하고 나만의 생활 수칙을 확인할 수 있습니다. 수면 정보를 기록하고 생활 수칙을 확인하는 습관은 나에게 적절한 수면 시간을 파악하고 수면에 대한 지속적인 관심을 가지는 데 필요합니다. 사용자는 기상 후 기분(활기차요, 상쾌해요, 무난해요, 피곤해요, 짜증나요)과 총 수면 시간을 기록할 수 있으며, 캘린더를 통해 과거의 수면 기록을 한눈에 확인할 수 있습니다. 셋째, 고민 해결 기능으로 사용자는 수면 관련 고민을 상담받을 수 있습니다. 가입 시 선택했던 생활 습관을 고려해 생활 수칙을 제공하며, 수면 전문가와의 1:1 상담 서비스도 제공합니다. 또한 수면 관련 제품 추천 광고를 통해 사용자와 의사를 연결하는 서비스를 제공합니다."
-          : "Planz is a cross-platform mobile application developed with Flutter that automatically plans optimal sleep times when users enter their fixed schedules. It plans optimal wake-up, bedtime, and nap schedules considering the user's schedule and helps form regular sleep patterns and good sleep habits through notifications. The app's core functionality consists of three parts. First, the schedule management feature allows users to add fixed schedules such as work, classes, and part-time jobs in routine units. Each routine is divided into Day, Evening, and Night, and users can select start and end times and applicable dates. The system automatically calculates optimal wake-up, bedtime, and nap times based on this information. Second, the sleep record feature allows users to record their sleep every morning and check their own lifestyle rules. The habit of recording sleep information and checking lifestyle rules is necessary to understand appropriate sleep time and maintain continuous interest in sleep. Users can record their mood after waking up (energetic, refreshed, okay, tired, annoyed) and total sleep time, and view past sleep records at a glance through a calendar. Third, the problem-solving feature allows users to consult about sleep-related concerns. It provides lifestyle rules considering habits selected at registration and offers 1:1 consultation services with sleep experts. It also provides services connecting users with doctors through recommended advertisements for sleep-related products.",
+          ? "Flutter 기반 앱입니다.\n\n- 루틴/스케줄 입력: 근무/수업 등 고정 스케줄을 루틴으로 등록\n- 캘린더: 날짜 선택에 따라 수면 기록을 조회/입력(Table Calendar)\n- 인증/보안: JWT 토큰을 Secure Storage에 저장하고 API 요청에 포함\n- 알림: Firebase Cloud Messaging 연동\n\n(설명은 실제 구현한 화면/흐름 중심으로만 정리했습니다.)"
+          : "A Flutter-based app.\n\n- Routine input: register fixed schedules as routines\n- Calendar: view/create sleep records by date (Table Calendar)\n- Auth: store JWT tokens in secure storage and attach to API requests\n- Notifications: integrated Firebase Cloud Messaging",
       stats: {
         vision:
           language === "ko"
-            ? "개인의 일정과 생활 습관을 고려한 맞춤형 수면 관리로 모든 사람이 건강하고 규칙적인 수면 패턴을 형성할 수 있도록 돕습니다."
-            : "Help everyone form healthy and regular sleep patterns through personalized sleep management that considers individual schedules and lifestyle habits.",
+            ? "루틴 입력 → 수면 기록(캘린더) → 알림으로 이어지는 기본 사용 흐름을 구성했습니다."
+            : "Built a basic flow: routine input → calendar-based records → notifications.",
       },
     },
     role: {
@@ -71,7 +71,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
       "Google Login",
     ],
     performance: {
-      pageLoadSpeed: { value: 85, improvement: "+15% improvement" }},
+      pageLoadSpeed: { value: 85 },
+    },
     challenges: [
       {
         title:
@@ -106,8 +107,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "We implemented the calendar UI using the Table Calendar widget and dynamically loaded sleep records according to the selected date. On initial load, we fetch all sleep records for the current month and cache them in memory, and when a date is selected, we prioritize using cached data. We used WidgetsBinding.instance.addPostFrameCallback to automatically display the record input modal in initState if there is no record for today's date.",
         result:
           language === "ko"
-            ? "캘린더 네비게이션이 부드럽게 동작하며, 사용자 경험이 크게 개선되었습니다. API 호출 횟수도 최적화되어 성능이 향상되었습니다."
-            : "Calendar navigation operates smoothly, and user experience greatly improved. API call frequency was also optimized, improving performance.",
+            ? "초기 로드 시 월 단위로 데이터를 가져와 캐시하고, 날짜 선택 시 캐시를 우선 사용하도록 구성했습니다."
+            : "Fetched month data upfront and preferred cached data on date selection.",
       },
       {
         title:
@@ -160,8 +161,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "We fetch user lifestyle habits through the user information API and dynamically filter and display lifestyle rules matching each habit. Lifestyle rules are displayed with icons and written in clear language for easy understanding. Lifestyle rule data is managed as constants for easy maintenance.",
         result:
           language === "ko"
-            ? "사용자마다 맞춤형 생활 수칙이 제공되어 개인화된 경험이 향상되었고, 사용자 만족도가 높아졌습니다."
-            : "Personalized lifestyle rules are provided for each user, enhancing personalized experience and increasing user satisfaction.",
+            ? "사용자 설정값에 따라 생활 수칙을 필터링해 동일한 규칙을 여러 화면에서 재사용할 수 있게 했습니다."
+            : "Filtered lifestyle rules based on user settings and reused them across screens.",
       },
     ],
     architecture: {
@@ -185,8 +186,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 Flutter를 활용한 크로스 플랫폼 모바일 애플리케이션 개발에 대한 깊은 이해를 얻을 수 있었습니다. 특히 복잡한 상태 관리와 API 통신, 보안 저장소 활용 등 실무에서 필요한 다양한 기술을 경험할 수 있었습니다. Table Calendar와 같은 서드파티 라이브러리를 활용하여 복잡한 UI를 구현하는 방법도 배울 수 있었습니다. 가장 큰 성과는 사용자의 복잡한 일정을 고려하여 최적의 수면 시간을 자동으로 계산하고 표시하는 기능을 구현할 수 있었다는 점입니다. 루틴 기반의 스케줄 관리 시스템을 통해 사용자가 자신의 생활 패턴에 맞는 맞춤형 수면 관리를 할 수 있도록 했습니다. 또한 수면 기록과 생활 수칙 기능을 통해 사용자가 지속적으로 수면에 대한 관심을 가질 수 있도록 유도했습니다. 아쉬운 점으로는 초기 설계 단계에서 상태 관리 아키텍처를 더 체계적으로 설계하지 못했다는 것입니다. Provider나 Riverpod 같은 상태 관리 라이브러리를 도입했다면 코드의 가독성과 유지보수성이 더욱 향상되었을 것입니다. 또한 에러 핸들링과 로딩 상태 관리 부분에서 더 개선할 여지가 있습니다. 개선하고 싶은 점으로는 오프라인 모드를 지원하여 네트워크 연결이 없어도 기본 기능을 사용할 수 있도록 하고 싶습니다. 또한 로컬 데이터베이스(SQLite)를 활용하여 수면 기록을 로컬에 저장하고, 네트워크가 연결되면 자동으로 동기화하는 기능을 추가하면 사용자 경험이 더욱 향상될 것입니다. 또한 애니메이션과 전환 효과를 더 풍부하게 하여 사용자 경험을 개선하고 싶습니다."
-        : "Through this project, I gained deep understanding of cross-platform mobile application development using Flutter. In particular, I was able to experience various technologies needed in practice, such as complex state management, API communication, and secure storage utilization. I also learned how to implement complex UIs using third-party libraries like Table Calendar. The biggest achievement was being able to implement functionality that automatically calculates and displays optimal sleep times considering users' complex schedules. Through a routine-based schedule management system, users can manage personalized sleep according to their lifestyle patterns. Also, through sleep record and lifestyle rule features, we encouraged users to maintain continuous interest in sleep. As a regret, we didn't design the state management architecture more systematically in the initial design phase. If we had introduced state management libraries like Provider or Riverpod, code readability and maintainability would have been further improved. Also, there's room for improvement in error handling and loading state management. As improvements I'd like to make, I want to support offline mode so basic features can be used even without network connection. Also, by utilizing a local database (SQLite) to store sleep records locally and automatically synchronizing when the network is connected, user experience would be further enhanced. I also want to enrich animations and transition effects to improve user experience.",
+        ? "일정/캘린더처럼 상태가 복잡한 화면에서 ‘초기 로드 + 캐시 + 선택 상태’가 엉키지 않게 구성하는 연습이 됐습니다.\n다음에는 에러/로딩 상태를 더 촘촘히 다루고, 오프라인 저장(로컬 DB) 같은 기능을 붙여보고 싶습니다."
+        : "This project helped me structure complex schedule/calendar UI with initial loading, caching, and selection state.\nNext I would improve loading/error UX and add offline storage (local DB).",
     achievements: [
       {
         title:
@@ -195,14 +196,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "Routine-based Schedule Management System Implementation",
         description:
           language === "ko"
-            ? "복잡한 루틴과 스케줄 데이터를 효율적으로 관리하는 시스템을 구축했습니다."
-            : "Built a system to efficiently manage complex routine and schedule data.",
-        metrics:
-          language === "ko"
-            ? "루틴 관리 기능 완성도"
-            : "Routine Management Feature Completion",
-        value: 95,
-        unit: "%",
+            ? "루틴 기반 스케줄 입력/조회 화면을 구성했습니다."
+            : "Built routine-based schedule input/view screens.",
       },
       {
         title:
@@ -211,14 +206,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "Real-time Calendar and Sleep Record Synchronization",
         description:
           language === "ko"
-            ? "캘린더 UI와 수면 기록 데이터를 실시간으로 동기화하여 사용자 경험을 향상시켰습니다."
-            : "Synchronized calendar UI and sleep record data in real-time to enhance user experience.",
-        metrics:
-          language === "ko"
-            ? "데이터 동기화 정확도"
-            : "Data Synchronization Accuracy",
-        value: 92,
-        unit: "%",
+            ? "캘린더 날짜 선택에 따라 수면 기록을 조회/입력하는 흐름을 구현했습니다."
+            : "Implemented date-driven sleep record view/create flow with a calendar UI.",
       },
       {
         title:
@@ -227,14 +216,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "JWT-based Secure Authentication System Construction",
         description:
           language === "ko"
-            ? "Flutter Secure Storage를 활용한 안전한 토큰 관리 시스템을 구현했습니다."
-            : "Implemented a secure token management system using Flutter Secure Storage.",
-        metrics:
-          language === "ko"
-            ? "보안 인증 시스템 안정성"
-            : "Security Authentication System Stability",
-        value: 98,
-        unit: "%",
+            ? "JWT 토큰을 Secure Storage에 저장하고 API 요청에 포함하도록 구성했습니다."
+            : "Stored JWT tokens in secure storage and attached them to API requests.",
       },
       {
         title:
@@ -243,14 +226,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "Personalized Lifestyle Rules Provision",
         description:
           language === "ko"
-            ? "사용자의 생활 습관에 맞는 맞춤형 생활 수칙을 동적으로 제공하는 기능을 구현했습니다."
-            : "Implemented functionality to dynamically provide personalized lifestyle rules matching user lifestyle habits.",
-        metrics:
-          language === "ko"
-            ? "개인화 기능 만족도"
-            : "Personalization Feature Satisfaction",
-        value: 88,
-        unit: "%",
+            ? "사용자 설정에 따라 생활 수칙을 필터링해 보여주는 기능을 구현했습니다."
+            : "Displayed lifestyle rules filtered by user settings.",
       },
       {
         title:
@@ -259,11 +236,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "Cross-platform Compatibility Achievement",
         description:
           language === "ko"
-            ? "iOS와 Android 양쪽 플랫폼에서 안정적으로 동작하는 크로스 플랫폼 애플리케이션을 구현했습니다."
-            : "Implemented a cross-platform application that operates stably on both iOS and Android platforms.",
-        metrics: language === "ko" ? "플랫폼 호환성" : "Platform Compatibility",
-        value: 100,
-        unit: "%",
+            ? "Flutter 기반으로 iOS/Android에서 동작하도록 구성했습니다."
+            : "Shipped as a Flutter app targeting iOS and Android.",
       },
     ],
   };
