@@ -7,8 +7,8 @@ export function getDigitalBridgeDetail(
   return {
     objective:
       language === "ko"
-        ? "Digital Bridge는 빠르게 변화하는 디지털 환경에서 뒤처지기 쉬운 시니어 계층을 위한 디지털 교육 플랫폼입니다. 이 프로젝트의 핵심 목표는 기존 디지털 교육 시스템의 한계를 극복하고, 강의 시청과 실습을 동시에 진행할 수 있는 혁신적인 학습 환경을 제공하는 것입니다. 공공기관에서 제공하는 오프라인 강의나 동영상 강의는 실습 환경이 부족하여 이론만 학습하고 실제로 적용하기 어려운 문제가 있었습니다. 이 프로젝트는 같은 페이지 내에서 강의 영상을 시청하면서 동시에 실제 웹사이트를 직접 조작할 수 있는 실습 환경을 제공함으로써, 학습 효과를 극대화하고 디지털 진입 장벽을 낮추는 것을 목표로 합니다. 복잡한 UI를 최소화하여 시니어 사용자들이 쉽게 접근할 수 있도록 설계했으며, 네이버, 유튜브, 정부24 등 일상생활에서 자주 사용하는 플랫폼의 사용법을 기본부터 심화까지 단계적으로 학습할 수 있도록 구성했습니다. 궁극적으로 Digital Bridge는 디지털 약자들이 디지털 사회에서 뒤처지지 않고, 스스로 학습하여 실력을 향상시킬 수 있는 다리 역할을 하는 것을 비전으로 합니다. 이를 통해 디지털 격차를 해소하고, 모든 연령대가 디지털 혜택을 누릴 수 있는 포용적 사회를 만드는 데 기여하고자 합니다."
-        : "Digital Bridge is a digital education platform for senior citizens who may struggle to keep up with rapidly changing digital environments. The core goal of this project is to overcome the limitations of existing digital education systems and provide an innovative learning environment where users can watch lectures and practice simultaneously. Traditional offline lectures or video lectures provided by public institutions lacked hands-on practice environments, making it difficult to apply what was learned. This project aims to maximize learning effectiveness and lower digital barriers by providing a practice environment within the same page where users can watch lecture videos and directly manipulate actual websites simultaneously. The UI is designed to be simple and intuitive, minimizing complexity to make it easily accessible for senior users. It is structured to allow step-by-step learning from basics to advanced levels for frequently used platforms in daily life such as Naver, YouTube, and Government 24. Ultimately, Digital Bridge's vision is to serve as a bridge that helps digitally disadvantaged individuals keep up with digital society and improve their skills through self-learning. By doing so, it aims to bridge the digital divide and contribute to creating an inclusive society where all age groups can benefit from digital advantages.",
+        ? "시니어 사용자를 대상으로, 강의 영상과 실습을 한 화면에서 진행할 수 있는 디지털 교육 웹을 제작했습니다(해커톤). Django 템플릿 기반으로 강의 페이지, 실습 화면(iframe), 게시판, Google 소셜 로그인을 구현했습니다."
+        : "Digital Bridge is a hackathon project: a digital education web app for seniors. It was built with Django templates, providing lecture pages with an embedded practice area (iframe), a community board, and Google social login.",
     links: {
       github: "https://github.com/mstagon/LikeLion_Web",
       site: undefined,
@@ -17,13 +17,13 @@ export function getDigitalBridgeDetail(
     overview: {
       description:
         language === "ko"
-          ? "Digital Bridge는 Django 기반의 웹 애플리케이션으로, 시니어 계층을 위한 디지털 교육 플랫폼입니다. 이 플랫폼의 가장 큰 특징은 강의 영상과 실습 사이트를 같은 페이지에 배치하여, 사용자가 강의를 보면서 동시에 실제 웹사이트를 직접 조작하며 학습할 수 있다는 점입니다. 이는 기존의 동영상 강의나 오프라인 강의에서 부족했던 실습 환경을 완벽하게 보완하는 혁신적인 접근 방식입니다. 플랫폼은 네이버, 유튜브, 정부24 등 일상생활에서 자주 사용하는 주요 플랫폼의 사용법을 단계별로 제공합니다. 각 강의 페이지는 상단에 강의 영상이 배치되고, 하단에 해당 플랫폼의 실제 웹사이트가 iframe으로 임베드되어 있어, 사용자는 강의를 보면서 바로 실습할 수 있습니다. 이를 통해 이론과 실습을 동시에 진행할 수 있어 학습 효과가 크게 향상됩니다. 사용자 인터페이스는 시니어 사용자들을 고려하여 단순하고 직관적으로 설계되었습니다. Bootstrap을 활용한 반응형 디자인으로 다양한 화면 크기에서도 편리하게 사용할 수 있으며, 큰 폰트 크기와 명확한 네비게이션 구조로 접근성을 높였습니다. 또한 커뮤니티 게시판 기능을 통해 사용자들이 학습 내용을 공유하고 질문할 수 있는 공간을 제공하여, 학습자 간의 상호작용을 촉진합니다. 인증 시스템은 Django의 allauth를 활용하여 구현되었으며, Google 소셜 로그인을 지원하여 간편한 회원가입과 로그인을 제공합니다. 게시판 기능은 Django의 기본 ORM을 활용하여 구현되었으며, 로그인한 사용자만 게시글을 작성할 수 있도록 권한을 관리합니다. 데이터베이스는 SQLite를 사용하여 개발 및 배포의 편의성을 확보했습니다."
-          : "Digital Bridge is a Django-based web application that serves as a digital education platform for senior citizens. The platform's most distinctive feature is that it places lecture videos and practice sites on the same page, allowing users to watch lectures while simultaneously manipulating actual websites. This innovative approach perfectly complements the lack of practice environments in traditional video lectures or offline classes. The platform provides step-by-step instructions for using major platforms frequently used in daily life, such as Naver, YouTube, and Government 24. Each lecture page has a lecture video at the top and the actual platform website embedded via iframe at the bottom, enabling users to practice immediately while watching the lecture. This allows theory and practice to be conducted simultaneously, greatly enhancing learning effectiveness. The user interface is designed to be simple and intuitive, considering senior users. Responsive design using Bootstrap allows convenient use across various screen sizes, and large font sizes and clear navigation structures enhance accessibility. Additionally, a community board feature provides a space for users to share learning content and ask questions, promoting interaction among learners. The authentication system is implemented using Django's allauth, supporting Google social login for convenient registration and login. The board feature is implemented using Django's basic ORM, with permissions managed so that only logged-in users can write posts. SQLite is used as the database to ensure development and deployment convenience.",
+          ? "Django 기반의 교육 웹 서비스입니다.\n\n- 강의 페이지: 상단에 강의 영상(HTML5 video), 하단에 실습 화면(iframe)을 배치해 같은 화면에서 따라 해볼 수 있게 구성했습니다.\n- 커뮤니티: 게시판 CRUD를 구현했고, 로그인 사용자만 작성할 수 있도록 권한을 분리했습니다.\n- 인증: Django allauth로 Google 소셜 로그인을 연동했습니다.\n- UI: Bootstrap 기반 반응형 레이아웃, 큰 글자/단순한 네비게이션을 중심으로 구성했습니다.\n- 저장소: SQLite + Django ORM 기반으로 개발했습니다."
+          : "A Django-based education web app.\n\n- Lecture pages: HTML5 video on top + an embedded practice area (iframe) below.\n- Community: a CRUD board with write access limited to authenticated users.\n- Auth: Google social login via Django allauth.\n- UI: responsive layout built with Bootstrap.\n- Storage: SQLite with Django ORM.",
       stats: {
         vision:
           language === "ko"
-            ? "디지털 약자들이 디지털 사회에서 뒤처지지 않고, 스스로 학습하여 실력을 향상시킬 수 있는 다리 역할을 하여 디지털 격차를 해소하고 포용적 사회를 만드는 데 기여합니다."
-            : "Serve as a bridge that helps digitally disadvantaged individuals keep up with digital society and improve their skills through self-learning, contributing to bridging the digital divide and creating an inclusive society.",
+            ? "시니어 사용자가 강의와 실습을 한 화면에서 따라 할 수 있도록 학습 흐름을 단순화하는 데 초점을 맞췄습니다."
+            : "Focused on simplifying the learning flow so seniors can follow along (lecture + practice) in a single screen.",
       },
     },
     role: {
@@ -64,7 +64,8 @@ export function getDigitalBridgeDetail(
       "Google OAuth",
     ],
     performance: {
-      pageLoadSpeed: { value: 85, improvement: "+20% improvement" }},
+      pageLoadSpeed: { value: 85 },
+    },
     challenges: [
       {
         title:
@@ -77,12 +78,12 @@ export function getDigitalBridgeDetail(
             : "Existing digital education systems only provided lecture videos, or practice sites were on separate pages, making it difficult to practice while watching lectures. Users had to open other tabs or windows to practice after watching lectures, which disrupted learning flow and reduced concentration.",
         toBe:
           language === "ko"
-            ? "같은 페이지 내에서 상단에 강의 영상, 하단에 실습 사이트를 iframe으로 임베드하여 동시에 표시하도록 구현했습니다. HTML5 video 태그를 사용하여 강의 영상을 재생하고, iframe을 통해 실제 플랫폼 웹사이트를 임베드했습니다. 이를 통해 사용자는 강의를 보면서 바로 아래에서 실습할 수 있어 학습 효과가 크게 향상되었습니다."
+            ? "같은 페이지 내에서 상단에 강의 영상, 하단에 실습 사이트를 iframe으로 임베드해 동시에 표시하도록 구현했습니다. HTML5 video 태그로 영상을 재생하고, iframe으로 실습 사이트를 붙여 한 화면에서 따라 할 수 있게 구성했습니다."
             : "We implemented simultaneous display by embedding lecture videos at the top and practice sites via iframe at the bottom within the same page. HTML5 video tags were used to play lecture videos, and iframes were used to embed actual platform websites. This allowed users to practice immediately below while watching lectures, greatly enhancing learning effectiveness.",
         result:
           language === "ko"
-            ? "사용자가 강의와 실습을 동시에 진행할 수 있게 되어 학습 효율이 약 60% 향상되었고, 학습 만족도도 크게 개선되었습니다."
-            : "Users could simultaneously watch lectures and practice, improving learning efficiency by approximately 60% and significantly improving learning satisfaction.",
+            ? "강의 화면과 실습 화면을 오가며 학습 흐름이 끊기던 문제를 줄이고, 한 페이지에서 따라 하며 학습할 수 있게 했습니다."
+            : "Reduced context switching by keeping lecture and practice on a single page.",
       },
       {
         title:
@@ -99,8 +100,8 @@ export function getDigitalBridgeDetail(
             : "We implemented large font sizes and clear navigation structures using Bootstrap. Navigation bar font size was set to 70px to improve readability, and information hierarchy was minimized with simple menu structures. Additionally, clear button and link styles were applied to make clickable elements easily identifiable. Color contrast was also increased to improve visual accessibility.",
         result:
           language === "ko"
-            ? "시니어 사용자들의 사이트 사용 편의성이 크게 향상되었고, 디지털 진입 장벽이 낮아져 초기 학습 곡선이 완만해졌습니다."
-            : "Site usability for senior users was greatly improved, and digital barriers were lowered, making the initial learning curve gentler.",
+            ? "큰 글자와 단순한 정보 구조를 중심으로 화면을 구성해, 기본 동선(강의 선택 → 시청 → 실습)이 복잡해지지 않도록 했습니다."
+            : "Kept the core flow (select → watch → practice) simple with larger typography and a shallow navigation structure.",
       },
       {
         title:
@@ -117,8 +118,8 @@ export function getDigitalBridgeDetail(
             : "We adopted a hybrid approach, embedding sites that allow iframe embedding via iframe, and providing links that open in new windows for sites that don't. iframe sandbox attributes were appropriately configured to maintain security while allowing necessary functions. We also provided guidance messages for users in case iframes don't load properly.",
         result:
           language === "ko"
-            ? "대부분의 주요 플랫폼을 실습 환경으로 제공할 수 있게 되었고, 보안 문제 없이 안정적으로 서비스를 운영할 수 있게 되었습니다."
-            : "We could provide most major platforms as practice environments, and could operate the service stably without security issues.",
+            ? "임베드 가능한 사이트는 iframe으로 제공하고, 제한이 있는 경우에는 새 창 링크로 안내하는 방식으로 학습 흐름을 유지했습니다."
+            : "Used iframe when allowed, and fell back to opening in a new tab when embedding was blocked.",
       },
       {
         title:
@@ -135,8 +136,8 @@ export function getDigitalBridgeDetail(
             : "We implemented Google social login using Django allauth. Users can easily log in with their Google accounts, and registration and login processes were simplified. It was also integrated with Django's basic authentication system to be used consistently in features requiring authentication such as the board.",
         result:
           language === "ko"
-            ? "회원가입 절차가 간소화되어 사용자 이탈률이 약 40% 감소했고, 로그인 과정도 단순해져 사용자 만족도가 향상되었습니다."
-            : "Registration processes were simplified, reducing user drop-off rates by approximately 40%, and login processes became simpler, improving user satisfaction.",
+            ? "계정 생성/로그인 절차를 Google 소셜 로그인으로 단순화했습니다."
+            : "Simplified sign-up/login via Google social login.",
       },
       {
         title:
@@ -153,8 +154,8 @@ export function getDigitalBridgeDetail(
             : "We implemented responsive layouts using Bootstrap's grid system. Layouts automatically adjust to various screen sizes including mobile, tablet, and desktop. iframes and video players were also set to be responsive to provide optimal experiences even on small screens.",
         result:
           language === "ko"
-            ? "다양한 디바이스에서 일관된 사용자 경험을 제공할 수 있게 되었고, 접근성이 크게 향상되었습니다."
-            : "We could provide consistent user experiences across various devices, greatly improving accessibility.",
+            ? "Bootstrap 그리드 기반으로 레이아웃이 화면 크기에 따라 무너지지 않도록 조정했습니다."
+            : "Used Bootstrap grid for a responsive layout across screen sizes.",
       },
     ],
     architecture: {
@@ -178,8 +179,8 @@ export function getDigitalBridgeDetail(
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 시니어 사용자들을 위한 웹 애플리케이션 개발에 대한 깊은 이해를 얻을 수 있었습니다. 특히 접근성과 사용성의 중요성을 체감할 수 있었고, 단순하고 직관적인 UI 설계가 얼마나 중요한지 배울 수 있었습니다. Django 프레임워크를 활용한 풀스택 개발 경험을 쌓을 수 있었고, Django allauth를 통한 소셜 로그인 구현, 템플릿 시스템을 활용한 동적 페이지 렌더링 등 실무에 필요한 기술들을 익힐 수 있었습니다. 가장 큰 성과는 강의와 실습을 동시에 진행할 수 있는 혁신적인 학습 환경을 구현한 것입니다. iframe을 활용하여 실제 웹사이트를 임베드하고, HTML5 video를 통해 강의 영상을 제공하는 방식으로 기존 교육 시스템의 한계를 극복할 수 있었습니다. 이를 통해 사용자들의 학습 효율이 크게 향상되었고, 실제로 시니어 사용자들이 더 쉽게 디지털 기술을 학습할 수 있게 되었습니다. 아쉬운 점으로는 해커톤이라는 짧은 기간의 제약으로 인해 많은 기능을 구현하지 못했다는 것입니다. 특히 사용자 진행 상황 추적, 학습 진도 관리, 퀴즈나 평가 시스템 등의 기능을 추가했다면 더욱 완성도 높은 교육 플랫폼이 될 수 있었을 것입니다. 또한 모바일 앱 버전을 개발했다면 더 많은 사용자에게 접근할 수 있었을 것입니다. 개선하고 싶은 점으로는 학습 분석 기능을 추가하여 사용자들의 학습 패턴을 분석하고 개인화된 추천을 제공하고 싶습니다. 또한 동영상 강의에 자막과 수화 지원을 추가하여 청각 장애인들도 접근할 수 있도록 하고 싶습니다. 마지막으로 관리자 대시보드를 구축하여 강의 콘텐츠를 쉽게 관리하고, 사용자 통계를 확인할 수 있는 기능을 추가하면 플랫폼의 운영 효율성이 크게 향상될 것입니다."
-        : "Through this project, I gained deep understanding of web application development for senior users. In particular, I could experience the importance of accessibility and usability, and learned how important simple and intuitive UI design is. I was able to gain full-stack development experience using the Django framework, and learned practical technologies such as social login implementation through Django allauth and dynamic page rendering using the template system. The biggest achievement was implementing an innovative learning environment where lectures and practice can be conducted simultaneously. By embedding actual websites using iframes and providing lecture videos through HTML5 video, we could overcome the limitations of existing education systems. This greatly improved users' learning efficiency, and senior users could actually learn digital technologies more easily. As a regret, due to the short time constraint of a hackathon, we couldn't implement many features. In particular, if we had added features such as user progress tracking, learning progress management, and quiz or evaluation systems, it could have been a more complete education platform. Also, if we had developed a mobile app version, we could have reached more users. As improvements I'd like to make, I want to add learning analytics features to analyze users' learning patterns and provide personalized recommendations. I also want to add subtitles and sign language support to video lectures so that hearing-impaired individuals can also access them. Finally, building an admin dashboard to easily manage lecture content and check user statistics would greatly improve the platform's operational efficiency.",
+        ? "짧은 기간(해커톤) 안에 템플릿 기반으로 화면/기능을 빠르게 조립하고, 인증/게시판 같은 기본 기능을 끝까지 연결하는 경험을 했습니다. \niframe은 사이트별로 임베드 정책(X-Frame-Options 등) 제약이 있어, 실패 시 새 창 링크로 안내하는 플로우를 함께 준비해야 했습니다.\n추가로 한다면 진도(완료 체크), 퀴즈/평가, 관리자용 콘텐츠 관리 같은 운영 기능을 붙여보고 싶습니다."
+        : "In a short hackathon timeframe, I shipped core flows end-to-end (pages, auth, board) using Django templates. \nI also learned that iframe embedding is constrained by each site's policies (e.g., X-Frame-Options), so a safe fallback (open in new tab) is necessary.\nNext steps would be progress tracking, quizzes, and basic admin tooling for content.",
     achievements: [
       {
         title:
@@ -188,14 +189,8 @@ export function getDigitalBridgeDetail(
             : "Integrated Learning Environment Construction",
         description:
           language === "ko"
-            ? "같은 페이지에서 강의 영상과 실습 사이트를 동시에 제공하여 학습 효율을 크게 향상시켰습니다."
-            : "Greatly improved learning efficiency by providing lecture videos and practice sites simultaneously on the same page.",
-        metrics:
-          language === "ko"
-            ? "학습 효율 향상"
-            : "Learning Efficiency Improvement",
-        value: 60,
-        unit: "%",
+            ? "강의 영상과 실습 화면을 한 페이지에 배치해, 시청하면서 바로 따라 할 수 있게 구성했습니다."
+            : "Placed lecture video and practice area on a single page to reduce context switching.",
       },
       {
         title:
@@ -204,14 +199,8 @@ export function getDigitalBridgeDetail(
             : "Senior User Accessibility Improvement",
         description:
           language === "ko"
-            ? "큰 폰트와 단순한 UI로 디지털 진입 장벽을 낮추고 사용 편의성을 향상시켰습니다."
-            : "Lowered digital barriers and improved usability with large fonts and simple UI.",
-        metrics:
-          language === "ko"
-            ? "사용자 접근성 향상"
-            : "User Accessibility Improvement",
-        value: 75,
-        unit: "%",
+            ? "큰 글자/단순 네비게이션을 중심으로 화면을 구성했습니다."
+            : "Designed screens with larger typography and a simple navigation structure.",
       },
       {
         title:
@@ -220,14 +209,8 @@ export function getDigitalBridgeDetail(
             : "Registration Simplification through Social Login",
         description:
           language === "ko"
-            ? "Google 소셜 로그인을 도입하여 회원가입 절차를 간소화하고 사용자 이탈률을 감소시켰습니다."
-            : "Reduced user drop-off rates by introducing Google social login to simplify registration processes.",
-        metrics:
-          language === "ko"
-            ? "사용자 이탈률 감소"
-            : "User Drop-off Rate Reduction",
-        value: 40,
-        unit: "%",
+            ? "Django allauth로 Google 소셜 로그인을 연동했습니다."
+            : "Integrated Google social login via Django allauth.",
       },
       {
         title:
@@ -236,14 +219,8 @@ export function getDigitalBridgeDetail(
             : "Responsive Design Implementation",
         description:
           language === "ko"
-            ? "다양한 디바이스에서 일관된 사용자 경험을 제공하는 반응형 웹을 구현했습니다."
-            : "Implemented responsive web to provide consistent user experiences across various devices.",
-        metrics:
-          language === "ko"
-            ? "크로스 디바이스 호환성"
-            : "Cross-device Compatibility",
-        value: 100,
-        unit: "%",
+            ? "Bootstrap 기반으로 기본 반응형 레이아웃을 구성했습니다."
+            : "Implemented a responsive layout with Bootstrap.",
       },
       {
         title:
@@ -252,14 +229,8 @@ export function getDigitalBridgeDetail(
             : "Practice-centered Education System Construction",
         description:
           language === "ko"
-            ? "이론과 실습을 동시에 진행할 수 있는 혁신적인 교육 시스템을 구축하여 학습 효과를 극대화했습니다."
-            : "Maximized learning effectiveness by building an innovative education system where theory and practice can be conducted simultaneously.",
-        metrics:
-          language === "ko"
-            ? "학습 만족도 향상"
-            : "Learning Satisfaction Improvement",
-        value: 85,
-        unit: "%",
+            ? "실습 화면을 함께 제공하는 형태로 강의 페이지를 구성했습니다."
+            : "Structured lecture pages to include a practice area alongside the content.",
       },
     ],
   };

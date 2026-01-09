@@ -7,8 +7,8 @@ export function getSmuEcampusProgressCheckingDetail(
   return {
     objective:
       language === "ko"
-        ? "SMU e-Campus 진도율 체크 프로그램은 코로나19로 인해 온라인 강의가 활성화된 현 시점에서 e-Campus 플랫폼의 불편한 점을 개선하고 필요한 기능을 추가하기 위해 개발된 데스크톱 애플리케이션입니다. 특히 진도율을 제대로 체크하지 못해 의도치 않은 결석을 하게 되는 상황을 목격하거나 경험한 것을 바탕으로, 이러한 문제를 해결하는 프로그램을 계획하게 되었습니다. 이 프로젝트의 주된 목적은 e-Campus를 통해 강의를 수강하고 진도율을 채우는 시스템에서 진도율 체크를 하기 위해 일일이 해당 과목의 학습진도사항을 들어가서 체크해야 하고, 모바일에서는 진도율 체크조차 불가능하다는 점을 개선하는 것입니다. 사용자가 한 번의 로그인으로 모든 수강 과목의 진도율을 한눈에 확인할 수 있도록 하여, 시간을 절약하고 결석을 방지하는 것이 핵심 목표입니다. 궁극적으로 이 프로그램은 학생들의 학습 관리 효율성을 높이고, 온라인 강의 환경에서의 불편함을 해소하여 더 나은 학습 경험을 제공하는 것을 비전으로 합니다."
-        : "The SMU e-Campus Progress Check Program is a desktop application developed to improve inconveniences and add necessary features to the e-Campus platform at a time when online lectures have become active due to COVID-19. Based on witnessing or experiencing situations where unintended absences occurred due to not being able to properly check progress rates, this program was planned to solve such problems. The main purpose of this project is to improve the current system where, to check the progress rate in the system for taking lectures and completing progress rates through e-Campus, one has to manually go into the learning progress details of each subject, and it is even impossible to check the progress rate on mobile. The core goal is to allow users to check the progress rates of all enrolled courses at a glance with a single login, saving time and preventing absences. Ultimately, this program's vision is to improve students' learning management efficiency and eliminate inconveniences in the online lecture environment to provide a better learning experience.",
+        ? "e-Campus에서 과목별로 들어가 확인해야 했던 진도율을, 한 번 로그인으로 조회할 수 있게 만든 데스크톱 도구입니다. Tkinter로 UI를 만들고, requests/BeautifulSoup/pandas로 로그인 세션 유지와 테이블 파싱을 구현했습니다."
+        : "A desktop tool that shows e-Campus course progress after a single login. Built with Tkinter UI and implemented session + table parsing via requests/BeautifulSoup/pandas.",
     links: {
       github: "https://github.com/mstagon/SMU-ECAMPUS-PROGRESS-CHECKING",
       site: undefined,
@@ -17,8 +17,8 @@ export function getSmuEcampusProgressCheckingDetail(
     overview: {
       description:
         language === "ko"
-          ? "SMU e-Campus 진도율 체크 프로그램은 Python의 Tkinter를 활용한 데스크톱 GUI 애플리케이션으로, e-Campus 웹사이트에 자동으로 로그인하여 수강 중인 모든 과목의 진도율을 한 번에 확인할 수 있도록 해주는 도구입니다. 웹 스크래핑 기술을 활용하여 e-Campus의 진도율 정보를 자동으로 수집하고, 직관적인 테이블 형태로 표시합니다. 프로그램의 핵심 기능은 두 가지로 구성됩니다. 첫째, 자동 로그인 기능으로 사용자는 option.py 파일에 학번과 비밀번호를 설정하거나 GUI에서 직접 입력하여 e-Campus에 로그인할 수 있습니다. 로그인 성공 시 세션을 유지하여 이후 요청에 재사용합니다. 둘째, 진도율 체크 기능으로 로그인 후 사용자가 등록한 과목 목록이 콤보박스에 표시되고, 과목을 선택하면 해당 과목의 주차별 진도율 정보가 자동으로 크롤링되어 테이블 형태로 표시됩니다. 기술적으로는 requests 라이브러리를 활용하여 HTTP 세션을 관리하고, BeautifulSoup을 통해 HTML을 파싱하여 필요한 데이터를 추출합니다. pandas를 활용하여 HTML 테이블을 데이터프레임으로 변환하고, Tkinter의 Treeview 위젯을 통해 사용자에게 직관적으로 정보를 제공합니다. 또한 PIL(Pillow)을 활용하여 로고 이미지를 표시하고, 커스텀 폰트를 적용하여 사용자 경험을 향상시켰습니다. 프로그램은 option.py 파일을 통해 설정을 관리하며, 사용자는 과목 ID를 배열 형태로 입력하여 관심 있는 과목만 선택적으로 확인할 수 있습니다. 자동 로그인 기능을 활성화하면 프로그램 실행 시 자동으로 로그인되어 즉시 진도율을 확인할 수 있어 편의성이 크게 향상됩니다."
-          : "The SMU e-Campus Progress Check Program is a desktop GUI application using Python's Tkinter that automatically logs into the e-Campus website and allows users to check the progress rates of all enrolled courses at once. It uses web scraping technology to automatically collect progress rate information from e-Campus and displays it in an intuitive table format. The program's core functionality consists of two parts. First, the automatic login feature allows users to log into e-Campus by setting their student ID and password in the option.py file or entering them directly in the GUI. Upon successful login, the session is maintained for reuse in subsequent requests. Second, the progress rate check feature displays a list of registered courses in a combobox after login, and when a course is selected, the course's weekly progress rate information is automatically scraped and displayed in table format. Technically, it uses the requests library to manage HTTP sessions and BeautifulSoup to parse HTML and extract needed data. It uses pandas to convert HTML tables into dataframes and provides information to users intuitively through Tkinter's Treeview widget. It also uses PIL (Pillow) to display logo images and applies custom fonts to enhance user experience. The program manages settings through the option.py file, and users can selectively check only courses of interest by entering course IDs in array format. When the automatic login feature is enabled, the program automatically logs in upon execution, allowing immediate progress rate checking, greatly improving convenience.",
+          ? "Python(Tkinter) 기반 데스크톱 GUI입니다.\n\n- 로그인: requests.Session으로 세션 유지, 로그인 성공 여부는 HTML 요소로 확인\n- 과목 선택: option.py에 등록한 과목 ID를 기준으로 과목명/목록을 생성해 Combobox에 표시\n- 진도율 표시: 과목별 페이지를 크롤링해 HTML 테이블을 pandas로 파싱 후 Treeview에 표시\n\n사이트 구조가 바뀌면 파싱이 깨질 수 있다는 전제를 갖고, 가능한 한 HTML 구조에 덜 의존하도록 파싱 지점을 분리해두는 방향을 고려했습니다."
+          : "A Python (Tkinter) desktop GUI.\n\n- Login: maintains a requests.Session and verifies login via HTML checks\n- Course selection: builds a course list from IDs in option.py and shows it in a Combobox\n- Progress table: scrapes pages, parses HTML tables with pandas, and renders via Treeview",
       stats: {
         vision:
           language === "ko"
@@ -63,7 +63,8 @@ export function getSmuEcampusProgressCheckingDetail(
       "PIL (Pillow)",
     ],
     performance: {
-      pageLoadSpeed: { value: 88, improvement: "+40% improvement" }},
+      pageLoadSpeed: { value: 88 },
+    },
     challenges: [
       {
         title:
@@ -134,7 +135,7 @@ export function getSmuEcampusProgressCheckingDetail(
             : "We implemented automatic login functionality by adding an autologin flag and student ID (cn) and password (pw) fields to the option.py file. If autologin is set to True, the login function is automatically called when the program runs, and if False, it receives input from the GUI. However, we noted precautions not to store actual passwords in the option.py file for security.",
         result:
           language === "ko"
-            ? "사용자 편의성이 크게 향상되었고, 자주 사용하는 사용자들에게 특히 유용한 기능이 되었습니다."
+            ? "반복 입력(학번/비밀번호)을 줄이기 위해 자동 로그인 옵션을 제공했습니다."
             : "User convenience greatly improved, and it became a particularly useful feature for frequent users.",
       },
       {
@@ -152,7 +153,7 @@ export function getSmuEcampusProgressCheckingDetail(
             : "We configured a clean layout using various Tkinter widgets such as Frame, Label, and Entry. We placed the login panel on the left and the progress rate display area on the right to clearly separate functions. We also applied custom fonts (Tmoney Round Wind ExtraBold) and added logo images to strengthen branding. We applied color schemes consistently to enhance visual unity.",
         result:
           language === "ko"
-            ? "사용자 인터페이스가 직관적이고 사용하기 쉬워졌으며, 프로그램의 전문성이 향상되었습니다."
+            ? "로그인/진도율 확인 흐름이 한 화면에서 보이도록 레이아웃을 정리했습니다."
             : "The user interface became intuitive and easy to use, and the program's professionalism improved.",
       },
     ],
@@ -177,8 +178,8 @@ export function getSmuEcampusProgressCheckingDetail(
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 Python을 활용한 데스크톱 애플리케이션 개발과 웹 스크래핑 기술에 대한 깊은 이해를 얻을 수 있었습니다. 특히 Tkinter를 활용한 GUI 개발과 BeautifulSoup을 통한 웹 데이터 추출 방법을 배울 수 있었습니다. 또한 requests 라이브러리를 활용한 세션 관리와 HTTP 통신에 대한 실무 경험을 쌓을 수 있었습니다. 가장 큰 성과는 실제로 사용하는 학생들의 불편함을 해소할 수 있는 실용적인 도구를 만들 수 있었다는 점입니다. e-Campus의 불편한 UI를 우회하여 한 번의 클릭으로 진도율을 확인할 수 있게 되어, 많은 시간을 절약할 수 있었습니다. 또한 자동 로그인 기능을 통해 사용자 편의성을 크게 향상시킬 수 있었습니다. 아쉬운 점으로는 웹 스크래핑 기반의 프로그램이라 e-Campus 웹사이트의 구조가 변경되면 프로그램이 동작하지 않을 수 있다는 취약점이 있습니다. 또한 에러 핸들링이 부족하여 예외 상황에 대한 처리가 미흡합니다. 또한 설정 파일에 비밀번호를 평문으로 저장하는 것은 보안상 위험할 수 있습니다. 개선하고 싶은 점으로는 설정 파일을 암호화하여 저장하고, e-Campus 웹사이트 구조 변경에 대응할 수 있도록 유연한 파싱 로직을 구현하고 싶습니다. 또한 진도율 데이터를 로컬 데이터베이스에 저장하여 과거 데이터를 추적하고 통계를 제공하는 기능을 추가하면 더욱 유용할 것입니다. 마지막으로 알림 기능을 추가하여 진도율이 일정 기준 이하로 떨어지면 사용자에게 알림을 보내는 기능을 구현하면 학습 관리에 더욱 도움이 될 것입니다."
-        : "Through this project, I gained deep understanding of Python-based desktop application development and web scraping technology. In particular, I learned GUI development using Tkinter and web data extraction methods through BeautifulSoup. I also gained practical experience with session management and HTTP communication using the requests library. The biggest achievement was being able to create a practical tool that could solve the inconveniences of students actually using it. By bypassing e-Campus's inconvenient UI to check progress rates with a single click, we could save a lot of time. We also greatly improved user convenience through the automatic login feature. As a regret, since it's a web scraping-based program, the program may not work if the e-Campus website structure changes. Also, error handling is insufficient, and exception handling is inadequate. Additionally, storing passwords in plain text in configuration files can be a security risk. As improvements I'd like to make, I want to encrypt and store configuration files, and implement flexible parsing logic to respond to e-Campus website structure changes. I also want to add functionality to store progress rate data in a local database to track past data and provide statistics. Finally, implementing a notification feature to alert users when progress rates fall below a certain threshold would be more helpful for learning management.",
+        ? "스크래핑 기반 도구라 사이트 구조 변경에 취약하다는 전제가 있고, 그래서 파싱 포인트를 최소화하고 에러/로그를 더 명확히 남기는 게 중요하다는 걸 배웠습니다.\n또한 설정 파일에 자격 증명을 저장하는 방식은 보안 리스크가 있어, 다음에는 암호화/키체인 연동 같은 방법을 우선 검토하고 싶습니다."
+        : "Since this is scraping-based, I learned to minimize parsing assumptions and improve error/log visibility. I also learned to treat credential storage as a security risk and would prefer encryption or OS keychain integration next.",
     achievements: [
       {
         title:
@@ -187,11 +188,8 @@ export function getSmuEcampusProgressCheckingDetail(
             : "Progress Rate Check Time Reduction",
         description:
           language === "ko"
-            ? "일일이 각 과목의 학습진도사항 페이지에 접근하여 확인하던 것을 한 번의 클릭으로 단축했습니다."
-            : "Reduced the time spent manually accessing each course's learning progress page to a single click.",
-        metrics: language === "ko" ? "시간 절약율" : "Time Savings Rate",
-        value: 80,
-        unit: "%",
+            ? "과목별 페이지를 오가며 확인하던 흐름을 프로그램 내 조회로 대체했습니다."
+            : "Replaced manual per-course browsing with in-app checking.",
       },
       {
         title:
@@ -200,14 +198,8 @@ export function getSmuEcampusProgressCheckingDetail(
             : "Automatic Login Functionality Implementation",
         description:
           language === "ko"
-            ? "매번 로그인 정보를 입력하던 불편함을 해소하여 사용자 편의성을 향상시켰습니다."
-            : "Improved user convenience by eliminating the inconvenience of entering login information every time.",
-        metrics:
-          language === "ko"
-            ? "사용자 편의성 향상"
-            : "User Convenience Improvement",
-        value: 90,
-        unit: "%",
+            ? "option.py 설정 기반 자동 로그인 플로우를 구성했습니다."
+            : "Added an option.py-based auto-login flow.",
       },
       {
         title:
@@ -216,14 +208,8 @@ export function getSmuEcampusProgressCheckingDetail(
             : "Multiple Course Management Functionality Implementation",
         description:
           language === "ko"
-            ? "여러 과목의 진도율을 한 화면에서 확인할 수 있도록 하여 학습 관리 효율성을 높였습니다."
-            : "Improved learning management efficiency by allowing progress rates of multiple courses to be checked on one screen.",
-        metrics:
-          language === "ko"
-            ? "학습 관리 효율성 향상"
-            : "Learning Management Efficiency Improvement",
-        value: 75,
-        unit: "%",
+            ? "과목 목록/선택(Combobox)과 진도율 테이블(Treeview) UI를 구성했습니다."
+            : "Built course selection (Combobox) and progress table (Treeview) UI.",
       },
       {
         title:
@@ -232,11 +218,8 @@ export function getSmuEcampusProgressCheckingDetail(
             : "Intuitive GUI Implementation",
         description:
           language === "ko"
-            ? "사용하기 쉬운 인터페이스를 제공하여 프로그램 사용성을 향상시켰습니다."
-            : "Improved program usability by providing an easy-to-use interface.",
-        metrics: language === "ko" ? "사용자 만족도" : "User Satisfaction",
-        value: 85,
-        unit: "%",
+            ? "로그인 영역과 결과 표시 영역을 분리해 기본 사용 흐름이 보이도록 구성했습니다."
+            : "Separated login and results areas for clearer UX.",
       },
       {
         title:
@@ -245,11 +228,8 @@ export function getSmuEcampusProgressCheckingDetail(
             : "Web Scraping Stability Secured",
         description:
           language === "ko"
-            ? "requests Session을 활용한 안정적인 세션 관리로 로그인 및 데이터 수집의 신뢰성을 높였습니다."
-            : "Improved reliability of login and data collection through stable session management using requests Session.",
-        metrics: language === "ko" ? "프로그램 안정성" : "Program Stability",
-        value: 88,
-        unit: "%",
+            ? "requests.Session 기반으로 로그인 상태를 유지하며 크롤링하도록 구성했습니다."
+            : "Used requests.Session to keep auth state during crawling.",
       },
     ],
   };

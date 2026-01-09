@@ -5,8 +5,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "TripCut은 K-드라마 촬영지를 중심으로 여행지를 탐색·저장·리뷰하고, 테마/지역별 추천 코스로 일정을 손쉽게 구성하는 모바일 최적화 웹 서비스입니다. K-콘텐츠 확산과 촬영지 관광 수요 증가에 따라, 정보의 파편화 문제를 해결하고 모바일 중심의 여행 계획 경험을 제공하는 것이 핵심 목표입니다. 이 프로젝트는 감성 기반 탐색의 즐거움을 극대화하고, 의사결정 스트레스를 해소하며, 개인화와 기록 욕구를 충족시키는 것을 목표로 합니다. 드라마에서 시작하여 촬영지를 발견하고 이를 여행 코스로 연결하는 경험을 제공하며, 실시간 정보, 리뷰, 주변 추천을 한 화면에서 제공하여 즉각적인 의사결정을 가능하게 합니다. 또한 사용자의 선호도와 활동을 기반으로 한 맞춤형 추천과 방문 기록 관리를 통해 개인 여행 포트폴리오를 구축할 수 있도록 합니다. 궁극적으로 TripCut은 K-드라마와 관광 산업을 연결하는 새로운 생태계를 만들어, 글로벌 여행객을 한국으로 이끄는 가교 역할을 하며, 지역 경제 활성화와 분산 관광에 기여하는 것을 비전으로 합니다."
-        : "TripCut is a mobile-optimized web service that allows users to explore, save, and review travel destinations centered around K-drama filming locations, and easily create itineraries with recommended courses by theme/region. With the spread of K-content and increasing demand for filming location tourism, the core goal is to solve the problem of information fragmentation and provide a mobile-centric travel planning experience. This project aims to maximize the joy of emotion-based exploration, relieve decision-making stress, and satisfy users' desires for personalization and recording. It provides an experience where users can discover filming locations starting from dramas and connect them into travel courses, while offering real-time information, reviews, and nearby recommendations on a single screen for immediate decision-making. It also enables users to build personal travel portfolios through personalized recommendations based on preferences and activities, and visit record management. Ultimately, TripCut's vision is to create a new ecosystem connecting K-drama and the tourism industry, serving as a bridge to attract global travelers to Korea and contributing to local economic activation and distributed tourism.",
+        ? "K-드라마 촬영지를 중심으로 여행지를 탐색/저장/리뷰할 수 있는 모바일 최적화 웹(PWA) 서비스를 만들었습니다. 검색/필터, 상세 정보, 추천 코스, 마이페이지(저장/리뷰/기록)까지 주요 화면 흐름을 구현했습니다."
+        : "TripCut is a mobile-optimized web (PWA) service for exploring/saving/reviewing travel spots centered around K-drama filming locations. It implements core flows including search/filters, detail pages, recommended routes, and a mypage (saved/reviews/history).",
     links: {
       github: "https://github.com/mstagon/TourAPI_FrontEnd",
       site: undefined,
@@ -15,13 +15,13 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "TripCut은 K-드라마 촬영지를 비롯한 다양한 여행지를 탐색하고 실제 방문을 유도하는 올인원 관광 플랫폼입니다. 드라마 팬뿐만 아니라 새로운 여행지를 찾는 일반 국내·외 여행객까지, 누구나 즐길 수 있는 '체험형 콘텐츠 기반 여행 플랫폼'입니다. 서비스의 핵심 기능은 작품명이나 여행지명으로 검색해 관련 드라마 촬영지·관광지 정보를 탐색하는 것입니다. 여행지를 선택하면 방문 후기, 주변 즐길 거리, 명소 정보를 확인할 수 있고, 드라마 콘텐츠 중심 탐색 시에는 촬영지 정보·리뷰·주변 관광지 정보까지 제공합니다. 또한 출발지부터 목적지까지의 경로 안내 기능으로 손쉽게 여행을 계획할 수 있습니다. TripCut은 여행의 재미를 높이기 위해 GPS 기반 스탬프 수집 기능도 제공합니다. 실제 명소를 방문하면 자동으로 방문이 인증되고 디지털 스탬프와 포인트가 지급되며, 한정판 이벤트 스탬프 등으로 수집 욕구를 자극해 자연스럽게 참여를 유도합니다. 개인화 추천 서비스는 AI 기반으로 사용자의 장르·테마 선호도와 방문 패턴을 분석하여, 드라마 촬영지뿐만 아니라 자연·문화·액티비티 등 맞춤형 여행지를 제안합니다. 기술적으로는 PWA(Progressive Web App) 형태로 구현되어 별도 앱 설치 없이 모바일 웹에서도 네이티브 앱 수준의 사용자 경험을 제공합니다. Next.js 기반 서버사이드 렌더링으로 초기 로딩 속도를 높였으며, 카카오 소셜 로그인과 반응형 UI로 간편한 가입과 다양한 기기 환경을 지원합니다. 또한 커뮤니티 기능을 통해 여행자 간의 소통을 강화하며, 촬영지·관광지별 리뷰와 평점을 공유하고, 해시태그 기반 인증샷을 업로드하여 다른 여행객들과 경험을 나눌 수 있습니다."
-          : "TripCut is an all-in-one tourism platform that explores various travel destinations, including K-drama filming locations, and encourages actual visits. It is an 'experiential content-based travel platform' that anyone, from drama fans to general domestic and international travelers looking for new destinations, can enjoy. The service's core function is to search for related K-drama filming locations and tourist attraction information by work title or destination name. When a destination is selected, users can check visit reviews, nearby attractions, and landmark information. When exploring centered on drama content, it provides filming location information, reviews, and nearby tourist attraction information. Additionally, it offers a route guidance function from the starting point to the destination, making travel planning easy. TripCut also provides a GPS-based stamp collection function to enhance the fun of traveling. When users visit actual landmarks, their visit is automatically authenticated, and digital stamps and points are awarded, stimulating the desire to collect with limited edition event stamps, thereby naturally encouraging participation. The personalized recommendation service analyzes users' genre/theme preferences and visit patterns using AI, suggesting customized travel destinations including not only drama filming locations but also nature, culture, and activities. Technically, it is implemented as a PWA (Progressive Web App), providing a native app-level user experience even on mobile web without a separate app installation. Next.js-based server-side rendering has increased initial loading speed, and Kakao social login and responsive UI support easy sign-up and various device environments. Furthermore, it strengthens communication among travelers through community features, allowing users to share reviews and ratings for each filming location/tourist attraction, upload hashtag-based certification photos to share experiences with other travelers, and save places of interest using the bookmark function to plan travel itineraries.",
+          ? "Next.js 기반의 모바일 최적화 웹(PWA) 서비스입니다.\n\n- 탐색/검색: 작품명/여행지명 검색, 태그/지역 필터\n- 상세 페이지: 기본 정보/리뷰/주변 정보 등 섹션 단위 구성\n- 코스/저장: 추천 코스 + 북마크\n- 인증: 카카오 소셜 로그인\n- 통신: FastAPI 중개 서버 및 Spring Boot API 서버와 연동\n\n운영 관점\n- 여러 백엔드와 통신하는 구조에서, 도메인별 API 모듈 분리 + 공통 인터셉터로 요청/인증 헤더 처리를 한 곳에서 관리했습니다.\n- 초기 진입(SSR)과 상세 데이터 로딩을 분리해, 네트워크 지연 시에도 화면이 단계적으로 채워지도록 구성했습니다."
+          : "A mobile-optimized web (PWA) built with Next.js.\n\n- Explore/Search: keyword search + tag/region filters.\n- Detail pages: structured sections (info, reviews, nearby).\n- Routes/Saved: recommended routes and bookmarking.\n- Auth: Kakao social login.\n- API: integrates with a FastAPI relay and a Spring Boot API.",
       stats: {
         vision:
           language === "ko"
-            ? "K-드라마와 관광 산업을 연결하는 새로운 생태계를 만들어, 글로벌 여행객을 한국으로 이끄는 가교 역할을 하며 지역 경제 활성화와 분산 관광에 기여합니다."
-            : "Create a new ecosystem connecting K-drama and the tourism industry, serving as a bridge to attract global travelers to Korea and contributing to local economic activation and distributed tourism.",
+            ? "모바일 웹에서 탐색 → 저장 → 상세 확인 → 코스 구성으로 이어지는 흐름을 만들었습니다."
+            : "Focused on a mobile flow: explore → save → view details → build a route.",
       },
     },
     role: {
@@ -69,7 +69,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
       "TourAPI",
     ],
     performance: {
-      pageLoadSpeed: { value: 90, improvement: "+35% improvement" }},
+      pageLoadSpeed: { value: 90 },
+    },
     challenges: [
       {
         title:
@@ -86,8 +87,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "We implemented PWA (Progressive Web App) using Next.js's next-pwa plugin. We supported offline access through Service Worker and provided home screen addition functionality by configuring manifest.json. We also configured app icons and splash screens to provide an experience similar to native apps.",
         result:
           language === "ko"
-            ? "사용자들이 별도 앱 설치 없이도 네이티브 앱 수준의 경험을 할 수 있게 되었고, 오프라인에서도 기본 기능을 사용할 수 있어 접근성이 크게 향상되었습니다. 특히 해외 여행객들에게 큰 장점이 되었습니다."
-            : "Users could experience native app-level functionality without separate app installation, and basic features could be used offline, greatly improving accessibility. This was particularly beneficial for international travelers.",
+            ? "PWA 형태로 홈 화면 추가/기본 캐싱을 적용해, 모바일에서 설치 없이 “앱처럼” 접근할 수 있는 형태로 정리했습니다."
+            : "Implemented a PWA setup (add-to-home-screen + basic caching) so the service can be accessed in an app-like way without installation.",
       },
       {
         title:
@@ -104,8 +105,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "We developed a Bottom Sheet component to display information step by step. Initially, only the hero image and core information are displayed, and when users scroll or open the Bottom Sheet, detailed information (reviews, attractions, nearby recommendations) is displayed progressively. This maintained information accessibility while improving initial loading speed and user experience.",
         result:
           language === "ko"
-            ? "페이지 로딩 속도가 35% 향상되었고, 사용자가 필요한 정보에 더 쉽게 접근할 수 있게 되어 사용자 만족도가 높아졌습니다."
-            : "Page loading speed improved by 35%, and users could more easily access needed information, increasing user satisfaction.",
+            ? "정보를 한 번에 다 펼치지 않고, 단계적으로 펼쳐보는 구조로 상세 화면을 정리했습니다."
+            : "Reduced information overload by revealing details progressively on the detail page.",
       },
       {
         title:
@@ -122,8 +123,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "We built an integrated API client based on Axios and separated API modules by domain (drama, location, auth, stamp, etc.). We managed API base URLs through environment variables and used interceptors to automatically add common headers (authentication tokens, etc.). We also defined TypeScript types to ensure type safety for API responses.",
         result:
           language === "ko"
-            ? "API 통신 코드의 재사용성과 유지보수성이 크게 향상되었고, 타입 안정성으로 인한 버그가 감소했습니다."
-            : "Code reusability and maintainability for API communication greatly improved, and bugs decreased due to type safety.",
+            ? "도메인별 모듈 분리 + 공통 인터셉터로 API 통신 코드를 한 곳에서 관리할 수 있게 했습니다."
+            : "Centralized API communication via domain modules and common interceptors.",
       },
       {
         title:
@@ -136,12 +137,12 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "We needed to display real-time statistics (visitor count, congestion, etc.) and review information for travel destinations, but calling the API every time could cause performance degradation and server load.",
         toBe:
           language === "ko"
-            ? "Next.js의 서버 사이드 렌더링을 활용하여 초기 데이터를 서버에서 가져오고, 클라이언트에서는 React Query나 SWR과 같은 데이터 페칭 라이브러리를 활용하여 실시간 데이터를 주기적으로 갱신하도록 구현했습니다. 또한 정적 데이터는 ISR(Incremental Static Regeneration)을 활용하여 캐싱하고, 동적 데이터는 적절한 캐시 전략을 적용했습니다."
-            : "We used Next.js's server-side rendering to fetch initial data on the server, and on the client, we used data fetching libraries like React Query or SWR to periodically update real-time data. We also cached static data using ISR (Incremental Static Regeneration) and applied appropriate cache strategies for dynamic data.",
+            ? "초기 화면에서 필요한 데이터는 서버에서 먼저 내려주고(SSR), 이후 화면 내에서 필요한 데이터만 추가로 요청하도록 분리했습니다. 잦은 재요청이 필요한 데이터는 캐시/갱신 전략을 고려해 호출 빈도를 조절했습니다."
+            : "Fetched initial data on the server (SSR), then loaded additional data on demand in the client. For frequently refreshed data, we tuned request frequency with caching/refresh strategies.",
         result:
           language === "ko"
-            ? "초기 로딩 속도가 개선되었고, 실시간 데이터의 정확성도 유지할 수 있게 되었습니다. 서버 부하도 감소했습니다."
-            : "Initial loading speed improved, and we could maintain accuracy of real-time data. Server load also decreased.",
+            ? "초기 진입 시 필요한 정보는 빠르게 표시하고, 이후 데이터는 점진적으로 로드하는 형태로 구성했습니다."
+            : "Displayed essential content early and loaded the rest progressively.",
       },
       {
         title:
@@ -158,8 +159,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "We synchronized filter state with URL query parameters using Next.js's URL SearchParams. When users change filters, the URL updates, enabling URL sharing and bookmarking. We also implemented tag filters as Chip components to provide intuitive UI and enable multiple selections.",
         result:
           language === "ko"
-            ? "사용자가 원하는 조건으로 쉽게 검색하고 필터링할 수 있게 되었고, URL 공유 기능으로 사용자 경험이 향상되었습니다. 상태 관리도 체계적으로 이루어져 유지보수가 용이해졌습니다."
-            : "Users could easily search and filter with desired conditions, and URL sharing functionality improved user experience. State management became systematic, making maintenance easier.",
+            ? "필터 상태를 URL과 동기화해 공유/북마크 가능한 검색 경험을 만들었습니다."
+            : "Synced filters to URL params to enable shareable/bookmarkable searches.",
       },
     ],
     architecture: {
@@ -183,8 +184,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 Next.js를 활용한 대규모 웹 애플리케이션 개발과 PWA 구현에 대한 깊은 이해를 얻을 수 있었습니다. 특히 서버 사이드 렌더링과 클라이언트 사이드 렌더링을 적절히 혼합하여 성능과 사용자 경험을 최적화하는 방법을 배울 수 있었습니다. PWA 구현을 통해 웹 기술만으로도 네이티브 앱 수준의 경험을 제공할 수 있다는 것을 체험할 수 있었습니다. 가장 큰 성과는 복잡한 관광 데이터를 사용자 친화적인 인터페이스로 변환하여 제공할 수 있었다는 점입니다. 드라마 촬영지와 여행지를 연결하는 추천 시스템을 구현하고, GPS 기반 스탬프 기능을 통해 게임화 요소를 추가하여 사용자 참여도를 높일 수 있었습니다. 또한 Bottom Sheet와 같은 모던한 UI 패턴을 활용하여 정보 과부하 없이 필요한 정보를 제공할 수 있었습니다. 아쉬운 점으로는 초기 설계 단계에서 상태 관리 아키텍처를 더 체계적으로 설계하지 못했다는 것입니다. React Query나 Zustand 같은 상태 관리 라이브러리를 도입했다면 더 효율적인 데이터 페칭과 상태 관리가 가능했을 것입니다. 또한 테스트 코드 작성이 부족하여 코드 품질 관리 측면에서 아쉬움이 남습니다. 개선하고 싶은 점으로는 오프라인 기능을 더 강화하여 네트워크 연결이 불안정한 여행 환경에서도 완전한 기능을 사용할 수 있도록 하고 싶습니다. 또한 AI 기반 추천 알고리즘을 더 고도화하여 사용자의 선호도와 방문 패턴을 더 정확하게 분석하고 맞춤형 추천을 제공하고 싶습니다. 마지막으로 AR 기술을 도입하여 실제 여행지에서 드라마 촬영 장면을 오버레이로 보여주는 기능을 추가하면 사용자 경험이 더욱 향상될 것입니다."
-        : "Through this project, I gained deep understanding of large-scale web application development using Next.js and PWA implementation. In particular, I learned how to optimize performance and user experience by appropriately mixing server-side rendering and client-side rendering. Through PWA implementation, I experienced that web technologies alone can provide native app-level experiences. The biggest achievement was being able to transform complex tourism data into user-friendly interfaces. We implemented a recommendation system connecting drama filming locations and travel destinations, and added gamification elements through GPS-based stamp functionality to increase user engagement. We could also provide necessary information without information overload by utilizing modern UI patterns like Bottom Sheet. As a regret, we didn't design the state management architecture more systematically in the initial design phase. If we had introduced state management libraries like React Query or Zustand, more efficient data fetching and state management would have been possible. Also, the lack of test code leaves room for improvement in code quality management. As improvements I'd like to make, I want to strengthen offline functionality so complete features can be used even in travel environments with unstable network connections. I also want to further advance AI-based recommendation algorithms to more accurately analyze user preferences and visit patterns and provide personalized recommendations. Finally, introducing AR technology to overlay drama filming scenes at actual travel destinations would further enhance user experience.",
+        ? "모바일 웹에서 검색/필터 → 상세 → 저장/코스로 이어지는 사용자 흐름을 만들면서, Next.js의 SSR/CSR 경계를 어디에 둘지 고민한 프로젝트였습니다.\n과장된 지표 대신, 실제로 구현한 화면/기능과 데이터 흐름을 기준으로 정리하는 방식이 더 설득력이 있다는 것도 배웠습니다."
+        : "This project focused on a mobile flow (search/filters → detail → save/routes) and helped me reason about where to draw SSR/CSR boundaries in Next.js.\nI also learned it’s more credible to describe concrete shipped features and data flow rather than unverified metrics.",
     achievements: [
       {
         title:
@@ -193,14 +194,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "Native App-level User Experience through PWA Implementation",
         description:
           language === "ko"
-            ? "PWA 기술을 적용하여 별도 앱 설치 없이도 네이티브 앱과 유사한 경험을 제공했습니다."
-            : "Applied PWA technology to provide native app-like experiences without separate app installation.",
-        metrics:
-          language === "ko"
-            ? "사용자 접근성 향상"
-            : "User Accessibility Improvement",
-        value: 85,
-        unit: "%",
+            ? "PWA 설정(next-pwa, manifest, service worker)을 적용했습니다."
+            : "Implemented PWA setup (next-pwa, manifest, service worker).",
       },
       {
         title:
@@ -209,14 +204,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "Page Loading Speed Optimization",
         description:
           language === "ko"
-            ? "서버 사이드 렌더링과 적절한 캐싱 전략을 통해 초기 로딩 속도를 크게 개선했습니다."
-            : "Greatly improved initial loading speed through server-side rendering and appropriate caching strategies.",
-        metrics:
-          language === "ko"
-            ? "페이지 로드 속도 개선"
-            : "Page Load Speed Improvement",
-        value: 35,
-        unit: "%",
+            ? "초기 진입 시 필요한 데이터는 SSR로 처리하고, 상세 데이터는 점진적으로 로드하도록 구성했습니다."
+            : "Used SSR for initial content and progressively loaded detail data.",
       },
       {
         title:
@@ -225,14 +214,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "Complex Filtering System Implementation",
         description:
           language === "ko"
-            ? "다중 조건 검색 및 필터링 기능을 URL 기반으로 구현하여 사용자 경험을 향상시켰습니다."
-            : "Implemented multi-condition search and filtering functionality based on URLs to enhance user experience.",
-        metrics:
-          language === "ko"
-            ? "검색 기능 완성도"
-            : "Search Functionality Completion",
-        value: 95,
-        unit: "%",
+            ? "다중 조건 검색/필터를 URL 파라미터와 동기화했습니다."
+            : "Synced multi-condition filters with URL parameters.",
       },
       {
         title:
@@ -241,14 +224,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "Responsive Design Implementation",
         description:
           language === "ko"
-            ? "Tailwind CSS를 활용하여 다양한 디바이스에서 최적의 경험을 제공하는 반응형 UI를 구현했습니다."
-            : "Implemented responsive UI using Tailwind CSS to provide optimal experiences on various devices.",
-        metrics:
-          language === "ko"
-            ? "크로스 디바이스 호환성"
-            : "Cross-device Compatibility",
-        value: 100,
-        unit: "%",
+            ? "Tailwind CSS 기반 반응형 UI를 구성했습니다."
+            : "Built a responsive UI with Tailwind CSS.",
       },
       {
         title:
@@ -257,14 +234,8 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
             : "API Communication Structure Optimization",
         description:
           language === "ko"
-            ? "통합 API 클라이언트와 도메인별 모듈 분리를 통해 코드 재사용성과 유지보수성을 향상시켰습니다."
-            : "Improved code reusability and maintainability through integrated API client and domain-based module separation.",
-        metrics:
-          language === "ko"
-            ? "코드 재사용성 향상"
-            : "Code Reusability Improvement",
-        value: 70,
-        unit: "%",
+            ? "통합 API 클라이언트 + 도메인 모듈 분리로 통신 코드를 정리했습니다."
+            : "Organized API calls via an integrated client and domain modules.",
       },
     ],
   };

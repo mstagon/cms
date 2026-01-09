@@ -58,6 +58,7 @@ export default function AboutCTASection({
         onClose={() => setIsModalOpen(false)}
         email="devcms21@gmail.com"
         github="mstagon"
+        blogHref="https://velog.io/@devcms21"
       />
     </>
   );

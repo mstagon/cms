@@ -5,8 +5,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "Teamo는 개발자들이 프로젝트 팀원을 모집하고 협업할 수 있는 플랫폼입니다. 이 프로젝트의 핵심 목표는 단순한 웹 애플리케이션 개발을 넘어서, 실제 프로덕션 환경에서 안정적으로 운영될 수 있는 완전한 DevOps 파이프라인을 구축하는 것이었습니다. 특히 클라우드 서비스를 사용하지 않고 직접 물리 서버(라즈베리파이)를 구성하여 인프라를 관리하고, 무중단 자동 배포 시스템을 구현하는 것이 주요 목표였습니다. 이 프로젝트를 통해 단순히 코드를 작성하는 것을 넘어서, Docker 컨테이너화, CI/CD 파이프라인 구축, 리버스 프록시 설정, 데이터베이스 관리, 모니터링 등 전체적인 인프라스트럭처 설계와 운영에 대한 실무 경험을 쌓고자 했습니다. 또한 프론트엔드와 백엔드를 모두 직접 배포하고 관리함으로써 풀스택 개발자로서의 역량을 강화하고, 실제 서비스 운영에 필요한 DevOps 지식을 습득하는 것을 목표로 했습니다. 궁극적으로 Teamo는 개발자 커뮤니티가 더 쉽게 협업할 수 있도록 돕는 플랫폼이 되고, 동시에 이 프로젝트를 통해 구축한 인프라와 DevOps 경험은 향후 더 큰 규모의 프로젝트에 적용할 수 있는 기반이 되는 것을 비전으로 합니다."
-        : "Teamo is a platform where developers can recruit team members for projects and collaborate. The core goal of this project was not just to develop a simple web application, but to build a complete DevOps pipeline that can operate stably in an actual production environment. In particular, the main objectives were to configure infrastructure by directly setting up a physical server (Raspberry Pi) without using cloud services, and to implement a zero-downtime automated deployment system. Through this project, we aimed to gain practical experience in overall infrastructure design and operations beyond simply writing code, including Docker containerization, CI/CD pipeline construction, reverse proxy configuration, database management, and monitoring. We also aimed to strengthen our capabilities as full-stack developers by directly deploying and managing both frontend and backend, and to acquire DevOps knowledge necessary for actual service operations. Ultimately, Teamo's vision is to become a platform that helps developer communities collaborate more easily, while the infrastructure and DevOps experience built through this project serves as a foundation that can be applied to larger-scale projects in the future.",
+        ? "팀원 모집/협업 서비스를 만들고, 배포·운영까지 포함해 “서비스 형태”로 구성했습니다. Docker Compose 기반 멀티 컨테이너 운영, Nginx 프록시(WebSocket 포함), GitHub Actions 기반 배포 자동화까지 직접 연결했습니다."
+        : "Teamo is a team recruitment/collaboration web service with a self-managed deployment setup on a Raspberry Pi. It includes a GitHub Actions → Docker Buildx (multi-arch) → Docker Hub → SSH deploy (docker compose) pipeline, plus Nginx reverse proxy and WebSocket proxy configuration.",
     links: {
       github:
         "https://github.com/mstagon/Teamo_Infra, https://github.com/mstagon/Teamo_FrontEnd",
@@ -16,13 +16,13 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Teamo는 Next.js 기반의 프론트엔드와 NestJS 기반의 백엔드로 구성된 팀원 모집 플랫폼입니다. 사용자들은 프로젝트 팀원을 모집하거나 팀에 참여할 수 있으며, 실시간 채팅, 기술 스택 매칭, 위치 기반 검색 등의 기능을 제공합니다. 프론트엔드는 Next.js 15의 App Router를 활용하여 SSR과 CSR을 적절히 혼합한 하이브리드 렌더링을 구현했으며, Tailwind CSS를 활용한 반응형 디자인으로 웹과 모바일 환경 모두에서 최적의 사용자 경험을 제공합니다. 백엔드는 NestJS 프레임워크를 기반으로 구축되었으며, PostgreSQL과 MongoDB를 이중 데이터베이스로 활용합니다. PostgreSQL은 사용자 정보, 게시글, 인증 등 관계형 데이터를 관리하고, MongoDB는 실시간 채팅 메시지와 같은 비구조화된 데이터를 저장합니다. Socket.IO를 활용한 실시간 채팅 기능을 제공하며, JWT 기반 인증 시스템과 카카오 소셜 로그인을 지원합니다. 인프라 측면에서는 Docker Compose를 활용하여 모든 서비스를 컨테이너화했습니다. 프론트엔드, 백엔드, PostgreSQL, MongoDB, Nginx 리버스 프록시가 각각 독립적인 컨테이너로 실행되며, 서비스 간 의존성은 health check를 통해 관리됩니다. Nginx는 리버스 프록시 역할을 하며, 프론트엔드 정적 파일 서빙, 백엔드 API 라우팅, WebSocket 연결 프록시를 담당합니다. 특히 Socket.IO 연결을 위한 WebSocket 업그레이드와 긴 타임아웃 설정을 통해 실시간 통신의 안정성을 확보했습니다. 무중단 자동 배포 시스템은 GitHub Actions를 통해 구현되었습니다. 프론트엔드나 백엔드 레포지토리에 코드가 푸시되면, repository_dispatch 이벤트를 통해 인프라 레포지토리의 워크플로우가 트리거됩니다. 워크플로우는 Docker Buildx를 활용하여 멀티 아키텍처(linux/amd64, linux/arm64) 이미지를 빌드하고 Docker Hub에 푸시합니다. 이후 SSH를 통해 라즈베리파이 서버에 접속하여 최신 이미지를 pull하고, docker compose down/up을 통해 무중단으로 서비스를 재배포합니다. 이 과정에서 서브모듈을 활용하여 프론트엔드와 백엔드 레포지토리를 인프라 레포지토리에 통합 관리했습니다."
-          : "Teamo is a team recruitment platform consisting of a Next.js-based frontend and a NestJS-based backend. Users can recruit team members for projects or join teams, with features such as real-time chat, tech stack matching, and location-based search. The frontend implements hybrid rendering that appropriately combines SSR and CSR using Next.js 15's App Router, and provides optimal user experience on both web and mobile environments through responsive design using Tailwind CSS. The backend is built on the NestJS framework and utilizes PostgreSQL and MongoDB as dual databases. PostgreSQL manages relational data such as user information, posts, and authentication, while MongoDB stores unstructured data such as real-time chat messages. It provides real-time chat functionality using Socket.IO, and supports JWT-based authentication system and Kakao social login. On the infrastructure side, all services are containerized using Docker Compose. Frontend, backend, PostgreSQL, MongoDB, and Nginx reverse proxy each run as independent containers, and dependencies between services are managed through health checks. Nginx serves as a reverse proxy, handling frontend static file serving, backend API routing, and WebSocket connection proxying. In particular, WebSocket upgrade and long timeout settings for Socket.IO connections ensure stability of real-time communication. The zero-downtime automated deployment system is implemented through GitHub Actions. When code is pushed to the frontend or backend repository, the infrastructure repository's workflow is triggered through a repository_dispatch event. The workflow builds the latest code using Docker Buildx to create multi-architecture (linux/amd64, linux/arm64) images and pushes them to Docker Hub. Then, it connects to the Raspberry Pi server via SSH to pull the latest images and redeploy services with zero downtime using docker compose down/up. In this process, submodules were used to integrate and manage the frontend and backend repositories within the infrastructure repository.",
+          ? "Next.js(프론트) + NestJS(백엔드) 기반의 팀원 모집 서비스입니다.\n\n- 사용자 기능: 게시글 기반 모집, 실시간 채팅(Socket.IO), 기술 스택/위치 기반 탐색\n- 데이터: PostgreSQL(관계형) + MongoDB(채팅) 분리 운영\n- 인증: JWT + 카카오 소셜 로그인\n\n운영/배포 관점\n- 컨테이너 운영: Docker Compose로 FE/BE/DB/Nginx를 분리 실행, health check로 기동 순서/의존성 제어\n- 프록시: Nginx로 단일 도메인에서 API/정적/WebSocket 라우팅(Socket.IO 업그레이드/타임아웃 포함)\n- 배포 자동화: GitHub Actions → Docker Buildx(멀티 아키텍처) → Docker Hub → SSH 배포(docker compose)"
+          : "A team recruitment service built with Next.js (frontend) and NestJS (backend).\n\n- Features: recruitment posts, real-time chat (Socket.IO), tech-stack/location exploration.\n- Data: dual DB (PostgreSQL for relational data, MongoDB for chat messages).\n- Auth: JWT + Kakao social login.\n- Infra: Docker Compose runs FE/BE/DB/Nginx with health-check based dependencies.\n- Networking: Nginx reverse proxy routes static/API/WebSocket under a single domain.\n- Deploy: GitHub Actions builds multi-arch images and deploys to a Raspberry Pi via SSH + docker compose.",
       stats: {
         vision:
           language === "ko"
-            ? "개발자 커뮤니티가 더 쉽게 협업할 수 있도록 돕는 플랫폼이 되고, 구축한 인프라와 DevOps 경험은 향후 더 큰 규모의 프로젝트에 적용할 수 있는 기반이 됩니다."
-            : "Become a platform that helps developer communities collaborate more easily, and the infrastructure and DevOps experience built serves as a foundation that can be applied to larger-scale projects in the future.",
+            ? "기능 구현뿐 아니라 배포/운영(컨테이너, 프록시, CI/CD)을 포함한 서비스 형태로 구성했습니다."
+            : "Built it as a service including deployment/operations (containers, proxy, CI/CD), not only app features.",
       },
     },
     role: {
@@ -73,7 +73,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
       "Raspberry Pi",
     ],
     performance: {
-      pageLoadSpeed: { value: 92, improvement: "+30% improvement" }},
+      pageLoadSpeed: { value: 92 },
+    },
     challenges: [
       {
         title:
@@ -90,8 +91,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "We implemented multi-architecture builds using Docker Buildx. In the GitHub Actions workflow, we set up QEMU emulation and configured Buildx to build images simultaneously for both linux/amd64 and linux/arm64 architectures. Built images are pushed to Docker Hub, and the Raspberry Pi server automatically pulls and runs the ARM architecture image. We also utilized Docker layer caching to reduce build time.",
         result:
           language === "ko"
-            ? "라즈베리파이 서버에서도 동일한 이미지를 사용할 수 있게 되었고, CI/CD 파이프라인을 통해 자동으로 멀티 아키텍처 이미지를 빌드하고 배포할 수 있게 되었습니다. 빌드 시간도 캐싱을 통해 약 40% 단축되었습니다."
-            : "The same images could now be used on the Raspberry Pi server, and multi-architecture images could be automatically built and deployed through the CI/CD pipeline. Build time was also reduced by approximately 40% through caching.",
+            ? "라즈베리파이(ARM) 환경에서도 CI에서 빌드한 이미지를 그대로 배포할 수 있게 멀티 아키텍처 빌드 체계를 구성했습니다."
+            : "Enabled deploying CI-built images to Raspberry Pi (ARM) via multi-architecture builds.",
       },
       {
         title:
@@ -108,8 +109,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "We built a fully automated deployment pipeline using GitHub Actions. When code is pushed to the frontend or backend repository, the infrastructure repository's workflow is triggered through a repository_dispatch event. The workflow builds the latest code, creates Docker images, pushes them to Docker Hub, then connects to the Raspberry Pi server via SSH to pull the latest images and execute docker compose down/up. With docker compose's restart: always policy and health checks, services automatically restart, and Nginx routes traffic to new containers, enabling zero-downtime deployment.",
         result:
           language === "ko"
-            ? "배포 시간이 수동 배포 대비 80% 단축되었고, 배포 중 서비스 중단 없이 새 버전으로 업데이트할 수 있게 되었습니다. 또한 배포 과정의 자동화로 인한 실수 가능성도 크게 감소했습니다."
-            : "Deployment time was reduced by 80% compared to manual deployment, and services could be updated to new versions without interruption. The possibility of mistakes also significantly decreased due to automation of the deployment process.",
+            ? "코드 푸시 이후 이미지 빌드/푸시/배포까지 자동으로 이어지는 흐름을 만들었습니다."
+            : "Automated build → push → deploy from a code push.",
       },
       {
         title:
@@ -126,8 +127,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "We configured Nginx as a reverse proxy to receive all requests on a single port (80) and route them to appropriate services. General HTTP requests are proxied to frontend or backend, and requests coming to /api/socket.io/ are configured to support WebSocket upgrades. We appropriately set proxy_http_version 1.1, Upgrade header, and Connection header, and set proxy_read_timeout and proxy_send_timeout to 600 seconds to maintain long connections. We also added CORS headers to handle cross-origin requests.",
         result:
           language === "ko"
-            ? "단일 도메인으로 모든 서비스에 접근할 수 있게 되었고, WebSocket 연결이 안정적으로 작동하여 실시간 채팅 기능이 원활하게 동작합니다. 또한 SSL/TLS 설정을 추가하여 HTTPS를 지원할 수 있는 구조로 확장 가능합니다."
-            : "All services could be accessed through a single domain, and WebSocket connections work stably, enabling smooth real-time chat functionality. The structure is also extensible to support HTTPS by adding SSL/TLS configuration.",
+            ? "단일 도메인에서 FE/BE/WebSocket 요청을 분기하고, Socket.IO 업그레이드/타임아웃 설정을 포함해 프록시 설정을 정리했습니다."
+            : "Routed FE/BE/WebSocket under one domain and configured Socket.IO upgrade/timeout proxy settings.",
       },
       {
         title:
@@ -144,8 +145,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "We added health checks to each service and configured depends_on to use condition: service_healthy. PostgreSQL performs health checks with the pg_isready command, MongoDB with the mongosh ping command, retrying up to 20 times at 5-second intervals. Backend services are configured to start only after databases are in healthy status. For MongoDB, we also configured a separate setup container for Replica Set initialization to initialize sequentially.",
         result:
           language === "ko"
-            ? "서비스 시작 순서가 안정적으로 관리되어 데이터베이스 연결 오류가 발생하지 않게 되었고, 컨테이너 재시작 시에도 안정적으로 서비스가 복구됩니다."
-            : "Service startup order is managed stably, preventing database connection errors, and services recover stably even when containers restart.",
+            ? "컨테이너 시작 순서를 health check 기준으로 제어해 DB 준비 전 애플리케이션 기동 문제를 줄였습니다."
+            : "Reduced startup-order issues by gating service start on health checks.",
       },
       {
         title:
@@ -162,8 +163,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "We used Git Submodules to add frontend and backend repositories as submodules of the infrastructure repository. The GitHub Actions workflow uses the submodules: recursive option to automatically synchronize and update submodules. We configured it to use the --remote option to fetch the latest commits of submodules, and used PAT (Personal Access Token) to access private repositories.",
         result:
           language === "ko"
-            ? "단일 레포지토리에서 모든 코드를 참조할 수 있게 되어 CI/CD 파이프라인이 단순해졌고, 서브모듈의 버전 관리도 체계적으로 이루어질 수 있게 되었습니다."
-            : "All code could be referenced from a single repository, simplifying the CI/CD pipeline, and submodule version management could be done systematically.",
+            ? "인프라 레포지토리에서 서브모듈로 FE/BE를 함께 참조하도록 구성해, 배포 워크플로우에서 최신 코드를 가져오는 방식을 정리했습니다."
+            : "Used submodules so the infra repo can reference FE/BE in a unified deploy workflow.",
       },
     ],
     architecture: {
@@ -187,8 +188,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 단순한 웹 개발을 넘어서 실제 프로덕션 환경에서 필요한 인프라 설계와 DevOps 실무 경험을 쌓을 수 있었습니다. 특히 Docker를 활용한 컨테이너화, CI/CD 파이프라인 구축, 리버스 프록시 설정 등 실제 서비스 운영에 필요한 기술들을 직접 구현해볼 수 있어 매우 유익했습니다. 라즈베리파이를 서버로 사용하면서 리소스 제약 상황에서도 안정적인 서비스를 운영하는 방법을 배울 수 있었고, 멀티 아키텍처 빌드를 통해 다양한 플랫폼을 지원하는 방법도 익힐 수 있었습니다. 가장 큰 성과는 완전 자동화된 배포 파이프라인을 구축한 것입니다. 코드 푸시만으로 자동으로 빌드, 테스트, 배포가 이루어지며, 무중단으로 서비스가 업데이트되는 시스템을 직접 구현할 수 있었습니다. 또한 Git Submodule을 활용한 멀티 레포지토리 관리와 Health Check를 통한 서비스 의존성 관리 등 실제 프로덕션 환경에서 사용되는 패턴들을 적용해볼 수 있었습니다. 아쉬운 점으로는 모니터링과 로깅 시스템이 부족하다는 것입니다. 현재는 기본적인 로그만 확인할 수 있는데, Prometheus와 Grafana를 도입하여 메트릭을 수집하고 대시보드를 구성했다면 더 나은 운영이 가능했을 것입니다. 또한 백업 전략도 수동으로만 이루어지고 있어, 자동화된 백업 시스템을 구축했다면 데이터 안정성을 더욱 향상시킬 수 있었을 것입니다. 개선하고 싶은 점으로는 Kubernetes를 도입하여 더욱 확장 가능한 인프라를 구축하고 싶습니다. 또한 Blue-Green 배포나 Canary 배포 같은 고급 배포 전략을 적용하여 더욱 안전한 배포를 하고 싶습니다. 마지막으로 CI/CD 파이프라인에 자동화된 테스트와 보안 스캔을 추가하여 코드 품질과 보안을 더욱 강화하고 싶습니다."
-        : "Through this project, I was able to gain practical experience in infrastructure design and DevOps beyond simple web development, which are necessary for actual production environments. In particular, it was very beneficial to directly implement technologies necessary for actual service operations such as containerization using Docker, CI/CD pipeline construction, and reverse proxy configuration. Using Raspberry Pi as a server, I learned how to operate stable services even under resource constraints, and also learned how to support various platforms through multi-architecture builds. The biggest achievement was building a fully automated deployment pipeline. I was able to directly implement a system where build, test, and deployment occur automatically with just a code push, and services update with zero downtime. I was also able to apply patterns used in actual production environments such as multi-repository management using Git Submodules and service dependency management through Health Checks. As a regret, monitoring and logging systems are lacking. Currently, only basic logs can be checked, but if we had introduced Prometheus and Grafana to collect metrics and configure dashboards, better operations would have been possible. Also, backup strategies are only done manually, so if we had built an automated backup system, we could have further improved data stability. As improvements I'd like to make, I want to introduce Kubernetes to build more scalable infrastructure. I also want to apply advanced deployment strategies such as Blue-Green deployment or Canary deployment for safer deployments. Finally, I want to add automated tests and security scans to the CI/CD pipeline to further strengthen code quality and security.",
+        ? "기능 개발뿐 아니라 배포/운영까지 포함해 끝까지 연결한 프로젝트였습니다. \n운영 관점에서 다음 단계는 모니터링/로그 수집, 백업/복구, 배포 전략(롤백 포함)을 더 구체화하는 것입니다."
+        : "Beyond app features (web/chat), I connected containerization, reverse proxy, and automated deployment to make it deployable end-to-end.\nOperationally, monitoring/logging/backup are the gaps; next steps would be metrics + alerting and automated DB backups.",
     achievements: [
       {
         title:
@@ -197,12 +198,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Fully Automated CI/CD Pipeline Construction",
         description:
           language === "ko"
-            ? "GitHub Actions를 활용하여 코드 푸시부터 배포까지 전 과정을 자동화했습니다."
-            : "Automated the entire process from code push to deployment using GitHub Actions.",
-        metrics:
-          language === "ko" ? "배포 시간 단축" : "Deployment Time Reduction",
-        value: 80,
-        unit: "%",
+            ? "코드 푸시 → 이미지 빌드/푸시 → 서버 배포까지 자동으로 이어지는 파이프라인을 구성했습니다."
+            : "Built an automated pipeline (build → push → deploy) with GitHub Actions.",
       },
       {
         title:
@@ -211,14 +208,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Zero-downtime Deployment System Implementation",
         description:
           language === "ko"
-            ? "Docker Compose와 Health Check를 활용하여 서비스 중단 없이 배포할 수 있는 시스템을 구축했습니다."
-            : "Built a system that can deploy without service interruption using Docker Compose and Health Checks.",
-        metrics:
-          language === "ko"
-            ? "서비스 가용성 향상"
-            : "Service Availability Improvement",
-        value: 99.5,
-        unit: "%",
+            ? "Docker Compose + health check로 기동 순서/재시작 정책을 정리했습니다."
+            : "Managed restarts and dependency order with Docker Compose and health checks.",
       },
       {
         title:
@@ -227,11 +218,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Multi-architecture Docker Image Builds",
         description:
           language === "ko"
-            ? "Docker Buildx를 활용하여 x86_64와 ARM64 아키텍처를 모두 지원하는 이미지를 자동으로 빌드합니다."
-            : "Automatically builds images supporting both x86_64 and ARM64 architectures using Docker Buildx.",
-        metrics: language === "ko" ? "플랫폼 호환성" : "Platform Compatibility",
-        value: 100,
-        unit: "%",
+            ? "Docker Buildx로 linux/amd64, linux/arm64 멀티 아키텍처 이미지를 빌드했습니다."
+            : "Built multi-arch images (linux/amd64, linux/arm64) with Docker Buildx.",
       },
       {
         title:
@@ -240,14 +228,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Reverse Proxy and WebSocket Proxy Configuration",
         description:
           language === "ko"
-            ? "Nginx를 통해 단일 도메인으로 모든 서비스에 접근할 수 있도록 구성하고, WebSocket 연결을 안정적으로 프록시합니다."
-            : "Configured to access all services through a single domain via Nginx and stably proxy WebSocket connections.",
-        metrics:
-          language === "ko"
-            ? "네트워크 구성 완성도"
-            : "Network Configuration Completion",
-        value: 95,
-        unit: "%",
+            ? "Nginx 리버스 프록시로 API/정적/웹소켓을 단일 도메인 아래에서 라우팅했습니다."
+            : "Routed API/static/WebSocket under a single domain via Nginx reverse proxy.",
       },
       {
         title:
@@ -256,14 +238,8 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Health Check-based Service Dependency Management",
         description:
           language === "ko"
-            ? "Health Check를 통해 서비스 간 의존성을 안정적으로 관리하여 시작 순서 문제를 해결했습니다."
-            : "Stably managed dependencies between services through health checks to solve startup order problems.",
-        metrics:
-          language === "ko"
-            ? "서비스 안정성 향상"
-            : "Service Stability Improvement",
-        value: 90,
-        unit: "%",
+            ? "health check + depends_on 조건으로 서비스 시작 순서를 제어했습니다."
+            : "Controlled startup order via health checks and depends_on conditions.",
       },
     ],
   };

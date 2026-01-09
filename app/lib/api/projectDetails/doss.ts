@@ -5,8 +5,8 @@ export function getDossDetail(language: Language): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "DOSS는 설치 없이 어디서든 앱처럼 사용할 수 있는 모바일 뷰 기반 주식 확인 증권 웹 서비스입니다. 사용자들이 복잡한 증권 앱 설치 없이도 웹 브라우저를 통해 실시간 주식 정보를 확인하고, 관심 종목을 관리할 수 있도록 하는 것이 핵심 목표입니다. 한국투자증권 API를 활용하여 국내 및 미국 주식 시장의 실시간 데이터를 제공하고, Elasticsearch를 통한 빠른 검색 기능으로 6,000개 이상의 종목을 쉽게 찾을 수 있도록 구현했습니다. 또한 앱과 유사한 사용자 경험을 제공하기 위해 PWA 기술과 세밀한 인터랙션 디자인을 적용하여 웹 서비스임에도 네이티브 앱 수준의 사용성을 추구했습니다."
-        : "DOSS is a mobile-view-based stock checking securities web service that works like an app without installation, accessible anywhere. The core goal is to enable users to check real-time stock information and manage their favorite stocks through a web browser without the need to install complex securities apps. By leveraging the Korea Investment & Securities API, we provide real-time data from domestic and US stock markets, and through Elasticsearch's fast search functionality, users can easily find over 6,000 stocks. We also applied PWA technology and detailed interaction design to provide a user experience similar to native apps, even though it's a web service.",
+        ? "모바일 우선 웹에서 주식 정보를 조회하고 관심 종목을 관리하는 서비스를 만들었습니다. 외부 API 연동(증권사), 검색(Elasticsearch), 인증(JWT)처럼 운영에 가까운 요소를 포함해 전체 흐름을 구현했습니다."
+        : "DOSS is a mobile-first web app for checking stock information and managing a watchlist. It integrates the Korea Investment & Securities API, Elasticsearch-based search, JWT auth, and basic brute-force mitigation (login attempt limiting).",
     links: {
       github: "https://github.com/mstagon/DOSS",
       site: undefined,
@@ -15,17 +15,18 @@ export function getDossDetail(language: Language): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "DOSS는 Next.js와 Spring Boot를 기반으로 구축된 모바일 우선 주식 확인 웹 서비스입니다. 한국투자증권 API를 통해 국내 및 미국 주식 시장의 실시간 데이터를 제공하며, 거래대금, 거래량, 급상승/급하락 등 다양한 기준으로 인기 주식을 조회할 수 있습니다. Elasticsearch 검색 엔진을 활용하여 6,000개 이상의 주식 종목에 대한 빠른 검색과 자동완성 기능을 제공합니다. 사용자는 관심 종목을 찜하기 기능으로 저장하고, 마이페이지에서 한눈에 확인할 수 있습니다. 또한 보안을 강화하기 위해 브루트포스 공격 방지를 위한 로그인 시도 제한 기능을 구현했습니다. 프론트엔드에서는 Toss의 useFunnel 라이브러리를 활용한 단계별 회원가입 프로세스를 통해 사용자 몰입도를 높였고, 컴포지블 UI 설계를 통해 재사용 가능한 컴포넌트 기반 개발을 추구했습니다. Framer Motion을 활용한 세밀한 애니메이션과 인터랙션으로 앱과 유사한 사용자 경험을 제공합니다. 백엔드에서는 Spring Boot와 MyBatis를 활용하여 RESTful API를 구현했으며, JWT 기반 인증 시스템을 구축했습니다. 주식 데이터는 15분마다 자동으로 갱신되며, MySQL 데이터베이스에 저장되어 빠른 조회가 가능합니다. Elasticsearch를 통한 검색 기능은 실시간 자동완성과 빠른 검색 결과 제공을 가능하게 합니다."
-          : "DOSS is a mobile-first stock checking web service built on Next.js and Spring Boot. It provides real-time data from domestic and US stock markets through the Korea Investment & Securities API, allowing users to view popular stocks based on various criteria such as trading value, volume, and rapid rise/fall. By utilizing the Elasticsearch search engine, we provide fast search and autocomplete functionality for over 6,000 stocks. Users can save their favorite stocks using the bookmark feature and view them at a glance on the mypage. We also implemented a login attempt limit feature to prevent brute force attacks and enhance security. On the frontend, we used Toss's useFunnel library to create a step-by-step registration process that increases user engagement, and pursued component-based development through composable UI design. We provide an app-like user experience through detailed animations and interactions using Framer Motion. On the backend, we implemented RESTful APIs using Spring Boot and MyBatis, and built a JWT-based authentication system. Stock data is automatically updated every 15 minutes and stored in a MySQL database for fast retrieval. The search functionality through Elasticsearch enables real-time autocomplete and fast search results.",
+          ? "Next.js(프론트) + Spring Boot(백엔드)로 구성된 모바일 우선 웹 서비스입니다.\n\n- 데이터/운영: 외부 API 응답 지연/호출 제한을 고려해 서버에서 주기적으로 데이터를 갱신하고(MySQL 저장), 요청 시 DB 기반으로 응답하도록 구성했습니다.\n- 검색: Elasticsearch로 종목 검색/자동완성 분리 운영\n- 인증/보안: JWT 인증 + 로그인 시도 제한(기본적인 무차별 대입 방어)\n- 사용자 기능: 관심 종목 저장, 목록 조회\n\n운영 관점에서 “외부 의존성(API) + 캐시/갱신 + 인증”을 한 서비스 흐름으로 연결한 프로젝트입니다."
+          : "A mobile-first web service built with Next.js (frontend) and Spring Boot (backend).\n\n- Data: fetches stock data via the Korea Investment & Securities API, refreshes it on a schedule, and stores it in MySQL.\n- Search: Elasticsearch-based stock search + autocomplete.\n- User features: watchlist and a simple mypage.\n- Auth/Security: JWT auth and login attempt limiting.\n- Frontend UX: step-by-step signup (useFunnel) and component-oriented UI; selected interactions use Framer Motion.",
       stats: {
         vision:
           language === "ko"
-            ? "설치 없이, 어디서든 앱처럼 사용할 수 있는 주식 확인 서비스로 모든 투자자에게 편리한 주식 정보 접근성을 제공합니다."
-            : "Provide convenient stock information access to all investors through a stock checking service that works like an app without installation, accessible anywhere.",
+            ? "모바일 환경에서 빠르게 종목을 찾고 관심 종목을 관리하는 흐름에 집중했습니다."
+            : "Focused on fast search and a simple watchlist flow on mobile.",
       },
     },
     role: {
-      title: language === "ko" ? "Full-stack Developer" : "Full-stack Developer",
+      title:
+        language === "ko" ? "Full-stack Developer" : "Full-stack Developer",
       responsibilities:
         language === "ko"
           ? [
@@ -63,7 +64,7 @@ export function getDossDetail(language: Language): ProjectDetail {
       "JWT",
     ],
     performance: {
-      pageLoadSpeed: { value: 92, improvement: "+30% improvement" },
+      pageLoadSpeed: { value: 92 },
     },
     challenges: [
       {
@@ -81,8 +82,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "We implemented a data refresh system scheduled at 15-minute intervals and cached data in a MySQL database for fast retrieval. We optimized it to call the API only when necessary by tracking the last update time.",
         result:
           language === "ko"
-            ? "API 호출 횟수를 80% 이상 감소시켰고, 평균 응답 시간을 2초에서 0.3초로 단축했습니다. 사용자 경험이 크게 개선되었습니다."
-            : "We reduced API calls by over 80% and shortened average response time from 2 seconds to 0.3 seconds. User experience was significantly improved.",
+            ? "데이터를 서버에서 주기적으로 갱신하고 DB에 저장해, 요청 시 외부 API 호출 의존도를 줄였습니다."
+            : "Reduced dependency on per-request external API calls by refreshing on a schedule and serving cached data from DB.",
       },
       {
         title:
@@ -99,8 +100,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "We introduced Elasticsearch to index stock names and codes, implementing real-time search and autocomplete functionality. We optimized it to return results immediately when users type search terms.",
         result:
           language === "ko"
-            ? "검색 응답 시간이 1초 이상에서 100ms 이하로 단축되었고, 사용자 친화적인 자동완성 기능을 제공할 수 있게 되었습니다."
-            : "Search response time was reduced from over 1 second to under 100ms, and we were able to provide user-friendly autocomplete functionality.",
+            ? "대량 종목 목록에서도 검색/자동완성이 가능하도록 검색 전용 엔진을 분리했습니다."
+            : "Separated search concerns by using a dedicated search engine for large stock lists and autocomplete.",
       },
       {
         title:
@@ -117,8 +118,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "We implemented page transitions, component animations, and gesture interactions using Framer Motion. We applied PWA technology to enable app-like installation and usage. We built a consistent design system through composable UI design with reusable components.",
         result:
           language === "ko"
-            ? "사용자들이 웹 서비스임에도 앱과 유사한 경험을 느낄 수 있게 되었고, 페이지 이탈률이 감소했습니다."
-            : "Users could experience an app-like feel even though it's a web service, and page bounce rate decreased.",
+            ? "웹에서도 전환/모션이 과하지 않게 동작하도록 애니메이션 범위를 조절하고 컴포넌트 재사용성을 높였습니다."
+            : "Tuned animations and improved component reuse to keep interactions smooth without being excessive.",
       },
       {
         title:
@@ -153,8 +154,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "We implemented a step-by-step onboarding process using Toss's useFunnel library. We displayed visual feedback and progress at each step to increase user engagement.",
         result:
           language === "ko"
-            ? "회원가입 완료율이 40% 향상되었고, 사용자들이 서비스에 대한 이해도가 높아졌습니다."
-            : "Registration completion rate increased by 40%, and users' understanding of the service improved.",
+            ? "단계별 입력으로 폼을 쪼개고 진행 상태를 노출하는 방식으로 온보딩 흐름을 구성했습니다."
+            : "Structured onboarding by splitting the form into steps and showing progress state.",
       },
     ],
     architecture: {
@@ -178,8 +179,8 @@ export function getDossDetail(language: Language): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "이 프로젝트를 통해 풀스택 개발자로서 프론트엔드와 백엔드 전반에 대한 이해도를 높일 수 있었습니다. 특히 한국투자증권 API 연동을 통해 외부 API 통합 경험을 쌓았고, Elasticsearch를 활용한 검색 기능 구현을 통해 검색 엔진에 대한 이해를 넓혔습니다. 가장 큰 성과는 모바일 우선 설계를 통해 웹 서비스임에도 앱과 유사한 사용자 경험을 제공할 수 있었다는 점입니다. Framer Motion을 활용한 애니메이션과 컴포지블 UI 설계를 통해 재사용 가능하고 확장 가능한 코드 구조를 만들 수 있었습니다. 아쉬운 점으로는 9일이라는 짧은 개발 기간으로 인해 일부 기능을 완전히 최적화하지 못했다는 것입니다. 특히 성능 최적화와 에러 핸들링 부분에서 더 개선할 여지가 있습니다. 또한 테스트 코드 작성이 부족하여 코드 품질 관리 측면에서 아쉬움이 남습니다. 개선하고 싶은 점으로는 실시간 주가 업데이트를 WebSocket을 통해 구현하여 더욱 실시간성 있는 서비스를 제공하고 싶습니다. 또한 사용자 맞춤형 추천 기능과 포트폴리오 분석 기능을 추가하여 단순 조회 서비스를 넘어서는 가치를 제공하고 싶습니다."
-        : "Through this project, I was able to improve my understanding of both frontend and backend as a full-stack developer. In particular, I gained experience in external API integration through the Korea Investment & Securities API integration, and expanded my understanding of search engines by implementing search functionality using Elasticsearch. The biggest achievement was being able to provide an app-like user experience even though it's a web service through mobile-first design. Through animations using Framer Motion and composable UI design, I was able to create a reusable and scalable code structure. As a regret, due to the short 9-day development period, we couldn't fully optimize some features. In particular, there's room for improvement in performance optimization and error handling. Also, the lack of test code leaves room for improvement in code quality management. As improvements I'd like to make, I want to implement real-time stock price updates through WebSocket to provide a more real-time service. I also want to add user-customized recommendation features and portfolio analysis features to provide value beyond a simple lookup service.",
+        ? "외부 API 의존성이 있는 서비스를 운영 관점으로 바라보고(호출 제한/지연/실패), 이를 캐시/갱신/보안으로 흡수하는 구조를 직접 구성했습니다.\n다음에는 장애 상황(외부 API 실패/DB 장애)에 대한 에러 처리와 관측 가능성(로그/알림), 테스트를 보강하고 싶습니다."
+        : "This project connected end-to-end concerns like external API integration, Elasticsearch search, and JWT auth. \nGiven the short timeframe, error handling and tests were limited; next I would improve failure UX (retry/caching policy) and add tests.",
     achievements: [
       {
         title:
@@ -188,12 +189,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "Performance Improvement through API Call Optimization",
         description:
           language === "ko"
-            ? "데이터 캐싱 전략을 통해 불필요한 API 호출을 최소화하고 응답 시간을 단축했습니다."
-            : "Minimized unnecessary API calls and reduced response time through data caching strategy.",
-        metrics:
-          language === "ko" ? "API 호출 감소율" : "API Call Reduction Rate",
-        value: 80,
-        unit: "%",
+            ? "외부 API 호출 부담을 줄이기 위해 서버 주기 갱신 + DB 저장 흐름을 구성했습니다."
+            : "Set up scheduled refresh + DB storage to reduce per-request external API dependence.",
       },
       {
         title:
@@ -202,14 +199,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "Search Response Time Reduction",
         description:
           language === "ko"
-            ? "Elasticsearch 도입으로 주식 검색 성능을 대폭 개선했습니다."
-            : "Significantly improved stock search performance by introducing Elasticsearch.",
-        metrics:
-          language === "ko"
-            ? "검색 응답 시간 개선"
-            : "Search Response Time Improvement",
-        value: 90,
-        unit: "%",
+            ? "Elasticsearch 기반 검색/자동완성을 구현했습니다."
+            : "Implemented Elasticsearch-based search and autocomplete.",
       },
       {
         title:
@@ -218,14 +209,8 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "Registration Completion Rate Increase",
         description:
           language === "ko"
-            ? "단계별 온보딩 프로세스로 사용자 이탈률을 감소시켰습니다."
-            : "Reduced user bounce rate through step-by-step onboarding process.",
-        metrics:
-          language === "ko"
-            ? "회원가입 완료율 증가"
-            : "Registration Completion Rate Increase",
-        value: 40,
-        unit: "%",
+            ? "useFunnel 기반 단계형 회원가입 플로우를 구성했습니다."
+            : "Built a step-by-step signup flow with useFunnel.",
       },
       {
         title:
@@ -234,16 +219,9 @@ export function getDossDetail(language: Language): ProjectDetail {
             : "Page Load Speed Improvement",
         description:
           language === "ko"
-            ? "Next.js 최적화와 코드 스플리팅을 통해 초기 로딩 시간을 단축했습니다."
-            : "Reduced initial loading time through Next.js optimization and code splitting.",
-        metrics:
-          language === "ko"
-            ? "페이지 로드 속도 개선"
-            : "Page Load Speed Improvement",
-        value: 30,
-        unit: "%",
+            ? "모바일 환경을 기준으로 화면 구성을 단순화하고, 필요한 데이터만 요청하도록 구성했습니다."
+            : "Optimized mobile-first screens and limited requests to necessary data.",
       },
     ],
   };
 }
-

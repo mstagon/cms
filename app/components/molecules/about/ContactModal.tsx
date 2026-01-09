@@ -7,6 +7,7 @@ interface ContactModalProps {
   onClose: () => void;
   email: string;
   github: string;
+  blogHref?: string;
 }
 
 export default function ContactModal({
@@ -14,6 +15,7 @@ export default function ContactModal({
   onClose,
   email,
   github,
+  blogHref,
 }: ContactModalProps) {
   useEffect(() => {
     if (isOpen) {
@@ -56,6 +58,26 @@ export default function ContactModal({
 
         {/* 연락처 정보 */}
         <div className="space-y-4">
+          {/* 기술 블로그 */}
+          {blogHref && (
+            <div className="flex items-center gap-4 p-4 bg-white/5 border border-accent/20 rounded-lg hover:border-accent/40 transition-colors">
+              <span className="material-symbols-outlined text-accent text-2xl">
+                article
+              </span>
+              <div className="flex-1">
+                <p className="text-xs text-[#8892B0] mb-1">TECH BLOG</p>
+                <a
+                  href={blogHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#E6F1FF] hover:text-accent transition-colors font-mono text-sm"
+                >
+                  {blogHref}
+                </a>
+              </div>
+            </div>
+          )}
+
           {/* 이메일 */}
           <div className="flex items-center gap-4 p-4 bg-white/5 border border-accent/20 rounded-lg hover:border-accent/40 transition-colors">
             <span className="material-symbols-outlined text-accent text-2xl">
