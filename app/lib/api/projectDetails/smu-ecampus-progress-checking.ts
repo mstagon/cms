@@ -135,7 +135,7 @@ export function getSmuEcampusProgressCheckingDetail(
             : "We implemented automatic login functionality by adding an autologin flag and student ID (cn) and password (pw) fields to the option.py file. If autologin is set to True, the login function is automatically called when the program runs, and if False, it receives input from the GUI. However, we noted precautions not to store actual passwords in the option.py file for security.",
         result:
           language === "ko"
-            ? "사용자 편의성이 크게 향상되었고, 자주 사용하는 사용자들에게 특히 유용한 기능이 되었습니다."
+            ? "반복 입력(학번/비밀번호)을 줄이기 위해 자동 로그인 옵션을 제공했습니다."
             : "User convenience greatly improved, and it became a particularly useful feature for frequent users.",
       },
       {
@@ -153,7 +153,7 @@ export function getSmuEcampusProgressCheckingDetail(
             : "We configured a clean layout using various Tkinter widgets such as Frame, Label, and Entry. We placed the login panel on the left and the progress rate display area on the right to clearly separate functions. We also applied custom fonts (Tmoney Round Wind ExtraBold) and added logo images to strengthen branding. We applied color schemes consistently to enhance visual unity.",
         result:
           language === "ko"
-            ? "사용자 인터페이스가 직관적이고 사용하기 쉬워졌으며, 프로그램의 전문성이 향상되었습니다."
+            ? "로그인/진도율 확인 흐름이 한 화면에서 보이도록 레이아웃을 정리했습니다."
             : "The user interface became intuitive and easy to use, and the program's professionalism improved.",
       },
     ],

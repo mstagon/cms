@@ -120,8 +120,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "Designed a modular architecture to separate each feature into independent modules. React handles the main layout and common features, while Flutter handles modules with specific business logic, clearly defining roles. Also built a common API layer so both frameworks use the same backend API.",
         result:
           language === "ko"
-            ? "코드 재사용성이 향상되었고, 각 모듈의 독립적인 개발과 배포가 가능해졌습니다. 유지보수성도 크게 개선되었습니다."
-            : "Code reusability improved, and independent development and deployment of each module became possible. Maintainability also significantly improved.",
+            ? "React(메인)과 Flutter(기능 모듈)의 역할과 통합 지점을 분리해, 병렬 개발이 가능한 형태로 정리했습니다."
+            : "Separated responsibilities and integration points between React (shell) and Flutter (feature modules) to enable parallel development.",
       },
       {
         title:
@@ -152,7 +152,7 @@ export function getPhcDetail(language: Language): ProjectDetail {
             : "There were compatibility issues across various devices and browsers. Particularly on mobile, Flutter webview layouts broke or touch events didn't work properly.",
         toBe:
           language === "ko"
-            ? "Tailwind CSS와 Flutter의 반응형 디자인 기능을 최대한 활용하여 다양한 화면 크기에 대응했습니다. 미디어 쿼리를 활용한 브레이크포인트 설정과 터치 이벤트 핸들링을 최적화했습니다. 또한 브라우저 호환성 테스트를 자동화하여 주요 브라우저에서의 동작을 보장했습니다."
+            ? "Tailwind CSS와 Flutter의 반응형 설정을 활용해 화면 크기별 레이아웃을 맞추고, 모바일에서 발생한 터치/레이아웃 이슈를 중심으로 수정했습니다."
             : "Maximized the use of Tailwind CSS and Flutter's responsive design features to accommodate various screen sizes. Optimized breakpoint settings using media queries and touch event handling. Also automated browser compatibility testing to ensure operation on major browsers.",
         result:
           language === "ko"
@@ -189,7 +189,7 @@ export function getPhcDetail(language: Language): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "팀의 기술 선택이 갈리는 상황에서, ‘한 앱처럼 보이게’ 만들기 위한 통합 방식(iframe/webview, PostMessage, 라우팅 경계)을 정리한 경험이 컸습니다.\n다음에는 모듈 경계를 더 명확히 하고, 타입(TypeScript)과 테스트/배포 자동화를 초기에 같이 잡고 싶습니다."
+        ? "서로 다른 프레임워크를 하나의 서비스처럼 운영하기 위해, 통합 지점(iframe/webview, PostMessage, 라우팅 경계)을 먼저 정리하고 그 위에 기능을 얹었습니다.\n다음에는 장애 시나리오(모듈 로딩 실패/통신 실패)에 대한 처리와, 배포/관측(로그/알림)까지 포함한 운영 준비를 더 일찍 하고 싶습니다."
         : "A key learning was making a hybrid (iframe/webview + PostMessage + routing boundaries) feel like one app under mixed stack choices.\nNext I’d define module boundaries earlier and add typing/tests/deploy automation from the start.",
     achievements: [
       {
@@ -205,8 +205,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
       {
         title:
           language === "ko"
-            ? "API 응답 시간 개선"
-            : "API Response Time Improvement",
+            ? "ORM 로딩/쿼리 전략 정리"
+            : "Query/Loading Strategy Refinement",
         description:
           language === "ko"
             ? "SQLAlchemy 쿼리/로딩 전략을 정리해 불필요한 조회를 줄였습니다."
@@ -215,8 +215,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
       {
         title:
           language === "ko"
-            ? "페이지 로딩 속도 개선"
-            : "Page Loading Speed Improvement",
+            ? "모듈 지연 로딩 적용"
+            : "Module Lazy-loading",
         description:
           language === "ko"
             ? "모듈을 지연 로딩하는 방식으로 초기 진입 부담을 줄였습니다."
@@ -235,8 +235,8 @@ export function getPhcDetail(language: Language): ProjectDetail {
       {
         title:
           language === "ko"
-            ? "프로젝트 일정 단축"
-            : "Project Timeline Reduction",
+            ? "병렬 개발을 위한 역할/경계 분리"
+            : "Parallel Development Enablement",
         description:
           language === "ko"
             ? "하이브리드 구조로 역할을 분리해 병렬 개발이 가능하도록 구성했습니다."

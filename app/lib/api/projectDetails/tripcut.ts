@@ -15,7 +15,7 @@ export function getTripcutDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Next.js 기반의 모바일 최적화 웹(PWA) 서비스입니다.\n\n- 탐색/검색: 작품명/여행지명 검색, 태그/지역 필터.\n- 상세 페이지: 기본 정보, 리뷰, 주변 정보 등 섹션 단위로 구성.\n- 코스/저장: 추천 코스 화면과 북마크 기능.\n- 인증: 카카오 소셜 로그인.\n- 통신: FastAPI 중개 서버 및 Spring Boot API 서버와 연동.\n\n과장된 지표나 임의의 “AI 개인화” 같은 표현은 제외하고, 구현한 화면/기능 범위를 중심으로 정리했습니다."
+          ? "Next.js 기반의 모바일 최적화 웹(PWA) 서비스입니다.\n\n- 탐색/검색: 작품명/여행지명 검색, 태그/지역 필터\n- 상세 페이지: 기본 정보/리뷰/주변 정보 등 섹션 단위 구성\n- 코스/저장: 추천 코스 + 북마크\n- 인증: 카카오 소셜 로그인\n- 통신: FastAPI 중개 서버 및 Spring Boot API 서버와 연동\n\n운영 관점\n- 여러 백엔드와 통신하는 구조에서, 도메인별 API 모듈 분리 + 공통 인터셉터로 요청/인증 헤더 처리를 한 곳에서 관리했습니다.\n- 초기 진입(SSR)과 상세 데이터 로딩을 분리해, 네트워크 지연 시에도 화면이 단계적으로 채워지도록 구성했습니다."
           : "A mobile-optimized web (PWA) built with Next.js.\n\n- Explore/Search: keyword search + tag/region filters.\n- Detail pages: structured sections (info, reviews, nearby).\n- Routes/Saved: recommended routes and bookmarking.\n- Auth: Kakao social login.\n- API: integrates with a FastAPI relay and a Spring Boot API.",
       stats: {
         vision:

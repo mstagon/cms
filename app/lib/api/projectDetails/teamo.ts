@@ -5,7 +5,7 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "팀원 모집/협업 웹 서비스를 만들면서, 라즈베리파이 서버에 Docker 기반으로 배포·운영하는 파이프라인까지 직접 구성했습니다. GitHub Actions → Docker Buildx(멀티 아키텍처) → Docker Hub → SSH 배포(docker compose) 흐름을 구축했고, Nginx 리버스 프록시와 WebSocket 프록시까지 설정했습니다."
+        ? "팀원 모집/협업 서비스를 만들고, 배포·운영까지 포함해 “서비스 형태”로 구성했습니다. Docker Compose 기반 멀티 컨테이너 운영, Nginx 프록시(WebSocket 포함), GitHub Actions 기반 배포 자동화까지 직접 연결했습니다."
         : "Teamo is a team recruitment/collaboration web service with a self-managed deployment setup on a Raspberry Pi. It includes a GitHub Actions → Docker Buildx (multi-arch) → Docker Hub → SSH deploy (docker compose) pipeline, plus Nginx reverse proxy and WebSocket proxy configuration.",
     links: {
       github:
@@ -16,7 +16,7 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Next.js(프론트) + NestJS(백엔드)로 구성된 팀원 모집 서비스입니다.\n\n- 기능: 게시글 기반 모집, 실시간 채팅(Socket.IO), 기술 스택/위치 기반 탐색.\n- 데이터: PostgreSQL(관계형 데이터) + MongoDB(채팅 메시지) 이중 DB.\n- 인증: JWT + 카카오 소셜 로그인.\n- 인프라: Docker Compose로 FE/BE/DB/Nginx를 컨테이너로 운영. health check 기반 의존성 제어.\n- 네트워크: Nginx 리버스 프록시로 단일 도메인에서 API/정적/웹소켓을 라우팅.\n- 배포: GitHub Actions에서 멀티 아키텍처 이미지 빌드 후 라즈베리파이에 배포(SSH + docker compose)."
+          ? "Next.js(프론트) + NestJS(백엔드) 기반의 팀원 모집 서비스입니다.\n\n- 사용자 기능: 게시글 기반 모집, 실시간 채팅(Socket.IO), 기술 스택/위치 기반 탐색\n- 데이터: PostgreSQL(관계형) + MongoDB(채팅) 분리 운영\n- 인증: JWT + 카카오 소셜 로그인\n\n운영/배포 관점\n- 컨테이너 운영: Docker Compose로 FE/BE/DB/Nginx를 분리 실행, health check로 기동 순서/의존성 제어\n- 프록시: Nginx로 단일 도메인에서 API/정적/WebSocket 라우팅(Socket.IO 업그레이드/타임아웃 포함)\n- 배포 자동화: GitHub Actions → Docker Buildx(멀티 아키텍처) → Docker Hub → SSH 배포(docker compose)"
           : "A team recruitment service built with Next.js (frontend) and NestJS (backend).\n\n- Features: recruitment posts, real-time chat (Socket.IO), tech-stack/location exploration.\n- Data: dual DB (PostgreSQL for relational data, MongoDB for chat messages).\n- Auth: JWT + Kakao social login.\n- Infra: Docker Compose runs FE/BE/DB/Nginx with health-check based dependencies.\n- Networking: Nginx reverse proxy routes static/API/WebSocket under a single domain.\n- Deploy: GitHub Actions builds multi-arch images and deploys to a Raspberry Pi via SSH + docker compose.",
       stats: {
         vision:
@@ -188,7 +188,7 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "기능 개발(웹/채팅)뿐 아니라, “배포 가능한 형태”로 만들기 위해 컨테이너 구성과 프록시/배포 자동화까지 직접 연결했습니다.\n운영 관점에서 부족했던 부분은 모니터링/로그/백업입니다. 다음에는 메트릭 수집과 알림, DB 백업 자동화를 붙여서 운영 부담을 줄이고 싶습니다."
+        ? "기능 개발뿐 아니라 배포/운영까지 포함해 끝까지 연결한 프로젝트였습니다. \n운영 관점에서 다음 단계는 모니터링/로그 수집, 백업/복구, 배포 전략(롤백 포함)을 더 구체화하는 것입니다."
         : "Beyond app features (web/chat), I connected containerization, reverse proxy, and automated deployment to make it deployable end-to-end.\nOperationally, monitoring/logging/backup are the gaps; next steps would be metrics + alerting and automated DB backups.",
     achievements: [
       {
@@ -198,7 +198,7 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Fully Automated CI/CD Pipeline Construction",
         description:
           language === "ko"
-            ? "GitHub Actions로 빌드/푸시/배포가 이어지는 자동화 파이프라인을 구성했습니다."
+            ? "코드 푸시 → 이미지 빌드/푸시 → 서버 배포까지 자동으로 이어지는 파이프라인을 구성했습니다."
             : "Built an automated pipeline (build → push → deploy) with GitHub Actions.",
       },
       {
@@ -208,7 +208,7 @@ export function getTeamoDetail(language: Language = "ko"): ProjectDetail {
             : "Zero-downtime Deployment System Implementation",
         description:
           language === "ko"
-            ? "Docker Compose + health check 기반으로 서비스 재기동/의존성 순서를 관리했습니다."
+            ? "Docker Compose + health check로 기동 순서/재시작 정책을 정리했습니다."
             : "Managed restarts and dependency order with Docker Compose and health checks.",
       },
       {

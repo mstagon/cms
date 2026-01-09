@@ -15,7 +15,7 @@ export function getEmploymentDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "React 기반 SPA입니다.\n\n- 채팅 UI: 사용자 메시지를 먼저 렌더링하고, API 응답을 비동기로 붙이는 형태로 구성\n- 채용 공고 검색: 사용자 입력에서 키워드를 추출해 기업/공고 정보를 조회\n- 캘린더: FullCalendar로 일정 관리 UI 구성(이벤트 클릭/상세 링크)\n- 자소서 첨삭: OpenAI GPT-3.5 API 호출(프롬프트 구성/temperature 설정 등)\n- 백엔드: Flask + Flask-RESTX로 API 구성 및 문서화\n\n‘AI가 ~한다’ 같은 표현은 줄이고, 실제로 만든 기능과 호출 흐름만 남겼습니다."
+          ? "React 기반 SPA입니다.\n\n- 채팅 UI: 사용자 메시지 선반영(optimistic) + API 응답 비동기 반영\n- 채용 공고 검색: 사용자 입력에서 키워드를 추출해 기업/공고 정보를 조회\n- 캘린더: FullCalendar로 일정 관리 UI 구성(이벤트 클릭/상세 링크)\n- 자소서 첨삭: OpenAI GPT-3.5 API 호출(프롬프트/파라미터 설정)\n- 백엔드: Flask + Flask-RESTX로 API 구성 및 문서화\n\n운영 관점\n- 외부 API(OpenAI) 의존성이 있는 흐름에서, 응답 대기 UX(로딩/스크롤/히스토리)를 우선 정리했습니다.\n- 다음 단계로는 호출 실패/타임아웃/레이트리밋 상황에서의 에러 처리와 서버 로그/모니터링을 보강하고 싶습니다."
           : "A React-based SPA.\n\n- Chat UI: optimistic rendering + async API responses\n- Job search: keyword extraction and lookup\n- Calendar: FullCalendar-based schedule UI\n- Resume editing: OpenAI GPT-3.5 API calls (prompt/temperature settings)\n- Backend: Flask + Flask-RESTX with API docs",
       stats: {
         vision:
@@ -196,7 +196,7 @@ export function getEmploymentDetail(language: Language = "ko"): ProjectDetail {
       {
         title:
           language === "ko"
-            ? "AI 기반 자소서 첨삭 시스템 구축"
+            ? "OpenAI API 연동 기반 자소서 첨삭 기능 구현"
             : "AI-based Resume Editing System Implementation",
         description:
           language === "ko"

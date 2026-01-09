@@ -100,8 +100,8 @@ export function getRestForestDetail(language: Language): ProjectDetail {
             : "We implemented continuous timer operation in the background using Flutter Background Service. We configured background service settings for both Android and iOS, ensuring the timer continues running even when the app is closed. We also restored the previous timer state when the app is reopened to ensure continuity of user experience.",
         result:
           language === "ko"
-            ? "백그라운드에서의 타이머 동작 안정성이 크게 향상되었고, 사용자가 앱을 종료해도 디지털 디톡스 시간이 정확하게 누적되어 신뢰도가 높아졌습니다."
-            : "Timer operation stability in the background greatly improved, and digital detox time accurately accumulates even when users close the app, increasing reliability.",
+            ? "앱이 백그라운드/종료 상태여도 타이머가 누적되도록 구성하고, 재실행 시 이전 상태를 복원했습니다."
+            : "Made the timer accumulate in background/terminated states and restored previous state on relaunch.",
       },
       {
         title:

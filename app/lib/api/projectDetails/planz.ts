@@ -89,8 +89,8 @@ export function getPlanzDetail(language: Language = "ko"): ProjectDetail {
             : "We introduced the Provider pattern to manage routine and schedule states globally, tracked the selected routine index, and implemented fetching schedules only for that routine from the API. Each routine has a unique ID, and schedules are mapped by date for efficient data management. We also appropriately used setState so the UI updates immediately when routines are added, modified, or deleted.",
         result:
           language === "ko"
-            ? "루틴과 스케줄 관리가 안정적으로 동작하며, 사용자가 여러 루틴을 쉽게 전환하고 관리할 수 있게 되었습니다. 코드의 가독성과 유지보수성도 크게 향상되었습니다."
-            : "Routine and schedule management operates stably, and users can easily switch and manage multiple routines. Code readability and maintainability also greatly improved.",
+            ? "루틴 선택 상태와 날짜별 스케줄을 분리해 관리하고, 선택된 루틴 기준으로 필요한 데이터만 조회하도록 구성했습니다."
+            : "Separated routine selection state from date-based schedules and fetched only what the selected routine needs.",
       },
       {
         title:

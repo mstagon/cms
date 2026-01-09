@@ -5,7 +5,7 @@ export function getDossDetail(language: Language): ProjectDetail {
   return {
     objective:
       language === "ko"
-        ? "모바일 우선 웹 환경에서 주식 정보를 조회하고 관심 종목을 관리할 수 있는 서비스를 만들었습니다. 한국투자증권 API 연동, 종목 검색(Elasticsearch), 인증(JWT)과 로그인 시도 제한 같은 기본 보안까지 포함해 사용자 흐름을 구성했습니다."
+        ? "모바일 우선 웹에서 주식 정보를 조회하고 관심 종목을 관리하는 서비스를 만들었습니다. 외부 API 연동(증권사), 검색(Elasticsearch), 인증(JWT)처럼 운영에 가까운 요소를 포함해 전체 흐름을 구현했습니다."
         : "DOSS is a mobile-first web app for checking stock information and managing a watchlist. It integrates the Korea Investment & Securities API, Elasticsearch-based search, JWT auth, and basic brute-force mitigation (login attempt limiting).",
     links: {
       github: "https://github.com/mstagon/DOSS",
@@ -15,7 +15,7 @@ export function getDossDetail(language: Language): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Next.js(프론트) + Spring Boot(백엔드)로 구성된 모바일 우선 웹 서비스입니다.\n\n- 데이터: 한국투자증권 API로 조회한 데이터를 서버에서 주기적으로 갱신해 MySQL에 저장하도록 구성했습니다.\n- 검색: Elasticsearch로 종목 검색/자동완성 기능을 구현했습니다.\n- 사용자 기능: 관심 종목 저장, 마이페이지에서 목록 확인.\n- 인증/보안: JWT 인증과 로그인 시도 제한 로직을 적용했습니다.\n- 프론트 UX: 단계형 회원가입(useFunnel)과 컴포넌트 기반 UI로 화면을 구성했고, 일부 인터랙션은 Framer Motion으로 처리했습니다."
+          ? "Next.js(프론트) + Spring Boot(백엔드)로 구성된 모바일 우선 웹 서비스입니다.\n\n- 데이터/운영: 외부 API 응답 지연/호출 제한을 고려해 서버에서 주기적으로 데이터를 갱신하고(MySQL 저장), 요청 시 DB 기반으로 응답하도록 구성했습니다.\n- 검색: Elasticsearch로 종목 검색/자동완성 분리 운영\n- 인증/보안: JWT 인증 + 로그인 시도 제한(기본적인 무차별 대입 방어)\n- 사용자 기능: 관심 종목 저장, 목록 조회\n\n운영 관점에서 “외부 의존성(API) + 캐시/갱신 + 인증”을 한 서비스 흐름으로 연결한 프로젝트입니다."
           : "A mobile-first web service built with Next.js (frontend) and Spring Boot (backend).\n\n- Data: fetches stock data via the Korea Investment & Securities API, refreshes it on a schedule, and stores it in MySQL.\n- Search: Elasticsearch-based stock search + autocomplete.\n- User features: watchlist and a simple mypage.\n- Auth/Security: JWT auth and login attempt limiting.\n- Frontend UX: step-by-step signup (useFunnel) and component-oriented UI; selected interactions use Framer Motion.",
       stats: {
         vision:
@@ -179,7 +179,7 @@ export function getDossDetail(language: Language): ProjectDetail {
     },
     retrospective:
       language === "ko"
-        ? "외부 API(증권사) 연동, 검색(Elasticsearch), 인증(JWT)처럼 운영에 가까운 요소를 한 프로젝트 안에서 끝까지 연결해 본 경험이었습니다. \n짧은 기간이라 에러 처리/테스트가 부족했고, 다음에는 네트워크 실패/요청 제한 상황에서의 UX(재시도, 캐시 정책)와 테스트를 보강하고 싶습니다."
+        ? "외부 API 의존성이 있는 서비스를 운영 관점으로 바라보고(호출 제한/지연/실패), 이를 캐시/갱신/보안으로 흡수하는 구조를 직접 구성했습니다.\n다음에는 장애 상황(외부 API 실패/DB 장애)에 대한 에러 처리와 관측 가능성(로그/알림), 테스트를 보강하고 싶습니다."
         : "This project connected end-to-end concerns like external API integration, Elasticsearch search, and JWT auth. \nGiven the short timeframe, error handling and tests were limited; next I would improve failure UX (retry/caching policy) and add tests.",
     achievements: [
       {

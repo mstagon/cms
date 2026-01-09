@@ -15,7 +15,7 @@ export function getMoyangDetail(language: Language = "ko"): ProjectDetail {
     overview: {
       description:
         language === "ko"
-          ? "Flutter 기반 크로스 플랫폼 앱입니다.\n\n- 게시글: 양도 게시글 CRUD, 댓글/찜/신고 등 커뮤니티 기능\n- 탐색: 다중 조건 필터(가격/옵션 등) + 지도 기반 매물 조회(마커)\n- 채팅: STOMP(WebSocket) 기반 실시간 채팅, 재연결/오프라인 큐잉 처리\n- 인증/보안: 토큰 저장(Secure Storage), 생체 인증(Local Auth)\n- API: Dio + Retrofit(+ codegen)으로 타입 안전한 통신 구성\n- 상태/라우팅: Riverpod v2 + GoRouter\n\n설명은 실제 구현한 기능/구성 중심으로만 정리했습니다."
+          ? "Flutter 기반 크로스 플랫폼 앱입니다.\n\n- 게시글: 양도 게시글 CRUD, 댓글/찜/신고 등 커뮤니티 기능\n- 탐색: 다중 조건 필터(가격/옵션 등) + 지도 기반 매물 조회(마커)\n- 채팅: STOMP(WebSocket) 기반 실시간 채팅, 재연결/오프라인 큐잉 처리\n- 인증/보안: 토큰 저장(Secure Storage), 생체 인증(Local Auth)\n- API: Dio + Retrofit(+ codegen)으로 타입 안전한 통신 구성\n- 상태/라우팅: Riverpod v2 + GoRouter\n\n운영 관점\n- 모바일 네트워크 변동(끊김/재연결) 상황에서 채팅이 끊기지 않도록 연결 상태/재시도/큐잉을 클라이언트에서 처리했습니다."
           : "A Flutter cross-platform app.\n\n- Posts: CRUD + community features (comments/bookmarks/reports)\n- Explore: multi-condition filters + map-based browsing with markers\n- Chat: STOMP(WebSocket) real-time chat with reconnect/offline queue\n- Auth/Security: token storage (Secure Storage), biometric auth (Local Auth)\n- API: Dio + Retrofit (codegen) for type-safe calls\n- State/Routing: Riverpod v2 + GoRouter",
       stats: {
         vision:
@@ -140,7 +140,7 @@ export function getMoyangDetail(language: Language = "ko"): ProjectDetail {
             : "Introduced Retrofit and code generation to build a type-safe API client. Defined API endpoints in interfaces and automatically generated implementations through build_runner. Also used JSON Serialization to automatically generate model classes, enabling compile-time error detection when API response structures change.",
         result:
           language === "ko"
-            ? "타입 안전성이 크게 향상되었고, API 변경 시 컴파일 타임에 에러를 감지할 수 있어 버그를 사전에 방지할 수 있었습니다. 코드 반복도 줄어들어 개발 생산성이 향상되었습니다."
+            ? "API 응답 모델/클라이언트를 코드 생성 기반으로 구성해, 구조 변경 시 컴파일 타임에 확인할 수 있게 했습니다."
             : "Type safety significantly improved, and being able to detect errors at compile time when APIs change enabled preventing bugs in advance. Code repetition also decreased, improving development productivity.",
       },
       {
@@ -158,7 +158,7 @@ export function getMoyangDetail(language: Language = "ko"): ProjectDetail {
             : "Implemented responsive design that responds to various screen sizes using Flutter ScreenUtil. Applied all widget sizes proportionally based on the design size (393x852), and applied different design guidelines for each platform (iOS's Cupertino, Android's Material). On web, distinguished between desktop and mobile views to provide optimized layouts for each.",
         result:
           language === "ko"
-            ? "모든 플랫폼에서 일관된 사용자 경험을 제공할 수 있게 되었고, 웹 접근성이 크게 향상되었습니다. 다양한 디바이스에서 테스트한 결과, 모든 화면 크기에서 정상적으로 작동함을 확인했습니다."
+            ? "iOS/Android/Web 환경을 함께 고려해 화면 레이아웃을 점검하고 조정했습니다."
             : "Achieved consistent user experience across all platforms, and web accessibility significantly improved. Testing on various devices confirmed that it works properly on all screen sizes.",
       },
     ],

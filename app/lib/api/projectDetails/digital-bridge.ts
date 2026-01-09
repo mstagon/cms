@@ -78,7 +78,7 @@ export function getDigitalBridgeDetail(
             : "Existing digital education systems only provided lecture videos, or practice sites were on separate pages, making it difficult to practice while watching lectures. Users had to open other tabs or windows to practice after watching lectures, which disrupted learning flow and reduced concentration.",
         toBe:
           language === "ko"
-            ? "같은 페이지 내에서 상단에 강의 영상, 하단에 실습 사이트를 iframe으로 임베드하여 동시에 표시하도록 구현했습니다. HTML5 video 태그를 사용하여 강의 영상을 재생하고, iframe을 통해 실제 플랫폼 웹사이트를 임베드했습니다. 이를 통해 사용자는 강의를 보면서 바로 아래에서 실습할 수 있어 학습 효과가 크게 향상되었습니다."
+            ? "같은 페이지 내에서 상단에 강의 영상, 하단에 실습 사이트를 iframe으로 임베드해 동시에 표시하도록 구현했습니다. HTML5 video 태그로 영상을 재생하고, iframe으로 실습 사이트를 붙여 한 화면에서 따라 할 수 있게 구성했습니다."
             : "We implemented simultaneous display by embedding lecture videos at the top and practice sites via iframe at the bottom within the same page. HTML5 video tags were used to play lecture videos, and iframes were used to embed actual platform websites. This allowed users to practice immediately below while watching lectures, greatly enhancing learning effectiveness.",
         result:
           language === "ko"
