@@ -9,13 +9,13 @@ import type { Language } from "@/app/types/ui";
 import { fetchFooterData } from "@/app/lib/api/footer";
 
 export const metadata: Metadata = {
-  title: "CMS — Frontend Developer",
+  title: "CMS — Full Cycle Developer",
   description: "Choi Min Seok Portfolio",
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://devcms.me"),
   openGraph: {
-    title: "CMS — Frontend Developer",
+    title: "CMS — Full Cycle Developer",
     description: "Choi Min Seok Portfolio",
-    url: "https://example.com",
+    url: "https://devcms.me",
     type: "website",
   },
 };
